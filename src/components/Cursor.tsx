@@ -11,22 +11,18 @@ export default function Cursor() {
     let mx = -100, my = -100
     let rx = -100, ry = -100
     let raf: number
-    let isHovered = false
-
     const onMove = (e: MouseEvent) => {
       mx = e.clientX
       my = e.clientY
     }
 
     const onEnter = () => {
-      isHovered = true
       ring.classList.add('expanded')
       dot.style.transform = 'translate(-50%, -50%) scale(0.4)'
       dot.style.opacity = '0.5'
     }
 
     const onLeave = () => {
-      isHovered = false
       ring.classList.remove('expanded')
       dot.style.transform = 'translate(-50%, -50%) scale(1)'
       dot.style.opacity = '1'
