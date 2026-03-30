@@ -72,7 +72,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         initial={{ opacity:0, y:32, scale:0.97 }}
         animate={{ opacity:1, y:0, scale:1 }}
         exit={{ opacity:0, y:16, scale:0.98 }}
-        transition={{ duration:0.45, ease:[0.16,1,0.3,1] as number[] }}
+        transition={{ duration:0.45, ease:[0.16,1,0.3,1] as any }}
         onClick={e => e.stopPropagation()}
         style={{ width:'100%', maxWidth:'1300px', height:'92vh', display:'flex', flexDirection:'column', borderRadius:'14px', overflow:'hidden', boxShadow:'0 40px 120px rgba(0,0,0,0.8)', border:'1px solid rgba(255,255,255,0.08)' }}>
 
@@ -161,7 +161,7 @@ const accents  = ['#6b5c4e','#3a5a3a','#3a3a6b','#1a4060','#5a4820','#1a4535']
 
 const pageVariants = {
   initial:{ opacity:0 },
-  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] as number[] } },
+  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] as any } },
   exit:   { opacity:0, transition:{ duration:0.3 } },
 }
 
@@ -200,7 +200,7 @@ function UploadModal({ onClose, onAdd }: { onClose:()=>void; onAdd:(p:Omit<Proje
       transition={{ duration:0.25 }} onClick={onClose}
       style={{ position:'fixed', inset:0, zIndex:2000, background:'rgba(128,128,128,0.12)', backdropFilter:'blur(20px)', display:'flex', alignItems:'center', justifyContent:'center', padding:'1.5rem' }}>
       <motion.div initial={{ opacity:0, scale:0.96, y:20 }} animate={{ opacity:1, scale:1, y:0 }}
-        exit={{ opacity:0, scale:0.96 }} transition={{ duration:0.4, ease:[0.16,1,0.3,1] as number[] }}
+        exit={{ opacity:0, scale:0.96 }} transition={{ duration:0.4, ease:[0.16,1,0.3,1] as any }}
         onClick={e=>e.stopPropagation()}
         style={{ background:'var(--c-bg)', border:'1px solid var(--c-line)', borderRadius:'16px', padding:'2.5rem', width:'100%', maxWidth:'520px', boxShadow:'0 24px 80px var(--c-card-shadow)' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'2rem' }}>
@@ -309,7 +309,7 @@ export default function Work() {
               <motion.div key={p.id} layout
                 initial={{ opacity:0, scale:0.96, y:20 }} animate={{ opacity:1, scale:1, y:0 }}
                 exit={{ opacity:0, scale:0.94 }}
-                transition={{ duration:0.5, delay:i*0.05, ease:[0.16,1,0.3,1] as number[] }}>
+                transition={{ duration:0.5, delay:i*0.05, ease:[0.16,1,0.3,1] as any }}>
                 <WorkCard project={p} onSelect={() => setSelectedProject(p)}/>
               </motion.div>
             ))}
