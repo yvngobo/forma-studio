@@ -22,7 +22,7 @@ export default function Contact() {
     if (!form.name||!form.email||!form.message) return
     setSending(true)
     try {
-      await fetch('https://services.leadconnectorhq.com/hooks/tkPFtO46rdKBrpDQL0Jz/webhook-trigger/87baefa0-d3df-4fd9-96f5-69962ab88caf', {
+      await fetch('https://services.leadconnectorhq.com/hooks/tkPFtO46rdKBrpDQL0Jz/webhook-trigger/804d3af8-0372-436a-b23e-7c842c622e04', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
