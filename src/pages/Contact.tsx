@@ -13,12 +13,30 @@ const projectTypes = ['New Website','Redesign','E-commerce','Landing Page','Web 
 export default function Contact() {
   const [form, setForm] = useState({ name:'', email:'', type:'', budget:'', message:'' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
   const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) =>
     setForm(f=>({...f,[k]:e.target.value}))
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name||!form.email||!form.message) return
+    setSending(true)
+    try {
+      await fetch('https://services.leadconnectorhq.com/hooks/tkPFtO46rdKBrpDQL0Jz/webhook-trigger/87baefa0-d3df-4fd9-96f5-69962ab88caf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          project_type: form.type,
+          budget: form.budget,
+          message: form.message,
+        }),
+      })
+    } catch (_) {
+      // fail silently — still show success to user
+    }
+    setSending(false)
     setSent(true)
   }
 
@@ -114,8 +132,8 @@ export default function Contact() {
                       placeholder="What do you need, what's the timeline, what are you hoping to achieve…"
                       rows={5} required style={{ resize:'none', paddingTop:'1rem' }}/>
                   </div>
-                  <button type="submit" className="btn btn-primary" style={{ width:'100%', justifyContent:'center', fontSize:'0.9rem', padding:'1rem' }}>
-                    Send Message →
+                  <button type="submit" disabled={sending} className="btn btn-primary" style={{ width:'100%', justifyContent:'center', fontSize:'0.9rem', padding:'1rem', opacity: sending ? 0.6 : 1 }}>
+                    {sending ? 'Sending…' : 'Send Message →'}
                   </button>
                 </motion.form>
               )}
