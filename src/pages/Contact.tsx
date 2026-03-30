@@ -66,7 +66,7 @@ export default function Contact() {
             <FadeIn delay={0.15}>
               <div style={{ display:'flex', flexDirection:'column', gap:'1.75rem' }}>
                 {[
-                  { label:'Email',         value:'hello@formadesign.co' },
+                  { label:'Email',         value:'formadesign.ao@gmail.com' },
                   { label:'Response time', value:'Within 24 hours'      },
                   { label:'Based',         value:'Remote · Global'      },
                 ].map(item=>(
