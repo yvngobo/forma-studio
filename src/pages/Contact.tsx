@@ -4,7 +4,7 @@ import FadeIn from '../components/FadeIn'
 
 const pageVariants = {
   initial:{ opacity:0 },
-  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] } },
+  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] as number[] } },
   exit:   { opacity:0, transition:{ duration:0.3 } },
 }
 
@@ -67,7 +67,7 @@ export default function Contact() {
               {sent ? (
                 <motion.div key="thanks"
                   initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
-                  transition={{ duration:0.6, ease:[0.16,1,0.3,1] }}
+                  transition={{ duration:0.6, ease:[0.16,1,0.3,1] as number[] }}
                   style={{ padding:'4rem 2rem', textAlign:'center', border:'1px solid var(--c-line)', borderRadius:'16px', background:'var(--c-bg2)' }}>
                   <div style={{ width:'56px', height:'56px', borderRadius:'50%', border:'1px solid var(--c-line)', background:'var(--c-bg)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1.75rem', fontSize:'1.25rem', color:'var(--c-ink)' }}>✓</div>
                   <h3 className="text-heading" style={{ fontSize:'1.75rem', color:'var(--c-ink)', marginBottom:'0.875rem' }}>Message sent.</h3>

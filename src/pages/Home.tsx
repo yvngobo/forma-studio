@@ -39,7 +39,7 @@ const featuredProjects = [
 
 const pageVariants = {
   initial:{ opacity:0 },
-  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] } },
+  animate:{ opacity:1, transition:{ duration:0.6, ease:[0.16,1,0.3,1] as number[] } },
   exit:   { opacity:0, transition:{ duration:0.3 } },
 }
 
@@ -58,7 +58,7 @@ export default function Home() {
       }}>
         <motion.div
           initial={{ opacity:0, y:12 }} animate={heroReady?{opacity:1,y:0}:{}}
-          transition={{ duration:0.6, delay:0.2, ease:[0.16,1,0.3,1] }}
+          transition={{ duration:0.6, delay:0.2, ease:[0.16,1,0.3,1] as number[] }}
           style={{ display:'inline-flex', alignItems:'center', gap:'0.5rem', marginBottom:'3rem',
             color:'var(--c-ink4)', fontSize:'0.8rem', letterSpacing:'0.1em', textTransform:'uppercase', fontWeight:500 }}>
           <span style={{ display:'inline-block', width:6, height:6, borderRadius:'50%', background:'var(--c-ink)' }} />
@@ -69,7 +69,7 @@ export default function Home() {
           <div key={i} style={{ overflow:'hidden' }}>
             <motion.h1 className="text-display"
               initial={{ y:'110%', opacity:0 }} animate={heroReady?{y:'0%',opacity:1}:{}}
-              transition={{ duration:0.9, delay:0.3+i*0.1, ease:[0.16,1,0.3,1] }}
+              transition={{ duration:0.9, delay:0.3+i*0.1, ease:[0.16,1,0.3,1] as number[] }}
               style={{
                 fontSize:'clamp(3.5rem,9vw,9.5rem)', display:'block', marginBottom:'0.08em',
                 color: i===2 ? 'transparent' : 'var(--c-ink)',
@@ -82,7 +82,7 @@ export default function Home() {
 
         <motion.div
           initial={{ opacity:0, y:20 }} animate={heroReady?{opacity:1,y:0}:{}}
-          transition={{ duration:0.8, delay:0.75, ease:[0.16,1,0.3,1] }}
+          transition={{ duration:0.8, delay:0.75, ease:[0.16,1,0.3,1] as number[] }}
           style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'2rem', marginTop:'3.5rem' }}>
           <p style={{ color:'var(--c-ink3)', fontSize:'clamp(0.9rem,1.5vw,1.1rem)', maxWidth:'380px', lineHeight:1.6 }}>
             Premium web design for ambitious brands.<br/>Clean. Fast. Conversion-focused.
