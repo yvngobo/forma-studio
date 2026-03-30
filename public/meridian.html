@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden;display:flex}
+.sidebar{width:220px;background:#1a1f2e;height:900px;flex-shrink:0;display:flex;flex-direction:column;padding:0}
+.s-logo{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px}
+.s-icon{width:32px;height:32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+.s-name{font-size:14px;font-weight:600;color:#fff;letter-spacing:-0.01em}
+.s-section{padding:24px 12px 8px;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.s-item{display:flex;align-items:center;gap:10px;padding:10px 12px;margin:2px 0;border-radius:8px;font-size:12px;color:rgba(255,255,255,0.55);cursor:default}
+.s-item.active{background:rgba(99,102,241,0.15);color:#818cf8}
+.s-dot{width:16px;height:16px;border-radius:4px;flex-shrink:0;background:rgba(255,255,255,0.1)}
+.s-item.active .s-dot{background:#6366f1}
+.s-badge{margin-left:auto;background:rgba(99,102,241,0.2);color:#818cf8;font-size:9px;padding:2px 7px;border-radius:10px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.breadcrumb{font-size:13px;color:#6b7280;display:flex;align-items:center;gap:8px}
+.breadcrumb strong{color:#111827;font-weight:600}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tb-btn{background:#6366f1;color:#fff;font-size:12px;font-weight:500;padding:8px 16px;border-radius:8px}
+.tb-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.content{padding:24px 28px;flex:1;overflow:hidden}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.kpi{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
+.kpi-label{font-size:11px;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
+.kpi-val{font-size:26px;font-weight:700;color:#111827;letter-spacing:-0.02em;margin-bottom:4px}
+.kpi-change{font-size:11px;font-weight:500}
+.up{color:#10b981}.dn{color:#ef4444}
+.charts{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px}
+.chart-card{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
+.chart-title{font-size:13px;font-weight:600;color:#111827;margin-bottom:4px}
+.chart-sub{font-size:11px;color:#9ca3af;margin-bottom:20px}
+.chart-area{height:160px;display:flex;align-items:flex-end;gap:8px;padding-top:10px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height 0.3s}
+.bar-label{font-size:9px;color:#9ca3af}
+.donut-wrap{display:flex;flex-direction:column;justify-content:center;align-items:center;height:160px;margin-bottom:0}
+.donut{width:110px;height:110px;border-radius:50%;background:conic-gradient(#6366f1 0% 62%,#8b5cf6 62% 78%,#c4b5fd 78% 89%,#e5e7eb 89% 100%);display:flex;align-items:center;justify-content:center}
+.donut-inner{width:70px;height:70px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#111827}
+.legend{display:flex;flex-direction:column;gap:8px;margin-top:16px;width:100%}
+.leg-item{display:flex;align-items:center;gap:8px;font-size:11px;color:#6b7280}
+.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.leg-val{margin-left:auto;font-weight:600;color:#111827}
+.table-card{background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden}
+.table-header{padding:16px 20px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center}
+.th{font-size:12px;font-weight:600;color:#111827}
+.table-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:12px 20px;border-bottom:1px solid #f9fafb;font-size:12px;align-items:center}
+.table-row:last-child{border:none}
+.tr-head{background:#f9fafb;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;font-weight:600}
+.status{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600}
+.s-active{background:#d1fae5;color:#065f46}
+.s-trial{background:#fef3c7;color:#92400e}
+.s-pause{background:#f3f4f6;color:#6b7280}
+.avatar-row{display:flex;align-items:center;gap:8px}
+.av{width:24px;height:24px;border-radius:50%;flex-shrink:0;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+</style></head><body>
+<div class="sidebar">
+  <div class="s-logo"><div class="s-icon">M</div><div class="s-name">Meridian</div></div>
+  <div class="s-section">Overview</div>
+  <div class="s-item active"><div class="s-dot"></div>Dashboard</div>
+  <div class="s-item"><div class="s-dot"></div>Analytics<div class="s-badge">New</div></div>
+  <div class="s-item"><div class="s-dot"></div>Reports</div>
+  <div class="s-section">Management</div>
+  <div class="s-item"><div class="s-dot"></div>Customers</div>
+  <div class="s-item"><div class="s-dot"></div>Revenue</div>
+  <div class="s-item"><div class="s-dot"></div>Pipeline</div>
+  <div class="s-section">System</div>
+  <div class="s-item"><div class="s-dot"></div>Integrations</div>
+  <div class="s-item"><div class="s-dot"></div>Settings</div>
+  <div style="margin-top:auto;padding:16px 12px;border-top:1px solid rgba(255,255,255,0.07)">
+    <div class="s-item" style="margin:0"><div class="tb-avatar"></div><div style="font-size:11px;color:rgba(255,255,255,0.6)">Aaron O.</div></div>
+  </div>
+</div>
+<div class="main">
+  <div class="topbar"><div class="breadcrumb">Dashboard <span>›</span> <strong>Overview</strong></div><div class="tb-right"><div style="font-size:12px;color:#6b7280;background:#f9fafb;padding:7px 14px;border-radius:8px;border:1px solid #e5e7eb">Last 30 days ▾</div><div class="tb-btn">+ New Report</div><div class="tb-avatar"></div></div></div>
+  <div class="content">
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-label">Monthly Revenue</div><div class="kpi-val">$84,230</div><div class="kpi-change up">↑ 12.4% vs last month</div></div>
+      <div class="kpi"><div class="kpi-label">Active Users</div><div class="kpi-val">3,842</div><div class="kpi-change up">↑ 8.1% vs last month</div></div>
+      <div class="kpi"><div class="kpi-label">Churn Rate</div><div class="kpi-val">2.3%</div><div class="kpi-change dn">↑ 0.4% vs last month</div></div>
+      <div class="kpi"><div class="kpi-label">NPS Score</div><div class="kpi-val">72</div><div class="kpi-change up">↑ 5pts vs last month</div></div>
+    </div>
+    <div class="charts">
+      <div class="chart-card">
+        <div class="chart-title">Revenue Overview</div>
+        <div class="chart-sub">Monthly recurring revenue · 2025</div>
+        <div class="chart-area">
+          ${[58,42,68,52,74,62,88,76,94,82,100,90].map((h,i)=>

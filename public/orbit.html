@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-bottom:1px solid rgba(255,255,255,0.07);background:#161b22}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#58a6ff,#79c0ff);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#0d1117}
+.logo-text{font-size:15px;font-weight:700;letter-spacing:-0.02em;color:#fff}
+.links{display:flex;gap:28px;font-size:12px;color:rgba(255,255,255,0.5)}
+.links span:first-child{color:#58a6ff}
+.nav-right{display:flex;gap:10px;align-items:center}
+.sign-in{font-size:12px;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:6px}
+.sign-up{font-size:12px;color:#0d1117;background:#58a6ff;padding:8px 18px;border-radius:6px;font-weight:600}
+.hero{padding:64px 48px 0;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 14px;font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:20px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#58a6ff}
+h1{font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:18px;color:#fff}
+h1 span{color:#58a6ff}
+.sub{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.5);max-width:460px;margin-bottom:32px}
+.actions{display:flex;gap:10px;margin-bottom:40px}
+.b1{background:#58a6ff;color:#0d1117;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:700}
+.b2{background:rgba(255,255,255,0.05);color:#e6edf3;padding:12px 24px;border-radius:8px;font-size:13px;border:1px solid rgba(255,255,255,0.1)}
+.stats{display:flex;gap:32px}
+.stat-val{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px}
+.editor{background:#161b22;border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden}
+.editor-bar{background:#21262d;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.dot{width:10px;height:10px;border-radius:50%}
+.tab{font-size:11px;color:rgba(255,255,255,0.4);padding:4px 12px;border-radius:4px;margin-left:8px}
+.tab.active{background:#0d1117;color:#e6edf3}
+.code{padding:20px;font-family:'Courier New',monospace;font-size:12px;line-height:1.8}
+.kw{color:#ff7b72}.fn{color:#d2a8ff}.str{color:#a5d6ff}.cm{color:#8b949e}.var{color:#ffa657}.op{color:#ff7b72}.num{color:#79c0ff}.cls{color:#f0883e}
+.features-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.07);margin-top:60px;border-top:1px solid rgba(255,255,255,0.07)}
+.feat{background:#0d1117;padding:28px;border-right:1px solid rgba(255,255,255,0.07)}
+.feat:last-child{border:none}
+.feat-icon{width:36px;height:36px;background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
+.feat-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:6px}
+.feat-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6}
+</style></head><body>
+<nav>
+  <div class="logo"><div class="logo-icon">O</div><div class="logo-text">Orbit</div></div>
+  <div class="links"><span>Docs</span><span>API</span><span>CLI</span><span>Changelog</span><span>Blog</span></div>
+  <div class="nav-right"><div class="sign-in">Sign in</div><div class="sign-up">Get started →</div></div>
+</nav>
+<div class="hero">
+  <div>
+    <div class="badge"><div class="badge-dot"></div>v3.2 released — See what's new</div>
+    <h1>Ship faster.<br/><span>Build</span> with<br/>confidence.</h1>
+    <p class="sub">Orbit is the developer platform that teams actually enjoy using. CI/CD, monitoring, previews, and deployment — all in one place.</p>
+    <div class="actions"><div class="b1">Deploy in 60 seconds</div><div class="b2">View Documentation</div></div>
+    <div class="stats"><div><div class="stat-val">50k+</div><div class="stat-label">Developers</div></div><div><div class="stat-val">2M+</div><div class="stat-label">Deployments/day</div></div><div><div class="stat-val">99.99%</div><div class="stat-label">Uptime SLA</div></div></div>
+  </div>
+  <div class="editor">
+    <div class="editor-bar"><div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div><div class="tab active">deploy.yml</div><div class="tab">orbit.config.ts</div></div>
+    <div class="code">
+      <div><span class="cm"># Orbit deployment pipeline</span></div>
+      <div>&nbsp;</div>
+      <div><span class="kw">name</span>: <span class="str">Production Deploy</span></div>
+      <div><span class="kw">on</span>:</div>
+      <div>&nbsp;&nbsp;<span class="kw">push</span>:</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">branches</span>: [<span class="str">'main'</span>]</div>
+      <div>&nbsp;</div>
+      <div><span class="kw">jobs</span>:</div>
+      <div>&nbsp;&nbsp;<span class="fn">deploy</span>:</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">runs-on</span>: <span class="str">orbit-runner</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">steps</span>:</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="kw">uses</span>: <span class="str">orbit/checkout@v3</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="kw">uses</span>: <span class="str">orbit/setup-node@v3</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">with</span>:</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">node-version</span>: <span class="num">20</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="kw">run</span>: <span class="str">npm ci &amp;&amp; npm run build</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="kw">uses</span>: <span class="str">orbit/deploy@v3</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">with</span>:</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">project</span>: <span class="var">$&#123;&#123; vars.PROJECT_ID &#125;&#125;</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">token</span>: <span class="var">$&#123;&#123; secrets.ORBIT_TOKEN &#125;&#125;</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">env</span>: <span class="str">production</span></div>
+    </div>
+  </div>
+</div>
+<div class="features-strip">
+  <div class="feat"><div class="feat-icon">⚡</div><div class="feat-name">Instant Previews</div><div class="feat-desc">Every PR gets a live preview URL in seconds, not minutes.</div></div>
+  <div class="feat"><div class="feat-icon">🔒</div><div class="feat-name">Zero-Config Security</div><div class="feat-desc">SSL, DDoS protection, and WAF out of the box.</div></div>
+  <div class="feat"><div class="feat-icon">📊</div><div class="feat-name">Real-time Metrics</div><div class="feat-desc">Web vitals, error tracking, and alerting built in.</div></div>
+  <div class="feat"><div class="feat-icon">🌍</div><div class="feat-name">Global Edge Network</div><div class="feat-desc">Deploy to 200+ edge locations with one command.</div></div>
+</div>
+</body></html>

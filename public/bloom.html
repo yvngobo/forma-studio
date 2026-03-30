@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0faf4;color:#0a2018;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 52px;background:#fff;border-bottom:1px solid #e0f0e8}
+.logo{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#0a2018}
+.logo-mark{width:28px;height:28px;background:linear-gradient(135deg,#22c55e,#16a34a);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.links{display:flex;gap:28px;font-size:12px;color:#64a87a}
+.cta-nav{background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:10px 22px;border-radius:20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;padding:60px 52px;gap:60px;align-items:center;background:#fff;border-bottom:1px solid #e0f0e8}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#f0faf4;color:#16a34a;font-size:11px;font-weight:600;padding:6px 14px;border-radius:20px;border:1px solid #bbf7d0;margin-bottom:22px}
+h1{font-size:50px;font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0a2018;margin-bottom:18px}
+h1 span{color:#22c55e}
+.sub{font-size:14px;line-height:1.75;color:#4a7a5a;max-width:420px;margin-bottom:32px}
+.actions{display:flex;gap:10px;margin-bottom:32px}
+.b1{background:#22c55e;color:#fff;padding:14px 26px;border-radius:24px;font-size:13px;font-weight:600}
+.b2{background:transparent;color:#0a2018;padding:14px 26px;border-radius:24px;font-size:13px;border:1.5px solid #bbf7d0}
+.ratings{display:flex;align-items:center;gap:12px;font-size:12px;color:#64a87a}
+.stars{color:#22c55e;font-size:14px}
+.phone{width:240px;margin:0 auto;background:#0a2018;border-radius:36px;padding:10px;box-shadow:0 40px 80px rgba(10,32,24,0.25)}
+.p-inner{background:#f0faf4;border-radius:28px;overflow:hidden;height:420px}
+.p-top{background:linear-gradient(160deg,#16a34a,#22c55e);padding:20px 16px 28px;color:#fff}
+.p-greeting{font-size:11px;opacity:0.7;margin-bottom:4px}
+.p-name{font-size:18px;font-weight:700;margin-bottom:16px}
+.p-ring{width:80px;height:80px;margin:0 auto 14px;position:relative;display:flex;align-items:center;justify-content:center}
+.ring-bg{position:absolute;inset:0;border-radius:50%;background:rgba(255,255,255,0.15)}
+.ring-fill{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(255,255,255,0.9) 0% 75%,rgba(255,255,255,0.15) 75%)}
+.ring-inner{width:56px;height:56px;background:linear-gradient(160deg,#16a34a,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;z-index:1}
+.p-score-label{text-align:center;font-size:11px;opacity:0.7;margin-bottom:4px}
+.p-score{text-align:center;font-size:24px;font-weight:800}
+.p-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
+.pm{background:#fff;border-radius:16px;padding:12px 8px;text-align:center}
+.pm-icon{font-size:18px;margin-bottom:4px}
+.pm-val{font-size:14px;font-weight:700;color:#0a2018}
+.pm-label{font-size:9px;color:#64a87a;text-transform:uppercase;letter-spacing:0.08em}
+.p-chart{margin:0 12px;background:#fff;border-radius:16px;padding:12px}
+.pc-title{font-size:11px;font-weight:600;color:#0a2018;margin-bottom:8px}
+.pc-bars{display:flex;align-items:flex-end;gap:4px;height:50px}
+.pc-bar{flex:1;border-radius:4px 4px 0 0;background:#bbf7d0}
+.pc-bar.active{background:#22c55e}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 52px;background:#f0faf4;border-top:1px solid #d0e8d8}
+.feat{background:#fff;border-radius:16px;padding:22px;border:1px solid #e0f0e8}
+.feat-icon{width:36px;height:36px;background:#f0faf4;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.feat-name{font-size:13px;font-weight:600;color:#0a2018;margin-bottom:4px}
+.feat-desc{font-size:11px;color:#64a87a;line-height:1.5}
+</style></head><body>
+<nav><div class="logo"><div class="logo-mark">🌱</div>Bloom Health</div><div class="links"><span>Features</span><span>Pricing</span><span>Community</span><span>Blog</span></div><div class="cta-nav">Try Free</div></nav>
+<div class="hero">
+  <div>
+    <div class="badge">🏆 #1 Health App of 2025</div>
+    <h1>Your health,<br/>finally <span>understood.</span></h1>
+    <p class="sub">Bloom tracks your sleep, movement, stress, and nutrition — then tells you exactly what to do about it. No guesswork, just clarity.</p>
+    <div class="actions"><div class="b1">Download Free</div><div class="b2">See How It Works</div></div>
+    <div class="ratings"><span class="stars">★★★★★</span><strong style="color:#0a2018">4.9/5</strong>from 28,000+ reviews on the App Store</div>
+  </div>
+  <div class="phone">
+    <div class="p-inner">
+      <div class="p-top">
+        <div class="p-greeting">Good morning,</div>
+        <div class="p-name">Sarah 👋</div>
+        <div class="p-ring">
+          <div class="ring-bg"></div>
+          <div class="ring-fill"></div>
+          <div class="ring-inner">82</div>
+        </div>
+        <div class="p-score-label">Wellness Score</div>
+        <div class="p-score">Great day ahead!</div>
+      </div>
+      <div class="p-metrics">
+        <div class="pm"><div class="pm-icon">😴</div><div class="pm-val">7h 42m</div><div class="pm-label">Sleep</div></div>
+        <div class="pm"><div class="pm-icon">🚶</div><div class="pm-val">8,240</div><div class="pm-label">Steps</div></div>
+        <div class="pm"><div class="pm-icon">❤️</div><div class="pm-val">62 bpm</div><div class="pm-label">Resting HR</div></div>
+      </div>
+      <div class="p-chart">
+        <div class="pc-title">Energy This Week</div>
+        <div class="pc-bars">
+          ${[40,60,50,75,65,88,70].map((h,i)=>

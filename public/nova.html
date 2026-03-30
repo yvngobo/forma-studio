@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 52px;border-bottom:1px solid #eee}
+.logo{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+.links{display:flex;gap:32px;font-size:12px;color:#888}
+.cta-nav{font-size:12px;font-weight:600;background:#000;color:#fff;padding:10px 22px;border-radius:4px}
+.hero-bar{background:#000;color:#fff;padding:60px 52px;display:flex;justify-content:space-between;align-items:flex-end}
+h1{font-size:80px;font-weight:900;line-height:.9;letter-spacing:-0.04em;max-width:700px}
+h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,0.35)}
+.hero-right{text-align:right;flex-shrink:0}
+.h-sub{font-size:13px;color:rgba(255,255,255,0.45);max-width:240px;line-height:1.7;margin-bottom:24px;text-align:right}
+.h-cta{display:inline-block;background:#fff;color:#000;padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.works{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #000}
+.work-item{position:relative;overflow:hidden;cursor:default}
+.wi-img{height:240px;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:900;letter-spacing:-0.05em;border-bottom:2px solid #000;border-right:2px solid #000}
+.wi-meta{padding:18px 24px;border-right:2px solid #000;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #000}
+.wi-name{font-size:14px;font-weight:700;letter-spacing:-0.01em}
+.wi-cat{font-size:11px;color:#888;letter-spacing:0.05em;text-transform:uppercase}
+.wi-yr{font-size:11px;color:#aaa}
+.marquee-bar{background:#000;padding:14px 0;overflow:hidden;white-space:nowrap;border-top:2px solid #000}
+.m-inner{display:inline-block;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);animation:m 30s linear infinite}
+@keyframes m{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.clients{padding:28px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee}
+.cl-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#ccc}
+.cl-names{display:flex;gap:36px;font-size:12px;font-weight:600;color:#ccc;letter-spacing:-0.01em}
+</style></head><body>
+<nav><div class="logo">Nova Creative</div><div class="links"><span>Work</span><span>Studio</span><span>Services</span><span>Journal</span></div><div class="cta-nav">Start a Project</div></nav>
+<div class="hero-bar">
+  <h1>We make<br/><em>the internet</em><br/>look good.</h1>
+  <div class="hero-right">
+    <p class="h-sub">Award-winning creative studio specialising in brand, web, and digital experience.</p>
+    <div class="h-cta">View Our Work</div>
+    <div style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.05em">Est. 2018 &nbsp;·&nbsp; London &amp; Remote</div>
+  </div>
+</div>
+<div class="works">
+  <div class="work-item"><div class="wi-img" style="background:#f5f0e8;color:rgba(0,0,0,0.08)">FOLIO</div><div class="wi-meta"><div><div class="wi-name">Aspect Studio</div><div class="wi-cat">Brand + Web</div></div><div class="wi-yr">2025</div></div></div>
+  <div class="work-item"><div class="wi-img" style="background:#1a1a1a;color:rgba(255,255,255,0.05);border-right:0">ARCH</div><div class="wi-meta" style="border-right:0"><div><div class="wi-name">The Arch Group</div><div class="wi-cat">Digital + Motion</div></div><div class="wi-yr">2025</div></div></div>
+  <div class="work-item" style="border-bottom:0"><div class="wi-img" style="background:#eef5ee;color:rgba(0,0,0,0.06);border-bottom:0">MRKT</div><div class="wi-meta" style="border-bottom:0"><div><div class="wi-name">Market Lane</div><div class="wi-cat">E-commerce</div></div><div class="wi-yr">2024</div></div></div>
+  <div class="work-item" style="border-bottom:0"><div class="wi-img" style="background:#f0eef5;color:rgba(0,0,0,0.06);border-right:0;border-bottom:0">VLNT</div><div class="wi-meta" style="border-right:0;border-bottom:0"><div><div class="wi-name">Valiant Capital</div><div class="wi-cat">Web + Brand</div></div><div class="wi-yr">2024</div></div></div>
+</div>
+<div class="marquee-bar"><span class="m-inner">CREATIVE DIRECTION &nbsp;·&nbsp; WEB DESIGN &nbsp;·&nbsp; BRAND IDENTITY &nbsp;·&nbsp; MOTION &nbsp;·&nbsp; DIGITAL STRATEGY &nbsp;·&nbsp; CREATIVE DIRECTION &nbsp;·&nbsp; WEB DESIGN &nbsp;·&nbsp; BRAND IDENTITY &nbsp;·&nbsp; MOTION &nbsp;·&nbsp; DIGITAL STRATEGY &nbsp;·&nbsp; </span></div>
+<div class="clients"><div class="cl-label">Trusted by</div><div class="cl-names"><span>Stripe</span><span>Notion</span><span>Linear</span><span>Arc</span><span>Vercel</span><span>Loom</span></div></div>
+</body></html>

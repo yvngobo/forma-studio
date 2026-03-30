@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#faf7f3;color:#1e1a16;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 52px;background:#fff}
+.logo{font-size:18px;letter-spacing:0.15em;font-weight:600;color:#1e1a16}
+.logo span{color:#7aad8a}
+.links{display:flex;gap:32px;font-size:12px;color:#999;letter-spacing:0.05em}
+.icons{display:flex;gap:20px;font-size:12px;color:#666}
+.hero{display:grid;grid-template-columns:1fr 1fr;height:500px;gap:0}
+.hl{padding:60px 52px;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#f0f7f1;color:#4a8a5a;font-size:11px;font-weight:600;letter-spacing:0.08em;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+.dot{width:6px;height:6px;border-radius:50%;background:#7aad8a}
+h1{font-size:52px;line-height:1.1;letter-spacing:-0.02em;font-weight:700;color:#1e1a16;margin-bottom:18px}
+h1 em{font-style:italic;font-weight:400;color:#7aad8a}
+.sub{font-size:15px;line-height:1.7;color:#888;max-width:380px;margin-bottom:32px}
+.actions{display:flex;gap:12px}
+.b1{background:#1e1a16;color:#fff;padding:14px 28px;border-radius:30px;font-size:13px;font-weight:500}
+.b2{background:transparent;color:#1e1a16;padding:14px 28px;border-radius:30px;font-size:13px;border:1.5px solid #e0dbd5}
+.hr{background:#e8efe9;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:2px}
+.p-card{background:#fff;border-radius:4px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:246px}
+.p-img{flex:1;background:linear-gradient(135deg,#f0f7f1,#e0ede2);border-radius:8px;margin-bottom:14px}
+.p-name{font-size:13px;font-weight:600;color:#1e1a16;margin-bottom:4px}
+.p-desc{font-size:11px;color:#aaa;margin-bottom:10px}
+.p-price{font-size:15px;font-weight:700;color:#1e1a16}
+.trust{display:flex;justify-content:center;gap:48px;padding:20px 52px;background:#fff;border-top:1px solid #f0ebe5}
+.t-item{text-align:center;font-size:11px;color:#aaa;letter-spacing:0.05em}
+.t-item strong{display:block;font-size:18px;font-weight:700;color:#1e1a16;margin-bottom:2px}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0ebe5;height:240px}
+.prod{background:#faf7f3;padding:28px;display:flex;flex-direction:column}
+.p-badge{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;background:#f0f7f1;color:#4a8a5a;padding:3px 10px;border-radius:10px;width:fit-content;margin-bottom:12px}
+.p-box{flex:1;background:linear-gradient(160deg,#f0f7f1 0%,#e5f0e7 100%);border-radius:8px;margin-bottom:14px}
+.p-info .pn{font-size:12px;font-weight:600;color:#1e1a16}
+.p-info .pp{font-size:11px;color:#7aad8a;font-weight:600;margin-top:3px}
+</style></head><body>
+<nav><div class="logo">Solace<span>.</span></div><div class="links"><span>Skincare</span><span>Body</span><span>Sets</span><span>Journal</span><span>About</span></div><div class="icons"><span>Search</span><span>Account</span><span>Bag (2)</span></div></nav>
+<div class="hero">
+  <div class="hl">
+    <div class="badge"><div class="dot"></div>New Spring Collection</div>
+    <h1>Skin that<br/><em>glows,</em> naturally.</h1>
+    <p class="sub">Formulated with botanical actives and zero compromise. Clean beauty that actually works, backed by dermatologists.</p>
+    <div class="actions"><div class="b1">Shop the Collection</div><div class="b2">Take Skin Quiz</div></div>
+  </div>
+  <div class="hr">
+    <div class="p-card"><div class="p-img"></div><div class="p-name">Radiance Serum</div><div class="p-desc">30ml · Vitamin C + Niacinamide</div><div class="p-price">£48</div></div>
+    <div class="p-card"><div class="p-img" style="background:linear-gradient(135deg,#f5ebe0,#ede0cc)"></div><div class="p-name">Barrier Cream</div><div class="p-desc">50ml · Ceramide Rich</div><div class="p-price">£38</div></div>
+    <div class="p-card"><div class="p-img" style="background:linear-gradient(135deg,#e8f4f1,#d5ece8)"></div><div class="p-name">Clarifying Toner</div><div class="p-desc">150ml · BHA + AHA</div><div class="p-price">£32</div></div>
+    <div class="p-card" style="grid-column:span 1"><div class="p-img" style="background:linear-gradient(135deg,#f0edf7,#e5dff0)"></div><div class="p-name">Eye Cream</div><div class="p-desc">15ml · Retinol</div><div class="p-price">£52</div></div>
+  </div>
+</div>
+<div class="trust"><div class="t-item"><strong>2M+</strong>Happy Customers</div><div class="t-item"><strong>100%</strong>Clean Ingredients</div><div class="t-item"><strong>4.9★</strong>Average Rating</div><div class="t-item"><strong>Derm</strong>Tested & Approved</div></div>
+</body></html>

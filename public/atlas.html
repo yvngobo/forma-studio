@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff;color:#0a0f1e;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 64px;border-bottom:1px solid #f0f0ee}
+.logo{font-size:16px;font-weight:800;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px}
+.logo-mark{width:26px;height:26px;background:#0a0f1e;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:14px;height:14px}
+.links{display:flex;gap:32px;font-size:12px;color:#888}
+.cta{font-size:12px;font-weight:600;color:#0a0f1e;border:1.5px solid #0a0f1e;padding:9px 22px;border-radius:4px}
+.header{padding:100px 64px 60px;border-bottom:1px solid #f0f0ee;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.h-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#aaa;margin-bottom:20px}
+h1{font-size:64px;font-weight:800;line-height:.95;letter-spacing:-0.04em;margin-bottom:24px}
+h1 em{font-style:italic;font-weight:400;color:#aaa}
+.h-body{font-size:14px;line-height:1.75;color:#666;max-width:420px;margin-bottom:28px}
+.h-stats{display:flex;gap:40px}
+.stat{border-left:2px solid #eee;padding-left:16px}
+.stat-n{font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#0a0f1e}
+.stat-l{font-size:11px;color:#aaa;margin-top:2px}
+.h-right{padding-bottom:0}
+.h-cta{display:inline-flex;align-items:center;gap:10px;background:#0a0f1e;color:#fff;padding:14px 28px;border-radius:6px;font-size:13px;font-weight:600;margin-bottom:16px}
+.h-note{font-size:11px;color:#bbb;line-height:1.6}
+.portfolio{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #f0f0ee}
+.port-co{padding:28px;border-right:1px solid #f0f0ee;border-bottom:1px solid #f0f0ee}
+.port-co:last-child{border-right:none}
+.p-logo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin-bottom:14px;font-family:Georgia,serif}
+.p-name{font-size:13px;font-weight:700;color:#0a0f1e;margin-bottom:4px}
+.p-sector{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+.p-round{display:inline-block;font-size:10px;font-weight:600;background:#f5f5f3;color:#666;padding:3px 10px;border-radius:10px;margin-bottom:10px}
+.p-desc{font-size:11px;color:#999;line-height:1.55}
+.portfolio-more{padding:24px 64px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0ee;background:#fafaf8}
+.pm-text{font-size:12px;color:#aaa}
+.pm-btn{font-size:12px;font-weight:600;color:#0a0f1e;text-decoration:underline}
+.team{padding:32px 64px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.t-member{text-align:center}
+.t-avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff}
+.t-name{font-size:12px;font-weight:600;color:#0a0f1e;margin-bottom:2px}
+.t-role{font-size:10px;color:#aaa}
+</style></head><body>
+<nav>
+  <div class="logo"><div class="logo-mark"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V10L7 13L1 10V4L7 1Z" stroke="white" stroke-width="1.5"/></svg></div>Atlas Ventures</div>
+  <div class="links"><span>Portfolio</span><span>Team</span><span>Thesis</span><span>News</span><span>Contact</span></div>
+  <div class="cta">Apply for Funding</div>
+</nav>
+<div class="header">
+  <div>
+    <div class="h-label">Early Stage · Series A</div>
+    <h1>Backing<br/>the <em>bold</em><br/>ones.</h1>
+    <div class="h-stats">
+      <div class="stat"><div class="stat-n">$420M</div><div class="stat-l">Assets Under Management</div></div>
+      <div class="stat"><div class="stat-n">64</div><div class="stat-l">Portfolio Companies</div></div>
+      <div class="stat"><div class="stat-n">8</div><div class="stat-l">Unicorns</div></div>
+    </div>
+  </div>
+  <div class="h-right">
+    <p class="h-body">We invest in extraordinary founders building products that fundamentally change how people live and work. Seed to Series A, across software, AI, and deep tech.</p>
+    <div class="h-cta">Submit Your Pitch →</div>
+    <div class="h-note">We respond to every application within 5 business days.<br/>No warm intro required.</div>
+  </div>
+</div>
+<div class="portfolio">
+  <div class="port-co"><div class="p-logo" style="background:#f0f5ff;color:#3b82f6">V</div><div class="p-name">Vela Finance</div><div class="p-sector">Fintech</div><div class="p-round">Series A</div><div class="p-desc">AI-powered personal finance platform.</div></div>
+  <div class="port-co"><div class="p-logo" style="background:#f5f0ff;color:#8b5cf6">M</div><div class="p-name">Meridian Labs</div><div class="p-sector">SaaS / Analytics</div><div class="p-round">Seed</div><div class="p-desc">Revenue intelligence for B2B teams.</div></div>
+  <div class="port-co"><div class="p-logo" style="background:#f0fff5;color:#22c55e">B</div><div class="p-name">Bloom Health</div><div class="p-sector">HealthTech</div><div class="p-round">Series A</div><div class="p-desc">Personalised health tracking OS.</div></div>
+  <div class="port-co"><div class="p-logo" style="background:#fff5f0;color:#f97316">O</div><div class="p-name">Orbit Platform</div><div class="p-sector">Dev Tools</div><div class="p-round">Series B</div><div class="p-desc">The developer platform for the AI era.</div></div>
+</div>
+<div class="portfolio-more"><div class="pm-text">Showing 4 of 64 portfolio companies</div><div class="pm-btn">View full portfolio →</div></div>
+<div class="team">
+  <div class="t-member"><div class="t-avatar" style="background:#0a0f1e">JM</div><div class="t-name">James Mercer</div><div class="t-role">General Partner</div></div>
+  <div class="t-member"><div class="t-avatar" style="background:#3b82f6">SC</div><div class="t-name">Sarah Chen</div><div class="t-role">General Partner</div></div>
+  <div class="t-member"><div class="t-avatar" style="background:#8b5cf6">RA</div><div class="t-name">Rohan Agarwal</div><div class="t-role">Partner</div></div>
+  <div class="t-member"><div class="t-avatar" style="background:#22c55e">LK</div><div class="t-name">Lena Kovač</div><div class="t-role">Principal</div></div>
+</div>
+</body></html>

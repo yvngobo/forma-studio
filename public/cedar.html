@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fefcf7;color:#1c1710;font-family:Georgia,'Times New Roman',serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 52px;border-bottom:1px solid #e8e2d8}
+.logo{font-size:22px;font-weight:700;letter-spacing:-0.02em}
+.logo small{font-size:11px;font-weight:400;display:block;letter-spacing:0.2em;text-transform:uppercase;color:#a0907a;font-family:-apple-system,sans-serif;margin-top:-2px}
+.nav-cats{display:flex;gap:28px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a0907a;font-family:-apple-system,sans-serif}
+.nav-right{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:0.1em;font-family:-apple-system,sans-serif}
+.subscribe-btn{background:#1c1710;color:#fff;padding:9px 22px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-family:-apple-system,sans-serif}
+.date-bar{background:#1c1710;color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-family:-apple-system,sans-serif;padding:8px 52px;display:flex;justify-content:space-between}
+.main-grid{display:grid;grid-template-columns:2fr 1fr;height:580px;border-bottom:1px solid #e8e2d8}
+.feature{padding:40px 40px 40px 52px;border-right:1px solid #e8e2d8;display:flex;flex-direction:column}
+.feat-img{flex:1;background:linear-gradient(160deg,#e8e2d5 0%,#d5c9b8 100%);border-radius:4px;margin-bottom:24px;position:relative;overflow:hidden;min-height:280px}
+.feat-img::after{content:'FEATURE';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;font-weight:900;color:rgba(255,255,255,0.25);letter-spacing:0.08em}
+.feat-cat{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#c17f3f;font-family:-apple-system,sans-serif;margin-bottom:10px}
+.feat-title{font-size:30px;line-height:1.15;letter-spacing:-0.02em;color:#1c1710;margin-bottom:12px}
+.feat-by{font-size:11px;color:#a0907a;font-family:-apple-system,sans-serif}
+.feat-by strong{color:#1c1710}
+.sidebar-articles{padding:24px 28px;display:flex;flex-direction:column;gap:0;overflow:hidden}
+.sidebar-head{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#a0907a;font-family:-apple-system,sans-serif;padding-bottom:14px;margin-bottom:14px;border-bottom:2px solid #1c1710}
+.s-art{padding:14px 0;border-bottom:1px solid #e8e2d8;display:grid;grid-template-columns:60px 1fr;gap:12px}
+.s-art:last-child{border:none}
+.s-img{background:linear-gradient(135deg,#e8e2d5,#d5c9b8);border-radius:3px;height:60px}
+.s-cat{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#c17f3f;font-family:-apple-system,sans-serif;margin-bottom:4px}
+.s-title{font-size:13px;line-height:1.35;color:#1c1710}
+.bottom-grid{display:grid;grid-template-columns:repeat(4,1fr);height:200px}
+.b-art{padding:20px;border-right:1px solid #e8e2d8;display:flex;flex-direction:column;justify-content:space-between}
+.b-art:last-child{border:none}
+.b-img{height:80px;background:linear-gradient(135deg,#e8e2d5,#d5c9b8);border-radius:3px;margin-bottom:12px}
+.b-cat{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#c17f3f;font-family:-apple-system,sans-serif;margin-bottom:4px}
+.b-title{font-size:13px;line-height:1.35;color:#1c1710;flex:1}
+.b-time{font-size:9px;color:#a0907a;font-family:-apple-system,sans-serif;margin-top:8px}
+</style></head><body>
+<div class="date-bar"><span>Wednesday, October 29, 2025</span><span>cedar-and-co.com</span><span>Issue No. 284</span></div>
+<nav>
+  <div class="logo">Cedar &amp; Co.<small>Lifestyle &amp; Culture</small></div>
+  <div class="nav-cats"><span>Culture</span><span>Travel</span><span>Design</span><span>Food</span><span>Wellness</span><span>Style</span></div>
+  <div class="nav-right"><span>Search</span><div class="subscribe-btn">Subscribe</div></div>
+</nav>
+<div class="main-grid">
+  <div class="feature">
+    <div class="feat-img"></div>
+    <div class="feat-cat">Design &amp; Architecture</div>
+    <div class="feat-title">The Return of Quiet Spaces: How Designers Are Reclaiming Calm in a Noisy World</div>
+    <div class="feat-by">By <strong>Maya Chen</strong> &nbsp;·&nbsp; 8 min read &nbsp;·&nbsp; October 29, 2025</div>
+  </div>
+  <div class="sidebar-articles">
+    <div class="sidebar-head">Most Read This Week</div>
+    <div class="s-art"><div class="s-img" style="background:linear-gradient(135deg,#dde8d5,#c5d8bc)"></div><div><div class="s-cat">Travel</div><div class="s-title">Slow Travel in Japan: 30 Days, 12 Cities, Zero Itinerary</div></div></div>
+    <div class="s-art"><div class="s-img" style="background:linear-gradient(135deg,#e8ddd5,#d8cbc2)"></div><div><div class="s-cat">Food</div><div class="s-title">The Chef Who Walked Away From Michelin to Open a Sandwich Shop</div></div></div>
+    <div class="s-art"><div class="s-img" style="background:linear-gradient(135deg,#dde5e8,#c2d0d8)"></div><div><div class="s-cat">Culture</div><div class="s-title">Why Everyone Is Reading Physical Books Again</div></div></div>
+    <div class="s-art"><div class="s-img" style="background:linear-gradient(135deg,#e8e2d5,#d5cabb)"></div><div><div class="s-cat">Wellness</div><div class="s-title">Dopamine Fasting Is Out. Here's What Actually Works</div></div></div>
+  </div>
+</div>
+<div class="bottom-grid">
+  <div class="b-art"><div class="b-img"></div><div class="b-cat">Style</div><div class="b-title">The Wardrobe Formula That Never Goes Out of Fashion</div><div class="b-time">6 min read</div></div>
+  <div class="b-art"><div class="b-img" style="background:linear-gradient(135deg,#dde8d5,#c5d8bc)"></div><div class="b-cat">Design</div><div class="b-title">Inside the Amsterdam Home That Took 10 Years to Perfect</div><div class="b-time">12 min read</div></div>
+  <div class="b-art"><div class="b-img" style="background:linear-gradient(135deg,#e8ddd5,#d8cbc2)"></div><div class="b-cat">Food</div><div class="b-title">The Best Neighbourhood Restaurants of 2025, by City</div><div class="b-time">4 min read</div></div>
+  <div class="b-art"><div class="b-img" style="background:linear-gradient(135deg,#e8e5dd,#d8d0c5)"></div><div class="b-cat">Travel</div><div class="b-title">Morocco in the Off-Season: What Nobody Tells You</div><div class="b-time">9 min read</div></div>
+</div>
+</body></html>

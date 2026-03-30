@@ -90,14 +90,15 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <div style={{ width:13, height:13, borderRadius:'50%', background:'#28c840' }}/>
           </div>
           {/* URL bar */}
-          <div style={{ flex:1, background:'rgba(255,255,255,0.07)', borderRadius:'7px', height:'26px', display:'flex', alignItems:'center', justifyContent:'center', gap:'6px' }}>
+          <a href={`/${project.siteKey}.html`} target="_blank" rel="noopener noreferrer"
+            style={{ flex:1, background:'rgba(255,255,255,0.07)', borderRadius:'7px', height:'26px', display:'flex', alignItems:'center', justifyContent:'center', gap:'6px', textDecoration:'none', cursor:'pointer' }}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
             <span style={{ color:'rgba(255,255,255,0.45)', fontSize:'0.74rem', fontFamily:'Inter, -apple-system, sans-serif', letterSpacing:'0.01em' }}>
-              formadesign.co/{project.siteKey}
+              {window.location.host}/{project.siteKey}.html
             </span>
-          </div>
+          </a>
           {/* Close button */}
           <button onClick={onClose}
             style={{ background:'none', border:'none', color:'rgba(255,255,255,0.35)', cursor:'none', fontSize:'1.1rem', lineHeight:1, padding:'0.25rem 0.4rem', borderRadius:'4px', transition:'color 0.2s, background 0.2s', flexShrink:0 }}
@@ -135,6 +136,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <span style={{ color:'rgba(255,255,255,0.45)', fontSize:'0.72rem', fontFamily:'Inter, sans-serif', border:'1px solid rgba(255,255,255,0.15)', padding:'0.2rem 0.65rem', borderRadius:'9999px', whiteSpace:'nowrap' }}>{project.category}</span>
             <span style={{ color:'rgba(255,255,255,0.45)', fontSize:'0.72rem', fontFamily:'Inter, sans-serif', border:'1px solid rgba(255,255,255,0.15)', padding:'0.2rem 0.65rem', borderRadius:'9999px', whiteSpace:'nowrap' }}>{project.tag}</span>
             <span style={{ color:'rgba(255,255,255,0.25)', fontSize:'0.78rem', fontFamily:'Inter, sans-serif' }}>{project.year}</span>
+            <a href={`/${project.siteKey}.html`} target="_blank" rel="noopener noreferrer"
+              style={{ color:'#fff', fontSize:'0.78rem', fontFamily:'Inter, sans-serif', fontWeight:500, background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.2)', padding:'0.25rem 0.85rem', borderRadius:'9999px', textDecoration:'none', whiteSpace:'nowrap', transition:'background 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}>
+              Visit Site →
+            </a>
           </div>
         </div>
       </motion.div>

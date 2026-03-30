@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050d1a;color:#e8f4ff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 52px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.logo{font-size:20px;font-weight:700;letter-spacing:-0.03em;color:#fff}
+.logo span{color:#3b82f6}
+.links{display:flex;gap:32px;font-size:12px;color:rgba(255,255,255,0.45)}
+.cta{background:#3b82f6;color:#fff;font-size:12px;font-weight:600;padding:10px 24px;border-radius:8px}
+.hero{padding:72px 52px 0;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#60a5fa;font-size:11px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+.pulse{width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:0.3}}
+h1{font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:#fff;margin-bottom:20px}
+h1 em{font-style:normal;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,0.5);max-width:420px;margin-bottom:36px}
+.actions{display:flex;gap:12px;margin-bottom:48px}
+.b1{background:#3b82f6;color:#fff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:600}
+.b2{background:rgba(255,255,255,0.06);color:#e8f4ff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,0.1)}
+.trust{display:flex;gap:24px;align-items:center}
+.trust-item{font-size:11px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px}
+.check{color:#10b981;font-size:12px}
+.app-card{background:#0d1f3a;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:24px;overflow:hidden}
+.ac-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.ac-title{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;text-transform:uppercase}
+.ac-period{font-size:11px;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.05);padding:5px 12px;border-radius:6px}
+.balance-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.balance{font-size:48px;font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:6px}
+.balance-change{font-size:12px;color:#10b981;font-weight:600;margin-bottom:20px}
+.sparkline{height:80px;background:rgba(59,130,246,0.05);border-radius:12px;margin-bottom:20px;position:relative;overflow:hidden}
+svg.spark{position:absolute;inset:0;width:100%;height:100%}
+.cards-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.mini-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px}
+.mc-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+.mc-val{font-size:20px;font-weight:700;color:#fff}
+.mc-sub{font-size:10px;color:#10b981;margin-top:2px}
+.transactions{display:flex;flex-direction:column;gap:10px}
+.txn{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
+.txn-left{display:flex;align-items:center;gap:10px}
+.txn-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.txn-name{font-size:12px;font-weight:500;color:#e8f4ff;margin-bottom:2px}
+.txn-date{font-size:10px;color:rgba(255,255,255,0.3)}
+.txn-amt{font-size:13px;font-weight:700}
+.neg{color:#f87171}.pos{color:#34d399}
+.features{padding:0 52px;margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px}
+.feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+.feat-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px}
+.feat-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+</style></head><body>
+<nav><div class="logo">Vela<span>.</span></div><div class="links"><span>Features</span><span>Pricing</span><span>Security</span><span>Blog</span></div><div class="cta">Get Started Free</div></nav>
+<div class="hero">
+  <div>
+    <div class="badge"><div class="pulse"></div>Now with AI Insights</div>
+    <h1>Your money,<br/><em>intelligently</em><br/>managed.</h1>
+    <p class="sub">Vela brings all your accounts together and uses AI to help you spend smarter, save faster, and invest with confidence.</p>
+    <div class="actions"><div class="b1">Start for Free</div><div class="b2">Watch Demo</div></div>
+    <div class="trust"><div class="trust-item"><span class="check">✓</span>256-bit encryption</div><div class="trust-item"><span class="check">✓</span>SOC 2 certified</div><div class="trust-item"><span class="check">✓</span>No credit card needed</div></div>
+  </div>
+  <div class="app-card">
+    <div class="ac-header"><div class="ac-title">Portfolio Overview</div><div class="ac-period">Oct 2025 ▾</div></div>
+    <div class="balance-label">Total Balance</div>
+    <div class="balance">$124,586<span style="font-size:24px;color:rgba(255,255,255,0.3)">.42</span></div>
+    <div class="balance-change">↑ $2,340 this month (+1.9%)</div>
+    <div class="sparkline">
+      <svg class="spark" viewBox="0 0 400 80" preserveAspectRatio="none">
+        <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient></defs>
+        <polyline points="0,60 40,52 80,55 120,40 160,44 200,32 240,35 280,22 320,26 360,15 400,18" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        <polygon points="0,60 40,52 80,55 120,40 160,44 200,32 240,35 280,22 320,26 360,15 400,18 400,80 0,80" fill="url(#sg)"/>
+      </svg>
+    </div>
+    <div class="cards-row">
+      <div class="mini-card"><div class="mc-label">Savings</div><div class="mc-val">$32,400</div><div class="mc-sub">↑ 4.2% APY</div></div>
+      <div class="mini-card"><div class="mc-label">Investments</div><div class="mc-val">$68,240</div><div class="mc-sub">↑ 12.8% YTD</div></div>
+    </div>
+    <div class="transactions">
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(251,191,36,0.15)">☕</div><div><div class="txn-name">Blue Bottle Coffee</div><div class="txn-date">Today, 8:42 AM</div></div></div><div class="txn-amt neg">-$6.50</div></div>
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(52,211,153,0.15)">💼</div><div><div class="txn-name">Salary Deposit</div><div class="txn-date">Oct 28</div></div></div><div class="txn-amt pos">+$5,200</div></div>
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(248,113,113,0.15)">🛒</div><div><div class="txn-name">Whole Foods Market</div><div class="txn-date">Oct 27</div></div></div><div class="txn-amt neg">-$84.20</div></div>
+    </div>
+  </div>
+</div>
+</body></html>
