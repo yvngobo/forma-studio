@@ -309,18 +309,6 @@ export default function Work() {
           </div>
         </FadeIn>
 
-        {/* Disclaimer */}
-        <FadeIn delay={0.15}>
-          <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'2.5rem', padding:'0.75rem 1.25rem', borderRadius:'8px', border:'1px solid var(--c-line)', background:'rgba(128,128,128,0.04)' }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--c-ink4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-            <p style={{ color:'var(--c-ink4)', fontSize:'0.78rem', letterSpacing:'0.01em', lineHeight:1.5 }}>
-              The projects below are <strong style={{ color:'var(--c-ink3)', fontWeight:600 }}>sample passion projects</strong> created for portfolio purposes. They are not real client sites and are not live on the web.
-            </p>
-          </div>
-        </FadeIn>
-
         {/* Grid */}
         <motion.div layout style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(360px,1fr))', gap:'1.5rem' }}>
           <AnimatePresence mode="popLayout">
@@ -341,6 +329,18 @@ export default function Work() {
             <p style={{ fontSize:'0.9rem' }}>No projects in this category yet.</p>
           </div>
         )}
+
+        {/* Disclaimer */}
+        <FadeIn delay={0.1}>
+          <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginTop:'4rem', padding:'0.75rem 1.25rem', borderRadius:'8px', border:'1px solid var(--c-line)', background:'rgba(128,128,128,0.04)' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--c-ink4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p style={{ color:'var(--c-ink4)', fontSize:'0.78rem', letterSpacing:'0.01em', lineHeight:1.5 }}>
+              The projects shown are <strong style={{ color:'var(--c-ink3)', fontWeight:600 }}>sample projects</strong> created for portfolio purposes. They are not real client sites and are not live on the web.
+            </p>
+          </div>
+        </FadeIn>
       </section>
     </motion.div>
   )
