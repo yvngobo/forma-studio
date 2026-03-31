@@ -1,66 +1,249 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Vela - Your money, intelligently managed</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050d1a;color:#e8f4ff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 52px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.logo{font-size:20px;font-weight:700;letter-spacing:-0.03em;color:#fff}
+html{scroll-behavior:smooth}
+body{background:#050d1a;color:#e8f4ff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+a{color:inherit;text-decoration:none}
+
+/* Animations */
+@keyframes p{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* Nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 52px;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;background:rgba(5,13,26,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:100;transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.4)}
+.logo{font-size:20px;font-weight:700;letter-spacing:-0.03em;color:#fff;cursor:pointer}
 .logo span{color:#3b82f6}
-.links{display:flex;gap:32px;font-size:12px;color:rgba(255,255,255,0.45)}
-.cta{background:#3b82f6;color:#fff;font-size:12px;font-weight:600;padding:10px 24px;border-radius:8px}
-.hero{padding:72px 52px 0;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.nav-links{display:flex;gap:32px;font-size:12px;color:rgba(255,255,255,0.45);align-items:center}
+.nav-links a{transition:color 0.25s;cursor:pointer;position:relative}
+.nav-links a:hover{color:#fff}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#3b82f6;transition:width 0.25s}
+.nav-links a:hover::after{width:100%}
+.cta-btn{background:#3b82f6;color:#fff;font-size:12px;font-weight:600;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;transition:background 0.25s,transform 0.2s,box-shadow 0.25s}
+.cta-btn:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 4px 20px rgba(59,130,246,0.4)}
+.cta-btn:active{transform:translateY(0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:73px;background:rgba(5,13,26,0.98);backdrop-filter:blur(20px);z-index:99;padding:40px 32px;flex-direction:column;gap:24px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:18px;color:rgba(255,255,255,0.7);transition:color 0.2s;cursor:pointer}
+.mobile-menu a:hover{color:#fff}
+
+/* Section utility */
+section{padding:100px 52px}
+.section-label{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#60a5fa;font-size:11px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.05em}
+.section-title{font-size:42px;font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:16px;line-height:1.1}
+.section-subtitle{font-size:15px;color:rgba(255,255,255,0.45);max-width:520px;line-height:1.7;margin-bottom:48px}
+.section-center{text-align:center}
+.section-center .section-subtitle{margin-left:auto;margin-right:auto}
+
+/* Divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,0.2),transparent);margin:0 52px}
+
+/* Hero */
+.hero{padding:80px 52px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;min-height:calc(100vh - 73px)}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#60a5fa;font-size:11px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px}
 .pulse{width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:p 2s ease-in-out infinite}
-@keyframes p{0%,100%{opacity:1}50%{opacity:0.3}}
 h1{font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:#fff;margin-bottom:20px}
-h1 em{font-style:normal;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h1 em{font-style:normal;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,0.5);max-width:420px;margin-bottom:36px}
 .actions{display:flex;gap:12px;margin-bottom:48px}
-.b1{background:#3b82f6;color:#fff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:600}
-.b2{background:rgba(255,255,255,0.06);color:#e8f4ff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,0.1)}
+.b1{background:#3b82f6;color:#fff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.25s,transform 0.2s,box-shadow 0.25s;border:none}
+.b1:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 6px 24px rgba(59,130,246,0.35)}
+.b2{background:rgba(255,255,255,0.06);color:#e8f4ff;padding:14px 28px;border-radius:10px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:background 0.25s,transform 0.2s,border-color 0.25s}
+.b2:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
 .trust{display:flex;gap:24px;align-items:center}
 .trust-item{font-size:11px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px}
 .check{color:#10b981;font-size:12px}
-.app-card{background:#0d1f3a;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:24px;overflow:hidden}
+
+/* App card (hero) */
+.app-card{background:#0d1f3a;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:24px;overflow:hidden;animation:float 6s ease-in-out infinite}
 .ac-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
 .ac-title{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;text-transform:uppercase}
-.ac-period{font-size:11px;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.05);padding:5px 12px;border-radius:6px}
+.ac-period{font-size:11px;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.05);padding:5px 12px;border-radius:6px;cursor:pointer;transition:background 0.2s}
+.ac-period:hover{background:rgba(255,255,255,0.1)}
 .balance-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
 .balance{font-size:48px;font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:6px}
 .balance-change{font-size:12px;color:#10b981;font-weight:600;margin-bottom:20px}
 .sparkline{height:80px;background:rgba(59,130,246,0.05);border-radius:12px;margin-bottom:20px;position:relative;overflow:hidden}
 svg.spark{position:absolute;inset:0;width:100%;height:100%}
 .cards-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.mini-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px}
+.mini-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;transition:background 0.25s,border-color 0.25s;cursor:pointer}
+.mini-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12)}
 .mc-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
 .mc-val{font-size:20px;font-weight:700;color:#fff}
 .mc-sub{font-size:10px;color:#10b981;margin-top:2px}
 .transactions{display:flex;flex-direction:column;gap:10px}
-.txn{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
+.txn{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(255,255,255,0.04);transition:background 0.25s,border-color 0.25s;cursor:pointer}
+.txn:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1)}
 .txn-left{display:flex;align-items:center;gap:10px}
 .txn-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px}
 .txn-name{font-size:12px;font-weight:500;color:#e8f4ff;margin-bottom:2px}
 .txn-date{font-size:10px;color:rgba(255,255,255,0.3)}
 .txn-amt{font-size:13px;font-weight:700}
 .neg{color:#f87171}.pos{color:#34d399}
-.features{padding:0 52px;margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.feat{padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;transition:background 0.3s,border-color 0.3s,transform 0.3s}
+.feat:hover{background:rgba(59,130,246,0.06);border-color:rgba(59,130,246,0.2);transform:translateY(-4px)}
 .feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
 .feat-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px}
 .feat-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:step}
+.step{position:relative;padding:32px;text-align:center}
+.step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;margin:0 auto 20px}
+.step-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.step-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7}
+.step-connector{display:none}
+
+/* Security */
+.security-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.security-visual{background:#0d1f3a;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px;text-align:center}
+.shield{font-size:80px;margin-bottom:20px;display:block}
+.security-stat{margin-bottom:16px}
+.security-stat-val{font-size:36px;font-weight:800;color:#fff;margin-bottom:4px}
+.security-stat-label{font-size:12px;color:rgba(255,255,255,0.4)}
+.security-badges{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.security-badge{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:#34d399;font-size:11px;font-weight:600;padding:8px 16px;border-radius:8px}
+.security-list{display:flex;flex-direction:column;gap:20px}
+.security-item{display:flex;gap:16px;align-items:start;padding:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;transition:background 0.3s,border-color 0.3s}
+.security-item:hover{background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.15)}
+.security-item-icon{width:42px;height:42px;border-radius:10px;background:rgba(16,185,129,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.security-item-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+.security-item-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto}
+.price-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:36px;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;position:relative}
+.price-card:hover{transform:translateY(-6px);border-color:rgba(59,130,246,0.25);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.price-card.popular{border-color:rgba(59,130,246,0.4);background:rgba(59,130,246,0.06)}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:10px;font-weight:700;padding:5px 16px;border-radius:12px;text-transform:uppercase;letter-spacing:0.05em}
+.price-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+.price-desc{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.price-amount{font-size:42px;font-weight:800;color:#fff;margin-bottom:4px}
+.price-amount span{font-size:15px;font-weight:500;color:rgba(255,255,255,0.35)}
+.price-period{font-size:12px;color:rgba(255,255,255,0.3);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.price-features li{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;gap:10px}
+.price-features li::before{content:'✓';color:#10b981;font-weight:700;font-size:12px}
+.price-btn{display:block;text-align:center;padding:14px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.25s,transform 0.2s,box-shadow 0.25s}
+.price-btn:hover{transform:translateY(-2px)}
+.price-btn.primary{background:#3b82f6;color:#fff}
+.price-btn.primary:hover{background:#2563eb;box-shadow:0 6px 24px rgba(59,130,246,0.35)}
+.price-btn.secondary{background:rgba(255,255,255,0.06);color:#e8f4ff;border:1px solid rgba(255,255,255,0.1)}
+.price-btn.secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+
+/* Testimonials */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px;transition:background 0.3s,border-color 0.3s,transform 0.3s}
+.testimonial:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-4px)}
+.testimonial-stars{color:#fbbf24;font-size:13px;margin-bottom:16px;letter-spacing:2px}
+.testimonial-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:20px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff}
+.testimonial-name{font-size:13px;font-weight:600;color:#fff}
+.testimonial-role{font-size:11px;color:rgba(255,255,255,0.35)}
+
+/* CTA */
+.cta-section{text-align:center;background:linear-gradient(180deg,transparent,rgba(59,130,246,0.06),transparent);border-top:1px solid rgba(59,130,246,0.1);border-bottom:1px solid rgba(59,130,246,0.1)}
+.cta-section h2{font-size:48px;font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:16px;line-height:1.1}
+.cta-section h2 em{font-style:normal;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-section p{font-size:16px;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto 36px;line-height:1.7}
+.cta-actions{display:flex;gap:16px;justify-content:center;margin-bottom:24px}
+.cta-note{font-size:12px;color:rgba(255,255,255,0.3)}
+
+/* Footer */
+footer{padding:60px 52px 40px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;margin-top:12px;max-width:280px}
+.footer-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:10px;transition:color 0.2s;cursor:pointer}
+.footer-col a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.25)}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:14px;transition:background 0.2s;cursor:pointer}
+.footer-socials a:hover{background:rgba(59,130,246,0.2)}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:64px 24px}
+  .hero{grid-template-columns:1fr;padding:48px 24px 40px;gap:40px;min-height:auto}
+  h1{font-size:36px}
+  .balance{font-size:36px}
+  .features-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:20px}
+  .security-grid{grid-template-columns:1fr;gap:32px}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px}
+  .testimonials-grid{grid-template-columns:1fr}
+  .cta-section h2{font-size:32px}
+  .cta-actions{flex-direction:column;align-items:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  .section-title{font-size:30px}
+  .divider{margin:0 24px}
+  .app-card{animation:none}
+}
+@media(max-width:600px){
+  .actions{flex-direction:column}
+  .trust{flex-wrap:wrap;gap:12px}
+  .footer-grid{grid-template-columns:1fr}
+  .cards-row{grid-template-columns:1fr}
+}
 </style></head><body>
-<nav><div class="logo">Vela<span>.</span></div><div class="links"><span>Features</span><span>Pricing</span><span>Security</span><span>Blog</span></div><div class="cta">Get Started Free</div></nav>
-<div class="hero">
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#" class="logo">Vela<span>.</span></a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#security">Security</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Testimonials</a>
+  </div>
+  <a href="#get-started" class="cta-btn">Get Started Free</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="toggleMenu()">Features</a>
+  <a href="#how-it-works" onclick="toggleMenu()">How It Works</a>
+  <a href="#security" onclick="toggleMenu()">Security</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+  <a href="#get-started" class="cta-btn" style="text-align:center;margin-top:12px" onclick="toggleMenu()">Get Started Free</a>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="hero">
   <div>
     <div class="badge"><div class="pulse"></div>Now with AI Insights</div>
     <h1>Your money,<br/><em>intelligently</em><br/>managed.</h1>
     <p class="sub">Vela brings all your accounts together and uses AI to help you spend smarter, save faster, and invest with confidence.</p>
-    <div class="actions"><div class="b1">Start for Free</div><div class="b2">Watch Demo</div></div>
-    <div class="trust"><div class="trust-item"><span class="check">✓</span>256-bit encryption</div><div class="trust-item"><span class="check">✓</span>SOC 2 certified</div><div class="trust-item"><span class="check">✓</span>No credit card needed</div></div>
+    <div class="actions"><div class="b1" onclick="document.getElementById('get-started').scrollIntoView({behavior:'smooth'})">Start for Free</div><div class="b2">Watch Demo</div></div>
+    <div class="trust"><div class="trust-item"><span class="check">&#10003;</span>256-bit encryption</div><div class="trust-item"><span class="check">&#10003;</span>SOC 2 certified</div><div class="trust-item"><span class="check">&#10003;</span>No credit card needed</div></div>
   </div>
   <div class="app-card">
-    <div class="ac-header"><div class="ac-title">Portfolio Overview</div><div class="ac-period">Oct 2025 ▾</div></div>
+    <div class="ac-header"><div class="ac-title">Portfolio Overview</div><div class="ac-period">Oct 2025 &#9662;</div></div>
     <div class="balance-label">Total Balance</div>
     <div class="balance">$124,586<span style="font-size:24px;color:rgba(255,255,255,0.3)">.42</span></div>
-    <div class="balance-change">↑ $2,340 this month (+1.9%)</div>
+    <div class="balance-change">&#8593; $2,340 this month (+1.9%)</div>
     <div class="sparkline">
       <svg class="spark" viewBox="0 0 400 80" preserveAspectRatio="none">
         <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient></defs>
@@ -69,14 +252,328 @@ svg.spark{position:absolute;inset:0;width:100%;height:100%}
       </svg>
     </div>
     <div class="cards-row">
-      <div class="mini-card"><div class="mc-label">Savings</div><div class="mc-val">$32,400</div><div class="mc-sub">↑ 4.2% APY</div></div>
-      <div class="mini-card"><div class="mc-label">Investments</div><div class="mc-val">$68,240</div><div class="mc-sub">↑ 12.8% YTD</div></div>
+      <div class="mini-card"><div class="mc-label">Savings</div><div class="mc-val">$32,400</div><div class="mc-sub">&#8593; 4.2% APY</div></div>
+      <div class="mini-card"><div class="mc-label">Investments</div><div class="mc-val">$68,240</div><div class="mc-sub">&#8593; 12.8% YTD</div></div>
     </div>
     <div class="transactions">
-      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(251,191,36,0.15)">☕</div><div><div class="txn-name">Blue Bottle Coffee</div><div class="txn-date">Today, 8:42 AM</div></div></div><div class="txn-amt neg">-$6.50</div></div>
-      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(52,211,153,0.15)">💼</div><div><div class="txn-name">Salary Deposit</div><div class="txn-date">Oct 28</div></div></div><div class="txn-amt pos">+$5,200</div></div>
-      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(248,113,113,0.15)">🛒</div><div><div class="txn-name">Whole Foods Market</div><div class="txn-date">Oct 27</div></div></div><div class="txn-amt neg">-$84.20</div></div>
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(251,191,36,0.15)">&#9749;</div><div><div class="txn-name">Blue Bottle Coffee</div><div class="txn-date">Today, 8:42 AM</div></div></div><div class="txn-amt neg">-$6.50</div></div>
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(52,211,153,0.15)">&#128188;</div><div><div class="txn-name">Salary Deposit</div><div class="txn-date">Oct 28</div></div></div><div class="txn-amt pos">+$5,200</div></div>
+      <div class="txn"><div class="txn-left"><div class="txn-icon" style="background:rgba(248,113,113,0.15)">&#128722;</div><div><div class="txn-name">Whole Foods Market</div><div class="txn-date">Oct 27</div></div></div><div class="txn-amt neg">-$84.20</div></div>
     </div>
   </div>
 </div>
+
+<div class="divider"></div>
+
+<!-- Features -->
+<section id="features">
+  <div class="section-center">
+    <div class="section-label">Features</div>
+    <div class="section-title">Everything you need to<br/>take control of your finances</div>
+    <p class="section-subtitle">Powerful tools wrapped in a beautiful interface. No finance degree required.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat reveal">
+      <div class="feat-icon">&#128202;</div>
+      <div class="feat-title">Smart Dashboard</div>
+      <div class="feat-desc">All your bank accounts, credit cards, and investments unified into one beautiful real-time view.</div>
+    </div>
+    <div class="feat reveal reveal-delay-1">
+      <div class="feat-icon">&#129302;</div>
+      <div class="feat-title">AI Insights</div>
+      <div class="feat-desc">Vela learns your patterns and proactively suggests ways to save money, reduce fees, and grow your wealth.</div>
+    </div>
+    <div class="feat reveal reveal-delay-2">
+      <div class="feat-icon">&#127919;</div>
+      <div class="feat-title">Goal Tracking</div>
+      <div class="feat-desc">Set savings goals and watch your progress with smart projections that adapt to your spending habits.</div>
+    </div>
+    <div class="feat reveal reveal-delay-1">
+      <div class="feat-icon">&#128276;</div>
+      <div class="feat-title">Smart Alerts</div>
+      <div class="feat-desc">Get notified about unusual charges, upcoming bills, low balances, and investment opportunities instantly.</div>
+    </div>
+    <div class="feat reveal reveal-delay-2">
+      <div class="feat-icon">&#128256;</div>
+      <div class="feat-title">Auto Transfers</div>
+      <div class="feat-desc">Set rules to automatically move money between accounts based on your income, bills, and saving targets.</div>
+    </div>
+    <div class="feat reveal reveal-delay-3">
+      <div class="feat-icon">&#128200;</div>
+      <div class="feat-title">Investment Tools</div>
+      <div class="feat-desc">Access diversified portfolios, fractional shares, and tax-loss harvesting -- all managed by AI.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- How It Works -->
+<section id="how-it-works">
+  <div class="section-center">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Up and running in minutes</div>
+    <p class="section-subtitle">No paperwork, no branch visits, no headaches. Just connect and go.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-title">Create Your Account</div>
+      <div class="step-desc">Sign up in 30 seconds with just your email. No credit card required, no strings attached.</div>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">2</div>
+      <div class="step-title">Connect Your Banks</div>
+      <div class="step-desc">Securely link your accounts through our bank-level encrypted connection. We support 12,000+ institutions.</div>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">3</div>
+      <div class="step-title">Let AI Do the Rest</div>
+      <div class="step-desc">Vela analyzes your finances, creates a personalized plan, and starts optimizing your money automatically.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Security -->
+<section id="security">
+  <div class="section-center" style="margin-bottom:48px">
+    <div class="section-label">Security &amp; Trust</div>
+    <div class="section-title">Your security is our obsession</div>
+    <p class="section-subtitle">We use the same infrastructure trusted by the world's largest banks and financial institutions.</p>
+  </div>
+  <div class="security-grid">
+    <div class="security-visual reveal">
+      <div class="shield">&#128737;</div>
+      <div class="security-stat">
+        <div class="security-stat-val">99.99%</div>
+        <div class="security-stat-label">Uptime over the last 12 months</div>
+      </div>
+      <div class="security-stat">
+        <div class="security-stat-val">0</div>
+        <div class="security-stat-label">Security breaches since launch</div>
+      </div>
+      <div class="security-badges">
+        <div class="security-badge">SOC 2 Type II</div>
+        <div class="security-badge">GDPR</div>
+        <div class="security-badge">PCI DSS</div>
+      </div>
+    </div>
+    <div class="security-list">
+      <div class="security-item reveal">
+        <div class="security-item-icon">&#128274;</div>
+        <div>
+          <div class="security-item-title">256-bit AES Encryption</div>
+          <div class="security-item-desc">All data is encrypted at rest and in transit using military-grade AES-256 encryption, the same standard used by the US government.</div>
+        </div>
+      </div>
+      <div class="security-item reveal reveal-delay-1">
+        <div class="security-item-icon">&#128065;</div>
+        <div>
+          <div class="security-item-title">Biometric Authentication</div>
+          <div class="security-item-desc">Support for Face ID, Touch ID, and hardware security keys. Multi-factor authentication is enabled by default.</div>
+        </div>
+      </div>
+      <div class="security-item reveal reveal-delay-2">
+        <div class="security-item-icon">&#128279;</div>
+        <div>
+          <div class="security-item-title">Read-Only Access</div>
+          <div class="security-item-desc">Vela uses read-only connections to your bank. We can never move or touch your money -- only analyze it.</div>
+        </div>
+      </div>
+      <div class="security-item reveal reveal-delay-3">
+        <div class="security-item-icon">&#128736;</div>
+        <div>
+          <div class="security-item-title">Continuous Monitoring</div>
+          <div class="security-item-desc">Our security team monitors systems 24/7 with automated threat detection, penetration testing, and real-time alerting.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="section-center">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Simple, transparent pricing</div>
+    <p class="section-subtitle">Start free, upgrade when you need more. No hidden fees, ever.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-name">Free</div>
+      <div class="price-desc">Perfect to get started</div>
+      <div class="price-amount">$0<span>/mo</span></div>
+      <div class="price-period">Free forever</div>
+      <ul class="price-features">
+        <li>2 connected accounts</li>
+        <li>Basic spending insights</li>
+        <li>Monthly reports</li>
+        <li>Goal tracking (1 goal)</li>
+        <li>Community support</li>
+      </ul>
+      <div class="price-btn secondary">Get Started</div>
+    </div>
+    <div class="price-card popular reveal reveal-delay-1">
+      <div class="popular-badge">Most Popular</div>
+      <div class="price-name">Pro</div>
+      <div class="price-desc">For serious money managers</div>
+      <div class="price-amount">$9<span>/mo</span></div>
+      <div class="price-period">Billed annually ($108/yr)</div>
+      <ul class="price-features">
+        <li>Unlimited accounts</li>
+        <li>AI-powered insights</li>
+        <li>Real-time alerts</li>
+        <li>Unlimited goals</li>
+        <li>Auto transfers</li>
+        <li>Priority support</li>
+      </ul>
+      <div class="price-btn primary">Start Free Trial</div>
+    </div>
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-name">Family</div>
+      <div class="price-desc">Manage finances together</div>
+      <div class="price-amount">$19<span>/mo</span></div>
+      <div class="price-period">Billed annually ($228/yr)</div>
+      <ul class="price-features">
+        <li>Everything in Pro</li>
+        <li>Up to 5 family members</li>
+        <li>Shared goals &amp; budgets</li>
+        <li>Family spending reports</li>
+        <li>Investment portfolios</li>
+        <li>Dedicated advisor</li>
+      </ul>
+      <div class="price-btn secondary">Start Free Trial</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="section-center">
+    <div class="section-label">Testimonials</div>
+    <div class="section-title">Loved by 50,000+ users</div>
+    <p class="section-subtitle">Real people, real results. Here is what our users have to say.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"Vela helped me find $340/month in subscriptions I forgot about. Paid for itself on day one. The AI insights are genuinely useful."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">S</div>
+        <div><div class="testimonial-name">Sarah Chen</div><div class="testimonial-role">Product Designer, San Francisco</div></div>
+      </div>
+    </div>
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"I've tried Mint, YNAB, and Personal Capital. Vela is the first app that actually made me change my spending behavior. The UI is gorgeous."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#3b82f6)">M</div>
+        <div><div class="testimonial-name">Marcus Rivera</div><div class="testimonial-role">Software Engineer, Austin</div></div>
+      </div>
+    </div>
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"My family now has complete visibility into our finances. The shared goals feature turned budgeting from a chore into something we do together."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">J</div>
+        <div><div class="testimonial-name">Jessica Park</div><div class="testimonial-role">Marketing Director, New York</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="get-started">
+  <div class="section-label">Get Started Today</div>
+  <h2>Ready to take control<br/>of your <em>financial future</em>?</h2>
+  <p>Join 50,000+ people who are already using Vela to build wealth, reduce stress, and achieve their financial goals.</p>
+  <div class="cta-actions">
+    <div class="b1" style="font-size:15px;padding:16px 36px">Start for Free</div>
+    <div class="b2" style="font-size:15px;padding:16px 36px">Schedule a Demo</div>
+  </div>
+  <div class="cta-note">Free forever plan available. No credit card required.</div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Vela<span>.</span></div>
+      <p>Intelligent personal finance for the modern world. Your money, managed smarter.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#security">Security</a>
+      <a href="#">Integrations</a>
+      <a href="#">Changelog</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Disclosures</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Vela Financial, Inc. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="#" aria-label="Twitter">&#120143;</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="GitHub">&#128736;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile menu
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+
+// Scroll reveal with IntersectionObserver
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Close mobile menu on resize to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+});
+</script>
 </body></html>

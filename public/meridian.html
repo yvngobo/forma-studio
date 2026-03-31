@@ -1,87 +1,565 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meridian — Analytics Platform</title>
+<style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden;display:flex}
-.sidebar{width:220px;background:#1a1f2e;height:900px;flex-shrink:0;display:flex;flex-direction:column;padding:0}
-.s-logo{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px}
-.s-icon{width:32px;height:32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
-.s-name{font-size:14px;font-weight:600;color:#fff;letter-spacing:-0.01em}
-.s-section{padding:24px 12px 8px;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-.s-item{display:flex;align-items:center;gap:10px;padding:10px 12px;margin:2px 0;border-radius:8px;font-size:12px;color:rgba(255,255,255,0.55);cursor:default}
-.s-item.active{background:rgba(99,102,241,0.15);color:#818cf8}
-.s-dot{width:16px;height:16px;border-radius:4px;flex-shrink:0;background:rgba(255,255,255,0.1)}
-.s-item.active .s-dot{background:#6366f1}
-.s-badge{margin-left:auto;background:rgba(99,102,241,0.2);color:#818cf8;font-size:9px;padding:2px 7px;border-radius:10px}
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between}
-.breadcrumb{font-size:13px;color:#6b7280;display:flex;align-items:center;gap:8px}
-.breadcrumb strong{color:#111827;font-weight:600}
-.tb-right{display:flex;align-items:center;gap:12px}
-.tb-btn{background:#6366f1;color:#fff;font-size:12px;font-weight:500;padding:8px 16px;border-radius:8px}
-.tb-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
-.content{padding:24px 28px;flex:1;overflow:hidden}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
-.kpi{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
-.kpi-label{font-size:11px;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
-.kpi-val{font-size:26px;font-weight:700;color:#111827;letter-spacing:-0.02em;margin-bottom:4px}
-.kpi-change{font-size:11px;font-weight:500}
-.up{color:#10b981}.dn{color:#ef4444}
-.charts{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px}
-.chart-card{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
-.chart-title{font-size:13px;font-weight:600;color:#111827;margin-bottom:4px}
-.chart-sub{font-size:11px;color:#9ca3af;margin-bottom:20px}
-.chart-area{height:160px;display:flex;align-items:flex-end;gap:8px;padding-top:10px}
-.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
-.bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height 0.3s}
-.bar-label{font-size:9px;color:#9ca3af}
-.donut-wrap{display:flex;flex-direction:column;justify-content:center;align-items:center;height:160px;margin-bottom:0}
-.donut{width:110px;height:110px;border-radius:50%;background:conic-gradient(#6366f1 0% 62%,#8b5cf6 62% 78%,#c4b5fd 78% 89%,#e5e7eb 89% 100%);display:flex;align-items:center;justify-content:center}
-.donut-inner{width:70px;height:70px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#111827}
-.legend{display:flex;flex-direction:column;gap:8px;margin-top:16px;width:100%}
-.leg-item{display:flex;align-items:center;gap:8px;font-size:11px;color:#6b7280}
-.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.leg-val{margin-left:auto;font-weight:600;color:#111827}
-.table-card{background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden}
-.table-header{padding:16px 20px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center}
-.th{font-size:12px;font-weight:600;color:#111827}
-.table-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:12px 20px;border-bottom:1px solid #f9fafb;font-size:12px;align-items:center}
-.table-row:last-child{border:none}
-.tr-head{background:#f9fafb;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;font-weight:600}
-.status{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600}
-.s-active{background:#d1fae5;color:#065f46}
-.s-trial{background:#fef3c7;color:#92400e}
-.s-pause{background:#f3f4f6;color:#6b7280}
-.avatar-row{display:flex;align-items:center;gap:8px}
-.av{width:24px;height:24px;border-radius:50%;flex-shrink:0;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
-</style></head><body>
-<div class="sidebar">
-  <div class="s-logo"><div class="s-icon">M</div><div class="s-name">Meridian</div></div>
-  <div class="s-section">Overview</div>
-  <div class="s-item active"><div class="s-dot"></div>Dashboard</div>
-  <div class="s-item"><div class="s-dot"></div>Analytics<div class="s-badge">New</div></div>
-  <div class="s-item"><div class="s-dot"></div>Reports</div>
-  <div class="s-section">Management</div>
-  <div class="s-item"><div class="s-dot"></div>Customers</div>
-  <div class="s-item"><div class="s-dot"></div>Revenue</div>
-  <div class="s-item"><div class="s-dot"></div>Pipeline</div>
-  <div class="s-section">System</div>
-  <div class="s-item"><div class="s-dot"></div>Integrations</div>
-  <div class="s-item"><div class="s-dot"></div>Settings</div>
-  <div style="margin-top:auto;padding:16px 12px;border-top:1px solid rgba(255,255,255,0.07)">
-    <div class="s-item" style="margin:0"><div class="tb-avatar"></div><div style="font-size:11px;color:rgba(255,255,255,0.6)">Aaron O.</div></div>
-  </div>
-</div>
-<div class="main">
-  <div class="topbar"><div class="breadcrumb">Dashboard <span>›</span> <strong>Overview</strong></div><div class="tb-right"><div style="font-size:12px;color:#6b7280;background:#f9fafb;padding:7px 14px;border-radius:8px;border:1px solid #e5e7eb">Last 30 days ▾</div><div class="tb-btn">+ New Report</div><div class="tb-avatar"></div></div></div>
-  <div class="content">
-    <div class="kpis">
-      <div class="kpi"><div class="kpi-label">Monthly Revenue</div><div class="kpi-val">$84,230</div><div class="kpi-change up">↑ 12.4% vs last month</div></div>
-      <div class="kpi"><div class="kpi-label">Active Users</div><div class="kpi-val">3,842</div><div class="kpi-change up">↑ 8.1% vs last month</div></div>
-      <div class="kpi"><div class="kpi-label">Churn Rate</div><div class="kpi-val">2.3%</div><div class="kpi-change dn">↑ 0.4% vs last month</div></div>
-      <div class="kpi"><div class="kpi-label">NPS Score</div><div class="kpi-val">72</div><div class="kpi-change up">↑ 5pts vs last month</div></div>
+html{scroll-behavior:smooth}
+body{background:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#111827;line-height:1.6}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ── Top Navigation ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,31,46,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.2)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-icon{width:32px;height:32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+.nav-name{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:#6366f1;color:#fff!important;padding:8px 20px;border-radius:8px;font-weight:600;font-size:13px;transition:background .2s,transform .15s;cursor:pointer}
+.nav-cta:hover{background:#4f46e5;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(26,31,46,.98);backdrop-filter:blur(12px);padding:20px 28px;flex-direction:column;gap:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;color:rgba(255,255,255,.7);text-decoration:none;padding:8px 0;cursor:pointer}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,#1a1f2e 0%,#1e2340 50%,#1a1f2e 100%);padding:140px 28px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(99,102,241,.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(139,92,246,.06) 0%,transparent 50%);pointer-events:none}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:6px 16px;font-size:12px;color:#818cf8;margin-bottom:24px;font-weight:500}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#6366f1;animation:pulse 2s infinite}
+.hero h1{font-size:52px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,#818cf8,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:#6366f1;color:#fff;padding:14px 32px;border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.35)}
+.btn-secondary{background:rgba(255,255,255,.06);color:#fff;padding:14px 32px;border-radius:10px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:56px}
+.hero-stat-val{font-size:28px;font-weight:800;color:#fff}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px}
+
+/* ── Dashboard Preview ── */
+.dashboard-section{padding:80px 28px;max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#6366f1;font-weight:700;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:#111827;letter-spacing:-.02em;margin-bottom:12px}
+.section-sub{font-size:16px;color:#6b7280;max-width:560px;margin-bottom:48px}
+
+.dashboard-preview{background:#1a1f2e;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.06)}
+.dash-topbar{background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);padding:16px 24px;display:flex;align-items:center;gap:8px}
+.dash-dot{width:10px;height:10px;border-radius:50%}
+.dash-body{display:flex;min-height:480px}
+.dash-sidebar{width:200px;background:rgba(255,255,255,.02);border-right:1px solid rgba(255,255,255,.06);padding:20px 0;flex-shrink:0}
+.ds-item{display:flex;align-items:center;gap:10px;padding:10px 16px;margin:2px 8px;border-radius:8px;font-size:12px;color:rgba(255,255,255,.45);cursor:default}
+.ds-item.active{background:rgba(99,102,241,.15);color:#818cf8}
+.ds-dot{width:14px;height:14px;border-radius:4px;background:rgba(255,255,255,.08)}
+.ds-item.active .ds-dot{background:#6366f1}
+.ds-section{padding:20px 16px 8px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.dash-content{flex:1;padding:24px}
+.d-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.d-kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px}
+.d-kpi-label{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.d-kpi-val{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.d-kpi-change{font-size:10px;margin-top:4px}
+.d-up{color:#34d399}.d-dn{color:#f87171}
+.d-charts{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.d-chart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px}
+.d-chart-title{font-size:12px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:4px}
+.d-chart-sub{font-size:10px;color:rgba(255,255,255,.3);margin-bottom:16px}
+.d-bars{display:flex;align-items:flex-end;gap:6px;height:130px}
+.d-bar{flex:1;border-radius:3px 3px 0 0;transition:height .5s ease}
+.donut-preview{width:100px;height:100px;border-radius:50%;background:conic-gradient(#6366f1 0% 62%,#8b5cf6 62% 78%,#c4b5fd 78% 89%,rgba(255,255,255,.1) 89% 100%);display:flex;align-items:center;justify-content:center;margin:12px auto}
+.donut-preview-inner{width:64px;height:64px;border-radius:50%;background:#1a1f2e;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+
+/* ── Features ── */
+.features-section{padding:80px 28px;background:#fff}
+.features-inner{max-width:1200px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:32px;transition:all .3s;cursor:default}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08);border-color:#c7d2fe}
+.feature-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.fi-indigo{background:rgba(99,102,241,.1);color:#6366f1}
+.fi-violet{background:rgba(139,92,246,.1);color:#8b5cf6}
+.fi-emerald{background:rgba(16,185,129,.1);color:#10b981}
+.fi-amber{background:rgba(245,158,11,.1);color:#f59e0b}
+.fi-rose{background:rgba(244,63,94,.1);color:#f43f5e}
+.fi-sky{background:rgba(14,165,233,.1);color:#0ea5e9}
+.feature-card h3{font-size:16px;font-weight:700;color:#111827;margin-bottom:8px}
+.feature-card p{font-size:13px;color:#6b7280;line-height:1.6}
+
+/* ── Integrations ── */
+.integrations-section{padding:80px 28px;max-width:1200px;margin:0 auto;text-align:center}
+.integrations-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:700px;margin:0 auto}
+.int-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .3s;cursor:default}
+.int-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:#c7d2fe}
+.int-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+.int-name{font-size:11px;color:#6b7280;font-weight:500}
+
+/* ── Pricing ── */
+.pricing-section{padding:80px 28px;background:#fff}
+.pricing-inner{max-width:1200px;margin:0 auto;text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto}
+.price-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:36px 28px;text-align:left;transition:all .3s;position:relative}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.price-card.popular{background:#1a1f2e;border-color:rgba(99,102,241,.3);color:#fff}
+.price-card.popular .price-label,.price-card.popular .price-features li{color:rgba(255,255,255,.6)}
+.price-card.popular .price-val,.price-card.popular .price-name{color:#fff}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#6366f1;color:#fff;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px}
+.price-name{font-size:18px;font-weight:700;margin-bottom:4px}
+.price-label{font-size:13px;color:#6b7280;margin-bottom:20px}
+.price-val{font-size:42px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.price-val span{font-size:15px;font-weight:500;color:#9ca3af}
+.price-period{font-size:12px;color:#9ca3af;margin-bottom:24px}
+.price-features{list-style:none;margin-bottom:28px}
+.price-features li{font-size:13px;color:#6b7280;padding:6px 0;display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'';display:inline-block;width:16px;height:16px;border-radius:50%;background:rgba(99,102,241,.1);flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5.5 10.5L3.5 8.5' stroke='%236366f1' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M5.5 10.5L11 5' stroke='%236366f1' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")}
+.price-card.popular .price-features li::before{background:rgba(99,102,241,.25)}
+.price-btn{display:block;width:100%;padding:12px;border-radius:10px;font-size:13px;font-weight:600;text-align:center;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.price-btn-outline{background:transparent;border:1px solid #e5e7eb;color:#111827}
+.price-btn-outline:hover{border-color:#6366f1;color:#6366f1}
+.price-btn-fill{background:#6366f1;color:#fff}
+.price-btn-fill:hover{background:#4f46e5;transform:translateY(-1px)}
+.price-btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff}
+.price-btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+/* ── FAQ ── */
+.faq-section{padding:80px 28px;max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e5e7eb;padding:20px 0}
+.faq-q{font-size:15px;font-weight:600;color:#111827;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none}
+.faq-q:hover{color:#6366f1}
+.faq-arrow{font-size:18px;color:#9ca3af;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:14px;color:#6b7280;line-height:1.7}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px}
+
+/* ── CTA ── */
+.cta-section{padding:80px 28px}
+.cta-inner{max-width:900px;margin:0 auto;background:linear-gradient(135deg,#1a1f2e,#1e2340);border-radius:20px;padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.cta-inner h2{font-size:36px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:12px;position:relative}
+.cta-inner p{font-size:16px;color:rgba(255,255,255,.5);margin-bottom:32px;position:relative}
+.cta-inner .btn-primary{position:relative}
+
+/* ── Footer ── */
+.footer{background:#1a1f2e;padding:60px 28px 32px;color:rgba(255,255,255,.4)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand-icon{width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
+.footer-brand-name{font-size:15px;font-weight:700;color:#fff}
+.footer-desc{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;padding:4px 0;transition:color .2s;cursor:pointer}
+.footer-col a:hover{color:#818cf8}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;flex-wrap:wrap;gap:12px}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{color:rgba(255,255,255,.3);transition:color .2s;cursor:pointer}
+.footer-socials a:hover{color:#818cf8}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .hero h1{font-size:36px}
+  .hero p{font-size:16px}
+  .hero-stats{gap:24px}
+  .hero-stat-val{font-size:22px}
+  .d-kpis{grid-template-columns:repeat(2,1fr)}
+  .d-charts{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px}
+  .integrations-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-sidebar{display:none}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero{padding:120px 20px 60px}
+  .hero h1{font-size:28px}
+  .hero-stats{flex-direction:column;gap:16px}
+  .d-kpis{grid-template-columns:1fr 1fr}
+  .features-grid{grid-template-columns:1fr}
+  .integrations-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-inner{padding:40px 24px}
+  .cta-inner h2{font-size:26px}
+  .pricing-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-icon">M</div>
+      <div class="nav-name">Meridian</div>
+    </a>
+    <div class="nav-links">
+      <a href="#dashboard">Product</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="nav-cta">Get Started</a>
     </div>
-    <div class="charts">
-      <div class="chart-card">
-        <div class="chart-title">Revenue Overview</div>
-        <div class="chart-sub">Monthly recurring revenue · 2025</div>
-        <div class="chart-area">
-          ${[58,42,68,52,74,62,88,76,94,82,100,90].map((h,i)=>
+    <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#dashboard" onclick="this.parentElement.classList.remove('open')">Product</a>
+  <a href="#features" onclick="this.parentElement.classList.remove('open')">Features</a>
+  <a href="#integrations" onclick="this.parentElement.classList.remove('open')">Integrations</a>
+  <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
+  <a href="#faq" onclick="this.parentElement.classList.remove('open')">FAQ</a>
+  <a href="#cta" onclick="this.parentElement.classList.remove('open')">Get Started</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Now with AI-powered insights</div>
+    <h1>The analytics platform built for <span>modern teams</span></h1>
+    <p>Turn your data into decisions. Meridian gives you real-time revenue analytics, customer intelligence, and predictive insights in one unified dashboard.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Start Free Trial <span style="font-size:16px">&#8594;</span></a>
+      <a href="#dashboard" class="btn-secondary">See it in action</a>
+    </div>
+    <div class="hero-stats">
+      <div class="reveal"><div class="hero-stat-val">2,400+</div><div class="hero-stat-label">Companies trust Meridian</div></div>
+      <div class="reveal reveal-delay-1"><div class="hero-stat-val">$3.2B</div><div class="hero-stat-label">Revenue tracked monthly</div></div>
+      <div class="reveal reveal-delay-2"><div class="hero-stat-val">99.99%</div><div class="hero-stat-label">Uptime SLA guaranteed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Dashboard Preview ── -->
+<section class="dashboard-section" id="dashboard">
+  <div class="reveal">
+    <div class="section-label">Product</div>
+    <div class="section-title">Your command center for growth</div>
+    <div class="section-sub">Everything you need to understand revenue, retention, and engagement — updated in real time.</div>
+  </div>
+  <div class="dashboard-preview reveal">
+    <div class="dash-topbar">
+      <div class="dash-dot" style="background:#ff5f57"></div>
+      <div class="dash-dot" style="background:#febc2e"></div>
+      <div class="dash-dot" style="background:#28c840"></div>
+      <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.25)">app.meridian.io/dashboard</span>
+    </div>
+    <div class="dash-body">
+      <div class="dash-sidebar">
+        <div class="ds-section">Overview</div>
+        <div class="ds-item active"><div class="ds-dot"></div>Dashboard</div>
+        <div class="ds-item"><div class="ds-dot"></div>Analytics</div>
+        <div class="ds-item"><div class="ds-dot"></div>Reports</div>
+        <div class="ds-section">Management</div>
+        <div class="ds-item"><div class="ds-dot"></div>Customers</div>
+        <div class="ds-item"><div class="ds-dot"></div>Revenue</div>
+        <div class="ds-item"><div class="ds-dot"></div>Pipeline</div>
+        <div class="ds-section">System</div>
+        <div class="ds-item"><div class="ds-dot"></div>Integrations</div>
+        <div class="ds-item"><div class="ds-dot"></div>Settings</div>
+      </div>
+      <div class="dash-content">
+        <div class="d-kpis">
+          <div class="d-kpi"><div class="d-kpi-label">Monthly Revenue</div><div class="d-kpi-val">$84,230</div><div class="d-kpi-change d-up">&#8593; 12.4%</div></div>
+          <div class="d-kpi"><div class="d-kpi-label">Active Users</div><div class="d-kpi-val">3,842</div><div class="d-kpi-change d-up">&#8593; 8.1%</div></div>
+          <div class="d-kpi"><div class="d-kpi-label">Churn Rate</div><div class="d-kpi-val">2.3%</div><div class="d-kpi-change d-dn">&#8593; 0.4%</div></div>
+          <div class="d-kpi"><div class="d-kpi-label">NPS Score</div><div class="d-kpi-val">72</div><div class="d-kpi-change d-up">&#8593; 5pts</div></div>
+        </div>
+        <div class="d-charts">
+          <div class="d-chart">
+            <div class="d-chart-title">Revenue Overview</div>
+            <div class="d-chart-sub">Monthly recurring revenue</div>
+            <div class="d-bars" id="bars"></div>
+          </div>
+          <div class="d-chart">
+            <div class="d-chart-title">Traffic Sources</div>
+            <div class="d-chart-sub">Last 30 days</div>
+            <div class="donut-preview"><div class="donut-preview-inner">62%</div></div>
+            <div style="display:flex;flex-direction:column;gap:6px;padding:0 8px">
+              <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.5)"><span style="width:8px;height:8px;border-radius:2px;background:#6366f1"></span>Direct <span style="margin-left:auto;color:rgba(255,255,255,.7);font-weight:600">62%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.5)"><span style="width:8px;height:8px;border-radius:2px;background:#8b5cf6"></span>Organic <span style="margin-left:auto;color:rgba(255,255,255,.7);font-weight:600">16%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.5)"><span style="width:8px;height:8px;border-radius:2px;background:#c4b5fd"></span>Referral <span style="margin-left:auto;color:rgba(255,255,255,.7);font-weight:600">11%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:48px">
+      <div class="section-label">Features</div>
+      <div class="section-title">Everything you need to scale</div>
+      <div class="section-sub" style="margin:0 auto">Powerful analytics tools that help your team move faster and make better decisions.</div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-indigo">&#9632;</div>
+        <h3>Real-Time Dashboards</h3>
+        <p>Monitor KPIs as they change with sub-second latency. Customize views per team, role, or objective.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon fi-violet">&#9650;</div>
+        <h3>Predictive Forecasting</h3>
+        <p>AI models that learn from your historical data to project revenue, churn, and growth trajectories.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon fi-emerald">&#10003;</div>
+        <h3>Cohort Analysis</h3>
+        <p>Segment users by behavior, acquisition channel, or plan tier. Track retention across every dimension.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon fi-amber">&#9733;</div>
+        <h3>Revenue Intelligence</h3>
+        <p>Automatic MRR, ARR, and LTV calculations. Expansion, contraction, and churn broken down by segment.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-4">
+        <div class="feature-icon fi-rose">&#9829;</div>
+        <h3>Customer Health Scores</h3>
+        <p>Composite health scores using product usage, support tickets, NPS, and billing data in real time.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon fi-sky">&#8644;</div>
+        <h3>Automated Reports</h3>
+        <p>Schedule PDF or Slack reports for your board, investors, or team. Set once, deliver forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Integrations ── -->
+<section class="integrations-section" id="integrations">
+  <div class="reveal">
+    <div class="section-label">Integrations</div>
+    <div class="section-title">Connects with your stack</div>
+    <div class="section-sub" style="margin:0 auto 48px">Pull data from the tools you already use. Set up in minutes, not weeks.</div>
+  </div>
+  <div class="integrations-grid">
+    <div class="int-card reveal"><div class="int-icon" style="background:#f0f4ff;color:#4f46e5">S</div><div class="int-name">Stripe</div></div>
+    <div class="int-card reveal reveal-delay-1"><div class="int-icon" style="background:#fef3e2;color:#e67e22">H</div><div class="int-name">HubSpot</div></div>
+    <div class="int-card reveal reveal-delay-2"><div class="int-icon" style="background:#eef9ee;color:#27ae60">S</div><div class="int-name">Salesforce</div></div>
+    <div class="int-card reveal reveal-delay-3"><div class="int-icon" style="background:#f3e8ff;color:#7c3aed">Sl</div><div class="int-name">Slack</div></div>
+    <div class="int-card reveal reveal-delay-4"><div class="int-icon" style="background:#e0f2fe;color:#0284c7">Sg</div><div class="int-name">Segment</div></div>
+    <div class="int-card reveal"><div class="int-icon" style="background:#fce4ec;color:#e91e63">I</div><div class="int-name">Intercom</div></div>
+    <div class="int-card reveal reveal-delay-1"><div class="int-icon" style="background:#e8eaf6;color:#3f51b5">Z</div><div class="int-name">Zendesk</div></div>
+    <div class="int-card reveal reveal-delay-2"><div class="int-icon" style="background:#fff3e0;color:#ff9800">G</div><div class="int-name">GA4</div></div>
+    <div class="int-card reveal reveal-delay-3"><div class="int-icon" style="background:#fce4ec;color:#e91e63">M</div><div class="int-name">Mixpanel</div></div>
+    <div class="int-card reveal reveal-delay-4"><div class="int-icon" style="background:#e0f7fa;color:#00acc1">Sn</div><div class="int-name">Snowflake</div></div>
+    <div class="int-card reveal"><div class="int-icon" style="background:#f1f8e9;color:#689f38">P</div><div class="int-name">Postgres</div></div>
+    <div class="int-card reveal reveal-delay-1"><div class="int-icon" style="background:#f5f5f5;color:#424242">+</div><div class="int-name">50+ more</div></div>
+  </div>
+</section>
+
+<!-- ── Pricing ── -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="reveal" style="margin-bottom:48px">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Simple, transparent pricing</div>
+      <div class="section-sub" style="margin:0 auto">No hidden fees. Start free, upgrade when you are ready.</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name">Starter</div>
+        <div class="price-label">For early-stage teams</div>
+        <div class="price-val">$0<span>/mo</span></div>
+        <div class="price-period">Free forever, up to 1K MAUs</div>
+        <ul class="price-features">
+          <li>3 dashboards</li>
+          <li>7-day data retention</li>
+          <li>2 integrations</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#cta" class="price-btn price-btn-outline">Get Started</a>
+      </div>
+      <div class="price-card popular reveal reveal-delay-1">
+        <div class="popular-badge">Most Popular</div>
+        <div class="price-name">Growth</div>
+        <div class="price-label">For scaling companies</div>
+        <div class="price-val">$79<span>/mo</span></div>
+        <div class="price-period" style="color:rgba(255,255,255,.35)">Per seat, billed annually</div>
+        <ul class="price-features">
+          <li>Unlimited dashboards</li>
+          <li>12-month data retention</li>
+          <li>All integrations</li>
+          <li>Predictive analytics</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#cta" class="price-btn price-btn-fill">Start Free Trial</a>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <div class="price-name">Enterprise</div>
+        <div class="price-label">For large organizations</div>
+        <div class="price-val">Custom</div>
+        <div class="price-period">Volume discounts available</div>
+        <ul class="price-features">
+          <li>Everything in Growth</li>
+          <li>Unlimited data retention</li>
+          <li>SSO &amp; SAML</li>
+          <li>Custom SLAs</li>
+          <li>Dedicated CSM</li>
+        </ul>
+        <a href="#cta" class="price-btn price-btn-outline">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq-section" id="faq">
+  <div class="reveal" style="text-align:center;margin-bottom:48px">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Frequently asked questions</div>
+  </div>
+  <div class="reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does setup take? <span class="faq-arrow">&#9662;</span></div>
+      <div class="faq-a">Most teams are up and running within 15 minutes. Connect your data sources, and Meridian automatically builds your first dashboard. No engineering resources required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I import historical data? <span class="faq-arrow">&#9662;</span></div>
+      <div class="faq-a">Yes. When you connect a data source like Stripe or your database, we automatically backfill historical data. Growth plans get 12 months, Enterprise gets unlimited history.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is my data secure? <span class="faq-arrow">&#9662;</span></div>
+      <div class="faq-a">Absolutely. Meridian is SOC 2 Type II certified, uses AES-256 encryption at rest and TLS 1.3 in transit. We never sell your data. Enterprise customers can deploy in their own VPC.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What happens when I hit my MAU limit? <span class="faq-arrow">&#9662;</span></div>
+      <div class="faq-a">We will notify you when you reach 80% of your limit. You can upgrade at any time. We never cut off your access or delete data — you just cannot add new tracked users until you upgrade.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you offer a free trial of Growth? <span class="faq-arrow">&#9662;</span></div>
+      <div class="faq-a">Yes, every Growth plan starts with a 14-day free trial. No credit card required. You get full access to all features during the trial period.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner reveal">
+    <h2>Ready to see your data clearly?</h2>
+    <p>Join 2,400+ companies using Meridian to grow faster. Start your free trial today.</p>
+    <a href="#hero" class="btn-primary">Start Free Trial <span style="font-size:16px">&#8594;</span></a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-icon">M</div>
+          <div class="footer-brand-name">Meridian</div>
+        </div>
+        <div class="footer-desc">The analytics platform built for modern SaaS teams. Turn data into decisions, faster.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#dashboard">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#">Documentation</a>
+        <a href="#">Status Page</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Meridian Analytics, Inc. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Generate bar chart ──
+(function(){
+  var bars = document.getElementById('bars');
+  var heights = [58,42,68,52,74,62,88,76,94,82,100,90];
+  var months = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  heights.forEach(function(h, i){
+    var col = document.createElement('div');
+    col.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end';
+    var bar = document.createElement('div');
+    bar.className = 'd-bar';
+    bar.style.height = '0%';
+    bar.style.width = '100%';
+    bar.style.background = i >= 10 ? '#8b5cf6' : '#6366f1';
+    setTimeout(function(){ bar.style.height = h + '%'; }, 200 + i * 60);
+    var label = document.createElement('div');
+    label.style.cssText = 'font-size:9px;color:rgba(255,255,255,.3)';
+    label.textContent = months[i];
+    col.appendChild(bar);
+    col.appendChild(label);
+    bars.appendChild(col);
+  });
+})();
+
+// ── Scroll reveal (IntersectionObserver) ──
+(function(){
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el){ observer.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+
+// ── Navbar shadow on scroll ──
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+</script>
+</body>
+</html>

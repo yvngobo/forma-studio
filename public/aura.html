@@ -1,39 +1,506 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aura Collective — Quiet Luxury</title>
+<style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0c0a07;color:#ede8e0;font-family:Georgia,serif;height:900px;overflow:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:26px 52px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.logo{font-size:13px;letter-spacing:0.3em;text-transform:uppercase;color:#c9a97a}
+html{scroll-behavior:smooth}
+body{background:#0c0a07;color:#ede8e0;font-family:Georgia,'Times New Roman',serif}
+
+/* Utility */
+.sans{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif}
+.gold{color:#c9a97a}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0c0a07}
+::-webkit-scrollbar-thumb{background:rgba(201,169,122,0.3);border-radius:3px}
+
+/* Selection */
+::selection{background:rgba(201,169,122,0.3);color:#ede8e0}
+
+/* ---- NAV ---- */
+nav{display:flex;justify-content:space-between;align-items:center;padding:26px 52px;border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:0;z-index:100;background:rgba(12,10,7,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:padding 0.3s ease}
+nav.scrolled{padding:18px 52px;border-bottom-color:rgba(201,169,122,0.12)}
+.logo{font-size:13px;letter-spacing:0.3em;text-transform:uppercase;color:#c9a97a;cursor:pointer;transition:opacity 0.3s}
+.logo:hover{opacity:0.7}
 .links{display:flex;gap:36px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:-apple-system,sans-serif}
-.cta{font-size:11px;letter-spacing:0.15em;font-family:-apple-system,sans-serif;text-transform:uppercase;border:1px solid rgba(201,169,122,0.5);color:#c9a97a;padding:10px 28px}
-.hero{display:grid;grid-template-columns:1fr 1fr;height:598px}
+.links a{color:inherit;text-decoration:none;cursor:pointer;transition:color 0.3s;position:relative}
+.links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#c9a97a;transition:width 0.3s}
+.links a:hover{color:#c9a97a}
+.links a:hover::after{width:100%}
+.cta{font-size:11px;letter-spacing:0.15em;font-family:-apple-system,sans-serif;text-transform:uppercase;border:1px solid rgba(201,169,122,0.5);color:#c9a97a;padding:10px 28px;cursor:pointer;transition:all 0.3s;background:transparent;text-decoration:none}
+.cta:hover{background:#c9a97a;color:#0c0a07}
+
+/* ---- HERO ---- */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 77px)}
 .hl{padding:64px 52px;display:flex;flex-direction:column;justify-content:space-between}
 .tag{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#c9a97a;font-family:-apple-system,sans-serif;margin-bottom:8px}
 h1{font-size:88px;line-height:.88;letter-spacing:-0.03em;font-weight:400}
 h1 em{font-style:italic;color:#c9a97a}
 .sub{font-family:-apple-system,sans-serif;font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;max-width:300px;margin:28px 0}
 .actions{display:flex;gap:20px;align-items:center}
-.b1{background:#c9a97a;color:#0c0a07;padding:14px 34px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif}
-.b2{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.25);padding-bottom:1px}
+.b1{background:#c9a97a;color:#0c0a07;padding:14px 34px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;cursor:pointer;transition:all 0.3s;border:1px solid #c9a97a;text-decoration:none;display:inline-block}
+.b1:hover{background:transparent;color:#c9a97a}
+.b2{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.25);padding-bottom:1px;cursor:pointer;transition:all 0.3s;text-decoration:none}
+.b2:hover{color:#c9a97a;border-bottom-color:#c9a97a}
 .hr{background:#171310;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hr::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:55%;height:75%;border:1px solid rgba(201,169,122,0.12)}
-.hr::after{content:'2025';position:absolute;bottom:36px;right:48px;font-size:10px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);font-family:-apple-system,sans-serif}
+.hr::after{content:'2026';position:absolute;bottom:36px;right:48px;font-size:10px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);font-family:-apple-system,sans-serif}
 .watermark{font-size:140px;font-weight:900;color:rgba(201,169,122,0.04);letter-spacing:0.05em;white-space:nowrap;font-style:italic}
+.stats{display:flex;gap:40px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px}
+.stat-label{font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;text-transform:uppercase;margin-bottom:6px}
+.stat-val{font-size:28px;color:#ede8e0}
+
+/* ---- MARQUEE ---- */
 .bar{background:#c9a97a;padding:11px 0;overflow:hidden;white-space:nowrap}
-.bar span{display:inline-block;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#0c0a07;font-family:-apple-system,sans-serif;animation:t 24s linear infinite}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);height:210px}
-.card{background:#0c0a07;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
-.cn{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif}
-.cp{font-size:22px;color:#c9a97a;margin-top:8px}
-@keyframes t{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-</style></head><body>
-<nav><div class="logo">Aura Collective</div><div class="links"><span>Collections</span><span>Lookbook</span><span>Stores</span><span>World</span></div><div class="cta">Shop Now</div></nav>
-<div class="hero">
+.bar-inner{display:inline-flex;animation:marquee 30s linear infinite}
+.bar-inner span{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#0c0a07;font-family:-apple-system,sans-serif;padding:0 24px;white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---- SECTION SHARED ---- */
+section{padding:100px 52px}
+.section-tag{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#c9a97a;font-family:-apple-system,sans-serif;margin-bottom:12px}
+.section-title{font-size:48px;font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px}
+.section-sub{font-family:-apple-system,sans-serif;font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;max-width:480px;margin-bottom:48px}
+
+/* ---- REVEAL ANIMATIONS ---- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ---- COLLECTIONS ---- */
+#collections{border-top:1px solid rgba(255,255,255,0.06)}
+.collection-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+.collection-header .section-sub{margin-bottom:0}
+.view-all{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:#c9a97a;border:1px solid rgba(201,169,122,0.4);padding:12px 28px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+.view-all:hover{background:#c9a97a;color:#0c0a07}
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06)}
+.coll-card{background:#0c0a07;padding:28px;display:flex;flex-direction:column;cursor:pointer;transition:background 0.4s}
+.coll-card:hover{background:#12100c}
+.coll-card:hover .coll-img{transform:scale(1.03)}
+.coll-card:hover .coll-price{color:#ede8e0}
+.coll-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;margin-bottom:12px}
+.coll-img{height:280px;border-radius:2px;margin-bottom:20px;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);overflow:hidden}
+.coll-name{font-size:18px;margin-bottom:6px;font-weight:400}
+.coll-price{font-size:14px;color:#c9a97a;font-family:-apple-system,sans-serif;transition:color 0.3s}
+.coll-arrow{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.3);margin-top:16px;transition:color 0.3s}
+.coll-card:hover .coll-arrow{color:#c9a97a}
+
+/* Gradient placeholders for collection images */
+.grad-1{background:linear-gradient(145deg,#1a1714 0%,#2a2420 40%,rgba(201,169,122,0.15) 100%)}
+.grad-2{background:linear-gradient(145deg,#14120f 0%,#1e1b17 50%,rgba(201,169,122,0.1) 100%)}
+.grad-3{background:linear-gradient(145deg,#171411 0%,#252118 45%,rgba(201,169,122,0.12) 100%)}
+.grad-4{background:linear-gradient(145deg,#12100d 0%,#201d18 40%,rgba(201,169,122,0.08) 100%)}
+.grad-5{background:linear-gradient(145deg,#181512 0%,#28231c 50%,rgba(201,169,122,0.14) 100%)}
+.grad-6{background:linear-gradient(145deg,#151310 0%,#1c1916 45%,rgba(201,169,122,0.1) 100%)}
+
+/* ---- ABOUT ---- */
+#about{border-top:1px solid rgba(255,255,255,0.06)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img{height:500px;background:linear-gradient(160deg,#171411 0%,#1e1a15 40%,rgba(201,169,122,0.08) 100%);border-radius:2px;position:relative;overflow:hidden}
+.about-img::after{content:'A';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:200px;font-style:italic;font-weight:700;color:rgba(201,169,122,0.05)}
+.about-text .section-title{font-size:42px}
+.about-text p{font-family:-apple-system,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);line-height:2;margin-bottom:20px}
+.about-values{display:flex;gap:36px;margin-top:36px}
+.value{text-align:center}
+.value-num{font-size:32px;color:#c9a97a;margin-bottom:6px}
+.value-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif}
+
+/* ---- TESTIMONIALS / PRESS ---- */
+#press{border-top:1px solid rgba(255,255,255,0.06);text-align:center}
+#press .section-sub{margin-left:auto;margin-right:auto}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);margin-top:48px}
+.press-card{background:#0c0a07;padding:48px 36px;transition:background 0.4s}
+.press-card:hover{background:#12100c}
+.press-source{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#c9a97a;font-family:-apple-system,sans-serif;margin-bottom:20px}
+.press-quote{font-size:20px;line-height:1.6;font-style:italic;color:rgba(255,255,255,0.7);margin-bottom:20px}
+.press-author{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif}
+
+/* ---- EDITORIAL STRIP ---- */
+.editorial{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border-top:1px solid rgba(255,255,255,0.06)}
+.ed-card{background:#0c0a07;padding:32px;cursor:pointer;transition:background 0.4s}
+.ed-card:hover{background:#12100c}
+.ed-img{height:200px;border-radius:2px;margin-bottom:16px}
+.ed-tag{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#c9a97a;font-family:-apple-system,sans-serif;margin-bottom:8px}
+.ed-title{font-size:17px;font-weight:400;line-height:1.4;margin-bottom:8px}
+.ed-link{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.3);transition:color 0.3s;cursor:pointer}
+.ed-card:hover .ed-link{color:#c9a97a}
+
+/* ---- NEWSLETTER ---- */
+.newsletter{padding:100px 52px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
+.newsletter .section-title{margin-bottom:12px}
+.newsletter .section-sub{margin-left:auto;margin-right:auto;margin-bottom:36px}
+.newsletter-form{display:flex;max-width:480px;margin:0 auto;gap:0}
+.newsletter-form input{flex:1;background:transparent;border:1px solid rgba(255,255,255,0.15);border-right:none;padding:14px 20px;font-size:13px;color:#ede8e0;font-family:-apple-system,sans-serif;outline:none;transition:border-color 0.3s}
+.newsletter-form input::placeholder{color:rgba(255,255,255,0.25)}
+.newsletter-form input:focus{border-color:rgba(201,169,122,0.5)}
+.newsletter-form button{background:#c9a97a;color:#0c0a07;border:1px solid #c9a97a;padding:14px 28px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;cursor:pointer;transition:all 0.3s}
+.newsletter-form button:hover{background:transparent;color:#c9a97a}
+
+/* ---- FOOTER ---- */
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:60px 52px 40px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px}
+.footer-brand .logo{font-size:13px;margin-bottom:16px;display:block}
+.footer-brand p{font-family:-apple-system,sans-serif;font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;max-width:260px}
+.footer-col h4{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#c9a97a;font-family:-apple-system,sans-serif;margin-bottom:20px}
+.footer-col a{display:block;font-family:-apple-system,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;margin-bottom:12px;transition:color 0.3s;cursor:pointer}
+.footer-col a:hover{color:#c9a97a}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom span{font-family:-apple-system,sans-serif;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.05em}
+.footer-socials{display:flex;gap:20px}
+.footer-socials a{font-family:-apple-system,sans-serif;font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;text-transform:uppercase;letter-spacing:0.15em;transition:color 0.3s;cursor:pointer}
+.footer-socials a:hover{color:#c9a97a}
+
+/* ---- MOBILE ---- */
+@media(max-width:900px){
+  nav{padding:20px 24px}
+  nav.scrolled{padding:14px 24px}
+  .links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hl{padding:48px 24px}
+  h1{font-size:52px}
+  .hr{height:300px}
+  .stats{flex-wrap:wrap;gap:24px}
+  section{padding:64px 24px}
+  .section-title{font-size:36px}
+  .coll-grid{grid-template-columns:1fr 1fr}
+  .coll-img{height:200px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-img{height:300px}
+  .press-grid{grid-template-columns:1fr}
+  .editorial{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .collection-header{flex-direction:column;align-items:flex-start}
+}
+
+@media(max-width:520px){
+  .hero{grid-template-columns:1fr}
+  h1{font-size:42px}
+  .coll-grid{grid-template-columns:1fr}
+  .coll-img{height:240px}
+  .editorial{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .newsletter-form{flex-direction:column}
+  .newsletter-form input{border-right:1px solid rgba(255,255,255,0.15);border-bottom:none}
+  .about-values{flex-direction:column;gap:20px}
+}
+
+/* ---- HAMBURGER (mobile) ---- */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:22px;height:1px;background:#c9a97a;transition:all 0.3s}
+@media(max-width:900px){
+  .hamburger{display:flex}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Aura Collective</a>
+  <div class="links">
+    <a href="#collections">Collections</a>
+    <a href="#about">Lookbook</a>
+    <a href="#press">Press</a>
+    <a href="#footer">Stores</a>
+  </div>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <a href="#collections" class="cta">Shop Now</a>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(12,10,7,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px">
+  <a href="#collections" style="font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;font-family:-apple-system,sans-serif;cursor:pointer" onclick="this.parentElement.classList.remove('open')">Collections</a>
+  <a href="#about" style="font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;font-family:-apple-system,sans-serif;cursor:pointer" onclick="this.parentElement.classList.remove('open')">Lookbook</a>
+  <a href="#press" style="font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;font-family:-apple-system,sans-serif;cursor:pointer" onclick="this.parentElement.classList.remove('open')">Press</a>
+  <a href="#footer" style="font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;font-family:-apple-system,sans-serif;cursor:pointer" onclick="this.parentElement.classList.remove('open')">Stores</a>
+</div>
+<style>.mobile-menu.open{display:flex!important}</style>
+
+<!-- HERO -->
+<section class="hero" id="hero" style="padding:0">
   <div class="hl">
-    <div><div class="tag">SS 2025 Collection</div><h1>The Art<br/>of <em>Quiet</em><br/>Luxury.</h1><p class="sub">Clothing for the considered life. Each piece crafted with intention, designed to outlast the season.</p><div class="actions"><div class="b1">Explore Collection</div><div class="b2">View Lookbook →</div></div></div>
-    <div style="display:flex;gap:40px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px"><div><div style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;text-transform:uppercase;margin-bottom:6px">Pieces</div><div style="font-size:28px;color:#ede8e0">240+</div></div><div><div style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;text-transform:uppercase;margin-bottom:6px">Countries</div><div style="font-size:28px;color:#ede8e0">38</div></div><div><div style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;text-transform:uppercase;margin-bottom:6px">Since</div><div style="font-size:28px;color:#ede8e0">2018</div></div></div>
+    <div>
+      <div class="tag reveal">SS 2026 Collection</div>
+      <h1 class="reveal reveal-delay-1">The Art<br/>of <em>Quiet</em><br/>Luxury.</h1>
+      <p class="sub reveal reveal-delay-2">Clothing for the considered life. Each piece crafted with intention, designed to outlast the season.</p>
+      <div class="actions reveal reveal-delay-3">
+        <a href="#collections" class="b1">Explore Collection</a>
+        <a href="#about" class="b2">View Lookbook &rarr;</a>
+      </div>
+    </div>
+    <div class="stats reveal reveal-delay-4">
+      <div><div class="stat-label">Pieces</div><div class="stat-val">240+</div></div>
+      <div><div class="stat-label">Countries</div><div class="stat-val">38</div></div>
+      <div><div class="stat-label">Since</div><div class="stat-val">2018</div></div>
+    </div>
   </div>
   <div class="hr"><div class="watermark">AURA</div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="bar">
+  <div class="bar-inner">
+    <span>NEW SEASON</span><span>&middot;</span>
+    <span>QUIET LUXURY</span><span>&middot;</span>
+    <span>SS 2026</span><span>&middot;</span>
+    <span>CRAFTED TO LAST</span><span>&middot;</span>
+    <span>FREE SHIPPING OVER &pound;150</span><span>&middot;</span>
+    <span>NEW SEASON</span><span>&middot;</span>
+    <span>QUIET LUXURY</span><span>&middot;</span>
+    <span>SS 2026</span><span>&middot;</span>
+    <span>CRAFTED TO LAST</span><span>&middot;</span>
+    <span>FREE SHIPPING OVER &pound;150</span><span>&middot;</span>
+    <span>NEW SEASON</span><span>&middot;</span>
+    <span>QUIET LUXURY</span><span>&middot;</span>
+    <span>SS 2026</span><span>&middot;</span>
+    <span>CRAFTED TO LAST</span><span>&middot;</span>
+    <span>FREE SHIPPING OVER &pound;150</span><span>&middot;</span>
+    <span>NEW SEASON</span><span>&middot;</span>
+    <span>QUIET LUXURY</span><span>&middot;</span>
+    <span>SS 2026</span><span>&middot;</span>
+    <span>CRAFTED TO LAST</span><span>&middot;</span>
+    <span>FREE SHIPPING OVER &pound;150</span><span>&middot;</span>
+  </div>
 </div>
-<div class="bar"><span>NEW SEASON &nbsp;·&nbsp; QUIET LUXURY &nbsp;·&nbsp; SS 2025 &nbsp;·&nbsp; CRAFTED TO LAST &nbsp;·&nbsp; FREE SHIPPING OVER £150 &nbsp;·&nbsp; NEW SEASON &nbsp;·&nbsp; QUIET LUXURY &nbsp;·&nbsp; SS 2025 &nbsp;·&nbsp; CRAFTED TO LAST &nbsp;·&nbsp; FREE SHIPPING OVER £150 &nbsp;·&nbsp; </span></div>
-<div class="cards"><div class="card"><div class="cn">Outerwear</div><div style="flex:1;background:rgba(201,169,122,0.06);margin:16px 0;border-radius:2px"></div><div class="cp">Shop →</div></div><div class="card"><div class="cn">Knitwear</div><div style="flex:1;background:rgba(201,169,122,0.06);margin:16px 0;border-radius:2px"></div><div class="cp">Shop →</div></div><div class="card"><div class="cn">Accessories</div><div style="flex:1;background:rgba(201,169,122,0.06);margin:16px 0;border-radius:2px"></div><div class="cp">Shop →</div></div></div>
-</body></html>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="collection-header reveal">
+    <div>
+      <div class="section-tag">Curated Selections</div>
+      <div class="section-title">The Collection</div>
+      <div class="section-sub">Each garment tells a story of meticulous craftsmanship and timeless design, created for those who appreciate the art of dressing well.</div>
+    </div>
+    <a href="#" class="view-all">View All Pieces</a>
+  </div>
+  <div class="coll-grid">
+    <div class="coll-card reveal reveal-delay-1">
+      <div class="coll-label">Outerwear</div>
+      <div class="coll-img grad-1"></div>
+      <div class="coll-name">The Cashmere Overcoat</div>
+      <div class="coll-price">&pound;1,280</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+    <div class="coll-card reveal reveal-delay-2">
+      <div class="coll-label">Knitwear</div>
+      <div class="coll-img grad-2"></div>
+      <div class="coll-name">Merino Roll-Neck</div>
+      <div class="coll-price">&pound;420</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+    <div class="coll-card reveal reveal-delay-3">
+      <div class="coll-label">Tailoring</div>
+      <div class="coll-img grad-3"></div>
+      <div class="coll-name">Double-Breasted Blazer</div>
+      <div class="coll-price">&pound;890</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+    <div class="coll-card reveal reveal-delay-1">
+      <div class="coll-label">Accessories</div>
+      <div class="coll-img grad-4"></div>
+      <div class="coll-name">Leather Weekend Bag</div>
+      <div class="coll-price">&pound;680</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+    <div class="coll-card reveal reveal-delay-2">
+      <div class="coll-label">Shirting</div>
+      <div class="coll-img grad-5"></div>
+      <div class="coll-name">Linen Camp Collar</div>
+      <div class="coll-price">&pound;260</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+    <div class="coll-card reveal reveal-delay-3">
+      <div class="coll-label">Trousers</div>
+      <div class="coll-img grad-6"></div>
+      <div class="coll-name">Wide-Leg Wool Trouser</div>
+      <div class="coll-price">&pound;540</div>
+      <div class="coll-arrow">Discover &rarr;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img reveal"></div>
+    <div class="about-text">
+      <div class="section-tag reveal">Our Philosophy</div>
+      <div class="section-title reveal reveal-delay-1">Crafted for the<br/>Considered Life</div>
+      <p class="reveal reveal-delay-2">Aura Collective was founded in 2018 with a singular vision: to create clothing that transcends the noise of fast fashion. Every piece in our collection is designed to be worn, loved, and passed down.</p>
+      <p class="reveal reveal-delay-3">We source only the finest materials from heritage mills across Italy, Scotland, and Japan. Our workshops employ artisans who have dedicated their lives to perfecting their craft.</p>
+      <div class="about-values reveal reveal-delay-4">
+        <div class="value"><div class="value-num">100%</div><div class="value-label">Natural Fabrics</div></div>
+        <div class="value"><div class="value-num">12</div><div class="value-label">Heritage Mills</div></div>
+        <div class="value"><div class="value-num">48hr</div><div class="value-label">Hand Finishing</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND MARQUEE -->
+<div class="bar">
+  <div class="bar-inner">
+    <span>HANDCRAFTED</span><span>&middot;</span>
+    <span>SUSTAINABLE</span><span>&middot;</span>
+    <span>TIMELESS</span><span>&middot;</span>
+    <span>HERITAGE MILLS</span><span>&middot;</span>
+    <span>NATURAL FABRICS</span><span>&middot;</span>
+    <span>HANDCRAFTED</span><span>&middot;</span>
+    <span>SUSTAINABLE</span><span>&middot;</span>
+    <span>TIMELESS</span><span>&middot;</span>
+    <span>HERITAGE MILLS</span><span>&middot;</span>
+    <span>NATURAL FABRICS</span><span>&middot;</span>
+    <span>HANDCRAFTED</span><span>&middot;</span>
+    <span>SUSTAINABLE</span><span>&middot;</span>
+    <span>TIMELESS</span><span>&middot;</span>
+    <span>HERITAGE MILLS</span><span>&middot;</span>
+    <span>NATURAL FABRICS</span><span>&middot;</span>
+    <span>HANDCRAFTED</span><span>&middot;</span>
+    <span>SUSTAINABLE</span><span>&middot;</span>
+    <span>TIMELESS</span><span>&middot;</span>
+    <span>HERITAGE MILLS</span><span>&middot;</span>
+    <span>NATURAL FABRICS</span><span>&middot;</span>
+  </div>
+</div>
+
+<!-- PRESS / TESTIMONIALS -->
+<section id="press">
+  <div class="section-tag reveal">As Seen In</div>
+  <div class="section-title reveal reveal-delay-1">The World Notices</div>
+  <div class="section-sub reveal reveal-delay-2">What the press and our community are saying about the Aura Collective approach to modern luxury.</div>
+  <div class="press-grid">
+    <div class="press-card reveal reveal-delay-1">
+      <div class="press-source">Vogue</div>
+      <div class="press-quote">"Aura Collective represents the future of luxury -- garments that whisper rather than shout, yet command every room."</div>
+      <div class="press-author">-- Sarah Mitchell, Editor</div>
+    </div>
+    <div class="press-card reveal reveal-delay-2">
+      <div class="press-source">Financial Times</div>
+      <div class="press-quote">"In an era of excess, Aura Collective is the antidote. Their commitment to craft over trend is nothing short of revolutionary."</div>
+      <div class="press-author">-- James Thornton, HTSI</div>
+    </div>
+    <div class="press-card reveal reveal-delay-3">
+      <div class="press-source">Monocle</div>
+      <div class="press-quote">"The kind of brand that makes you rethink your entire wardrobe. Each piece is an investment in lasting elegance."</div>
+      <div class="press-author">-- Elena Vargas, Fashion</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<div class="editorial">
+  <div class="ed-card reveal">
+    <div class="ed-img grad-1"></div>
+    <div class="ed-tag">Editorial</div>
+    <div class="ed-title">The Art of Layering: Spring Transitions</div>
+    <div class="ed-link">Read More &rarr;</div>
+  </div>
+  <div class="ed-card reveal reveal-delay-1">
+    <div class="ed-img grad-4"></div>
+    <div class="ed-tag">Behind the Scenes</div>
+    <div class="ed-title">Inside Our Scottish Mill Partnership</div>
+    <div class="ed-link">Read More &rarr;</div>
+  </div>
+  <div class="ed-card reveal reveal-delay-2">
+    <div class="ed-img grad-2"></div>
+    <div class="ed-tag">Style Guide</div>
+    <div class="ed-title">Building a Capsule Wardrobe</div>
+    <div class="ed-link">Read More &rarr;</div>
+  </div>
+  <div class="ed-card reveal reveal-delay-3">
+    <div class="ed-img grad-5"></div>
+    <div class="ed-tag">Sustainability</div>
+    <div class="ed-title">Our Commitment to Zero Waste</div>
+    <div class="ed-link">Read More &rarr;</div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="section-tag reveal">Stay Connected</div>
+  <div class="section-title reveal reveal-delay-1">Join the Collective</div>
+  <div class="section-sub reveal reveal-delay-2">Receive early access to new collections, exclusive invitations, and stories from our atelier.</div>
+  <form class="newsletter-form reveal reveal-delay-3" onsubmit="event.preventDefault();this.innerHTML='<div style=&quot;padding:14px;font-family:-apple-system,sans-serif;font-size:13px;color:#c9a97a;letter-spacing:0.1em&quot;>Welcome to the Collective.</div>'">
+    <input type="email" placeholder="Your email address" required/>
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Aura Collective</span>
+      <p>Clothing for the considered life. Crafted in small batches from the finest natural materials, designed to outlast every season.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#collections">New Arrivals</a>
+      <a href="#collections">Outerwear</a>
+      <a href="#collections">Knitwear</a>
+      <a href="#collections">Tailoring</a>
+      <a href="#collections">Accessories</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">Our Story</a>
+      <a href="#about">Sustainability</a>
+      <a href="#press">Press</a>
+      <a href="#footer">Careers</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#footer">Shipping & Returns</a>
+      <a href="#footer">Size Guide</a>
+      <a href="#footer">Care Instructions</a>
+      <a href="#footer">FAQs</a>
+      <a href="#footer">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Aura Collective. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav shrink
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive: true});
+
+// IntersectionObserver for reveal animations
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.15, rootMargin: '0px 0px -40px 0px'});
+reveals.forEach(el => observer.observe(el));
+
+// Make hero elements visible immediately (no flash)
+document.querySelectorAll('.hero .reveal').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 100);
+});
+</script>
+</body>
+</html>

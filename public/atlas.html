@@ -1,13 +1,28 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Atlas Ventures — Backing the Bold Ones</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#fff;color:#0a0f1e;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;height:900px;overflow:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:22px 64px;border-bottom:1px solid #f0f0ee}
-.logo{font-size:16px;font-weight:800;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px}
+html{scroll-behavior:smooth}
+body{background:#fff;color:#0a0f1e;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 64px;border-bottom:1px solid #f0f0ee;position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100}
+.logo{font-size:16px;font-weight:800;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px;cursor:pointer}
 .logo-mark{width:26px;height:26px;background:#0a0f1e;border-radius:6px;display:flex;align-items:center;justify-content:center}
 .logo-mark svg{width:14px;height:14px}
 .links{display:flex;gap:32px;font-size:12px;color:#888}
-.cta{font-size:12px;font-weight:600;color:#0a0f1e;border:1.5px solid #0a0f1e;padding:9px 22px;border-radius:4px}
-.header{padding:100px 64px 60px;border-bottom:1px solid #f0f0ee;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.links a{transition:color 0.2s;cursor:pointer}
+.links a:hover{color:#0a0f1e}
+.cta{font-size:12px;font-weight:600;color:#0a0f1e;border:1.5px solid #0a0f1e;padding:9px 22px;border-radius:4px;cursor:pointer;transition:background 0.2s,color 0.2s;display:inline-block}
+.cta:hover{background:#0a0f1e;color:#fff}
+.mobile-menu-btn{display:none;cursor:pointer;flex-direction:column;gap:5px}
+.mobile-menu-btn span{display:block;width:22px;height:2px;background:#0a0f1e;transition:transform 0.3s,opacity 0.3s}
+
+/* Hero */
+.header{padding:100px 64px 80px;border-bottom:1px solid #f0f0ee;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
 .h-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#aaa;margin-bottom:20px}
 h1{font-size:64px;font-weight:800;line-height:.95;letter-spacing:-0.04em;margin-bottom:24px}
 h1 em{font-style:italic;font-weight:400;color:#aaa}
@@ -17,33 +32,177 @@ h1 em{font-style:italic;font-weight:400;color:#aaa}
 .stat-n{font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#0a0f1e}
 .stat-l{font-size:11px;color:#aaa;margin-top:2px}
 .h-right{padding-bottom:0}
-.h-cta{display:inline-flex;align-items:center;gap:10px;background:#0a0f1e;color:#fff;padding:14px 28px;border-radius:6px;font-size:13px;font-weight:600;margin-bottom:16px}
+.h-cta{display:inline-flex;align-items:center;gap:10px;background:#0a0f1e;color:#fff;padding:14px 28px;border-radius:6px;font-size:13px;font-weight:600;margin-bottom:16px;cursor:pointer;transition:background 0.25s,transform 0.2s}
+.h-cta:hover{background:#1a2540;transform:translateY(-1px)}
 .h-note{font-size:11px;color:#bbb;line-height:1.6}
+
+/* Section headings */
+.section-header{padding:60px 64px 40px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #f0f0ee}
+.section-header h2{font-size:36px;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+.section-header h2 em{font-style:italic;font-weight:400;color:#aaa}
+.section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.section-desc{font-size:13px;color:#888;max-width:420px;line-height:1.65;margin-top:8px}
+
+/* Portfolio */
 .portfolio{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #f0f0ee}
-.port-co{padding:28px;border-right:1px solid #f0f0ee;border-bottom:1px solid #f0f0ee}
-.port-co:last-child{border-right:none}
-.p-logo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin-bottom:14px;font-family:Georgia,serif}
+.port-co{padding:28px;border-right:1px solid #f0f0ee;border-bottom:1px solid #f0f0ee;transition:background 0.25s;cursor:pointer}
+.port-co:hover{background:#fafaf8}
+.port-co:nth-child(4n){border-right:none}
+.p-logo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin-bottom:14px;font-family:Georgia,serif;transition:transform 0.25s}
+.port-co:hover .p-logo{transform:scale(1.08)}
 .p-name{font-size:13px;font-weight:700;color:#0a0f1e;margin-bottom:4px}
 .p-sector{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
 .p-round{display:inline-block;font-size:10px;font-weight:600;background:#f5f5f3;color:#666;padding:3px 10px;border-radius:10px;margin-bottom:10px}
 .p-desc{font-size:11px;color:#999;line-height:1.55}
 .portfolio-more{padding:24px 64px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0ee;background:#fafaf8}
 .pm-text{font-size:12px;color:#aaa}
-.pm-btn{font-size:12px;font-weight:600;color:#0a0f1e;text-decoration:underline}
-.team{padding:32px 64px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.t-member{text-align:center}
-.t-avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff}
-.t-name{font-size:12px;font-weight:600;color:#0a0f1e;margin-bottom:2px}
-.t-role{font-size:10px;color:#aaa}
+.pm-btn{font-size:12px;font-weight:600;color:#0a0f1e;text-decoration:underline;cursor:pointer;transition:color 0.2s}
+.pm-btn:hover{color:#3b82f6}
+
+/* Investment Thesis */
+.thesis-section{padding:80px 64px;background:#fafaf8;border-bottom:1px solid #f0f0ee}
+.thesis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.thesis-card{background:#fff;border:1px solid #f0f0ee;border-radius:8px;padding:36px 28px;transition:transform 0.25s,box-shadow 0.25s;cursor:default}
+.thesis-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06)}
+.thesis-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px}
+.thesis-card h3{font-size:16px;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px}
+.thesis-card p{font-size:12.5px;color:#888;line-height:1.7}
+.thesis-pillars{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.thesis-pill{font-size:10px;font-weight:600;background:#f5f5f3;color:#666;padding:4px 12px;border-radius:12px}
+
+/* Team */
+.team-section{padding:80px 64px;border-bottom:1px solid #f0f0ee}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:48px}
+.t-member{text-align:center;transition:transform 0.25s;cursor:default}
+.t-member:hover{transform:translateY(-4px)}
+.t-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;transition:transform 0.3s}
+.t-member:hover .t-avatar{transform:scale(1.08)}
+.t-name{font-size:14px;font-weight:700;color:#0a0f1e;margin-bottom:3px}
+.t-role{font-size:11px;color:#aaa;margin-bottom:6px}
+.t-bio{font-size:11px;color:#bbb;line-height:1.5;max-width:200px;margin:0 auto}
+.t-links{margin-top:10px;display:flex;justify-content:center;gap:12px}
+.t-links a{font-size:10px;color:#aaa;transition:color 0.2s;cursor:pointer}
+.t-links a:hover{color:#0a0f1e}
+
+/* News/Insights */
+.news-section{padding:80px 64px;background:#fafaf8;border-bottom:1px solid #f0f0ee}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.news-card{background:#fff;border:1px solid #f0f0ee;border-radius:8px;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;cursor:pointer}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06)}
+.news-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.news-body{padding:24px}
+.news-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.news-card h3{font-size:15px;font-weight:700;letter-spacing:-0.02em;line-height:1.35;margin-bottom:8px}
+.news-card p{font-size:12px;color:#888;line-height:1.65}
+.news-date{font-size:10px;color:#bbb;margin-top:12px}
+
+/* Contact */
+.contact-section{padding:100px 64px;border-bottom:1px solid #f0f0ee;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-left h2{font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px}
+.contact-left h2 em{font-style:italic;font-weight:400;color:#aaa}
+.contact-left p{font-size:14px;color:#888;line-height:1.7;max-width:400px;margin-bottom:28px}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.contact-row{display:flex;align-items:center;gap:14px;font-size:13px;color:#666}
+.contact-row-icon{width:36px;height:36px;background:#f5f5f3;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.contact-form input,.contact-form textarea{font-family:inherit;font-size:13px;padding:14px 18px;border:1.5px solid #eee;border-radius:6px;outline:none;transition:border-color 0.2s;background:#fff;color:#0a0f1e}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#0a0f1e}
+.contact-form textarea{resize:vertical;min-height:100px}
+.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0a0f1e;color:#fff;padding:14px 32px;border-radius:6px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:background 0.25s,transform 0.2s;font-family:inherit}
+.submit-btn:hover{background:#1a2540;transform:translateY(-1px)}
+
+/* Footer */
+footer{background:#0a0f1e;color:#fff;padding:64px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{color:#fff;margin-bottom:14px}
+.footer-brand .logo .logo-mark{background:rgba(255,255,255,0.15)}
+.footer-brand p{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:280px}
+.footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.3);margin-bottom:18px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px;transition:color 0.2s;cursor:pointer}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,0.3)}
+.footer-bottom a{color:rgba(255,255,255,0.4);transition:color 0.2s;cursor:pointer}
+.footer-bottom a:hover{color:#fff}
+
+/* Responsive */
+@media(max-width:1024px){
+  .header{grid-template-columns:1fr;gap:48px;padding:60px 40px}
+  h1{font-size:48px}
+  .portfolio{grid-template-columns:repeat(2,1fr)}
+  .port-co:nth-child(2n){border-right:none}
+  .port-co:nth-child(4n){border-right:1px solid #f0f0ee}
+  .thesis-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .news-grid{grid-template-columns:1fr 1fr}
+  .contact-section{grid-template-columns:1fr;gap:48px;padding:60px 40px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .section-header{padding:48px 40px 32px}
+  .thesis-section,.news-section{padding:60px 40px}
+  .team-section{padding:60px 40px}
+  .portfolio-more{padding:20px 40px}
+  nav{padding:18px 40px}
+  footer{padding:48px 40px}
+}
+@media(max-width:640px){
+  nav{padding:16px 24px}
+  .links{display:none}
+  .mobile-menu-btn{display:flex}
+  .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.98);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity 0.3s}
+  .mobile-nav.active{opacity:1;pointer-events:all}
+  .mobile-nav a{font-size:20px;font-weight:600;color:#0a0f1e;cursor:pointer}
+  .mobile-nav-close{position:absolute;top:22px;right:24px;font-size:28px;cursor:pointer;color:#0a0f1e}
+  .header{padding:48px 24px;grid-template-columns:1fr;gap:36px}
+  h1{font-size:36px}
+  .h-stats{flex-direction:column;gap:20px}
+  .portfolio{grid-template-columns:1fr}
+  .port-co{border-right:none !important}
+  .thesis-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .news-grid{grid-template-columns:1fr}
+  .contact-section{padding:48px 24px;grid-template-columns:1fr}
+  .contact-form .form-row{grid-template-columns:1fr}
+  .section-header{padding:40px 24px 28px;flex-direction:column;align-items:flex-start;gap:12px}
+  .section-header h2{font-size:28px}
+  .thesis-section,.news-section{padding:48px 24px}
+  .team-section{padding:48px 24px}
+  .portfolio-more{padding:18px 24px}
+  footer{padding:40px 24px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .contact-left h2{font-size:30px}
+}
 </style></head><body>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-close" id="mobileNavClose">&times;</div>
+  <a href="#hero" onclick="closeMobileNav()">Home</a>
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#thesis" onclick="closeMobileNav()">Thesis</a>
+  <a href="#team" onclick="closeMobileNav()">Team</a>
+  <a href="#news" onclick="closeMobileNav()">News</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- Nav -->
 <nav>
-  <div class="logo"><div class="logo-mark"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V10L7 13L1 10V4L7 1Z" stroke="white" stroke-width="1.5"/></svg></div>Atlas Ventures</div>
-  <div class="links"><span>Portfolio</span><span>Team</span><span>Thesis</span><span>News</span><span>Contact</span></div>
-  <div class="cta">Apply for Funding</div>
+  <a href="#hero" class="logo"><div class="logo-mark"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V10L7 13L1 10V4L7 1Z" stroke="white" stroke-width="1.5"/></svg></div>Atlas Ventures</a>
+  <div class="links">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#team">Team</a>
+    <a href="#thesis">Thesis</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></div>
+  <a href="#contact" class="cta">Apply for Funding</a>
 </nav>
-<div class="header">
-  <div>
-    <div class="h-label">Early Stage · Series A</div>
+
+<!-- Hero -->
+<div class="header" id="hero">
+  <div class="fade-in">
+    <div class="h-label">Early Stage &middot; Series A</div>
     <h1>Backing<br/>the <em>bold</em><br/>ones.</h1>
     <div class="h-stats">
       <div class="stat"><div class="stat-n">$420M</div><div class="stat-l">Assets Under Management</div></div>
@@ -51,23 +210,254 @@ h1 em{font-style:italic;font-weight:400;color:#aaa}
       <div class="stat"><div class="stat-n">8</div><div class="stat-l">Unicorns</div></div>
     </div>
   </div>
-  <div class="h-right">
+  <div class="h-right fade-in">
     <p class="h-body">We invest in extraordinary founders building products that fundamentally change how people live and work. Seed to Series A, across software, AI, and deep tech.</p>
-    <div class="h-cta">Submit Your Pitch →</div>
+    <a href="#contact" class="h-cta">Submit Your Pitch &rarr;</a>
     <div class="h-note">We respond to every application within 5 business days.<br/>No warm intro required.</div>
   </div>
 </div>
-<div class="portfolio">
-  <div class="port-co"><div class="p-logo" style="background:#f0f5ff;color:#3b82f6">V</div><div class="p-name">Vela Finance</div><div class="p-sector">Fintech</div><div class="p-round">Series A</div><div class="p-desc">AI-powered personal finance platform.</div></div>
-  <div class="port-co"><div class="p-logo" style="background:#f5f0ff;color:#8b5cf6">M</div><div class="p-name">Meridian Labs</div><div class="p-sector">SaaS / Analytics</div><div class="p-round">Seed</div><div class="p-desc">Revenue intelligence for B2B teams.</div></div>
-  <div class="port-co"><div class="p-logo" style="background:#f0fff5;color:#22c55e">B</div><div class="p-name">Bloom Health</div><div class="p-sector">HealthTech</div><div class="p-round">Series A</div><div class="p-desc">Personalised health tracking OS.</div></div>
-  <div class="port-co"><div class="p-logo" style="background:#fff5f0;color:#f97316">O</div><div class="p-name">Orbit Platform</div><div class="p-sector">Dev Tools</div><div class="p-round">Series B</div><div class="p-desc">The developer platform for the AI era.</div></div>
+
+<!-- Portfolio Section -->
+<div id="portfolio">
+  <div class="section-header fade-in">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2>Companies we've <em>backed</em></h2>
+      <div class="section-desc">From day-one bets to category leaders. We are proud to partner with founders redefining their industries.</div>
+    </div>
+  </div>
+  <div class="portfolio">
+    <div class="port-co fade-in"><div class="p-logo" style="background:#f0f5ff;color:#3b82f6">V</div><div class="p-name">Vela Finance</div><div class="p-sector">Fintech</div><div class="p-round">Series A</div><div class="p-desc">AI-powered personal finance platform for the next generation of savers and investors.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#f5f0ff;color:#8b5cf6">M</div><div class="p-name">Meridian Labs</div><div class="p-sector">SaaS / Analytics</div><div class="p-round">Seed</div><div class="p-desc">Revenue intelligence for B2B teams. Predict churn, spot expansion signals.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#f0fff5;color:#22c55e">B</div><div class="p-name">Bloom Health</div><div class="p-sector">HealthTech</div><div class="p-round">Series A</div><div class="p-desc">Personalised health tracking OS unifying wearables, labs, and genomics data.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#fff5f0;color:#f97316">O</div><div class="p-name">Orbit Platform</div><div class="p-sector">Dev Tools</div><div class="p-round">Series B</div><div class="p-desc">The developer platform for the AI era. Ship faster, deploy anywhere.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#fef9f0;color:#d97706">S</div><div class="p-name">Solace AI</div><div class="p-sector">Mental Health</div><div class="p-round">Seed</div><div class="p-desc">AI-assisted therapy matching and mental wellness tools for employers.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#f0f0ff;color:#6366f1">N</div><div class="p-name">NovaChem</div><div class="p-sector">Deep Tech</div><div class="p-round">Series A</div><div class="p-desc">ML-driven materials discovery accelerating sustainable battery chemistry.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#fdf2f8;color:#ec4899">C</div><div class="p-name">Canto</div><div class="p-sector">Creator Economy</div><div class="p-round">Seed</div><div class="p-desc">All-in-one monetisation platform for independent creators and educators.</div></div>
+    <div class="port-co fade-in"><div class="p-logo" style="background:#f0fdf4;color:#16a34a">T</div><div class="p-name">TerraGrid</div><div class="p-sector">Climate Tech</div><div class="p-round">Series A</div><div class="p-desc">Smart grid optimisation using distributed energy storage and real-time pricing.</div></div>
+  </div>
+  <div class="portfolio-more fade-in"><div class="pm-text">Showing 8 of 64 portfolio companies</div><div class="pm-btn">View full portfolio &rarr;</div></div>
 </div>
-<div class="portfolio-more"><div class="pm-text">Showing 4 of 64 portfolio companies</div><div class="pm-btn">View full portfolio →</div></div>
-<div class="team">
-  <div class="t-member"><div class="t-avatar" style="background:#0a0f1e">JM</div><div class="t-name">James Mercer</div><div class="t-role">General Partner</div></div>
-  <div class="t-member"><div class="t-avatar" style="background:#3b82f6">SC</div><div class="t-name">Sarah Chen</div><div class="t-role">General Partner</div></div>
-  <div class="t-member"><div class="t-avatar" style="background:#8b5cf6">RA</div><div class="t-name">Rohan Agarwal</div><div class="t-role">Partner</div></div>
-  <div class="t-member"><div class="t-avatar" style="background:#22c55e">LK</div><div class="t-name">Lena Kovač</div><div class="t-role">Principal</div></div>
+
+<!-- Investment Thesis -->
+<div id="thesis" class="thesis-section">
+  <div class="fade-in">
+    <div class="section-label">Investment Thesis</div>
+    <h2 style="font-size:36px;font-weight:800;letter-spacing:-0.03em;margin-bottom:4px">How we <em>think</em></h2>
+    <div class="section-desc">We look for asymmetric opportunities where technology creates a step-function improvement in how industries operate.</div>
+  </div>
+  <div class="thesis-grid">
+    <div class="thesis-card fade-in">
+      <div class="thesis-icon" style="background:#f0f5ff;color:#3b82f6">&#9670;</div>
+      <h3>Founder-First</h3>
+      <p>We back exceptional people before perfect markets. Grit, taste, and velocity matter more than TAM slides. We are the first check and the last call.</p>
+      <div class="thesis-pillars"><span class="thesis-pill">Pre-Seed</span><span class="thesis-pill">Seed</span><span class="thesis-pill">Series A</span></div>
+    </div>
+    <div class="thesis-card fade-in">
+      <div class="thesis-icon" style="background:#f5f0ff;color:#8b5cf6">&#9733;</div>
+      <h3>Deep Tech Conviction</h3>
+      <p>Breakthroughs in AI, compute, biology, and energy will reshape every industry. We invest at the frontier and hold through the noise.</p>
+      <div class="thesis-pillars"><span class="thesis-pill">AI / ML</span><span class="thesis-pill">Biotech</span><span class="thesis-pill">Energy</span></div>
+    </div>
+    <div class="thesis-card fade-in">
+      <div class="thesis-icon" style="background:#f0fff5;color:#22c55e">&#8599;</div>
+      <h3>Platform Scale</h3>
+      <p>We gravitate towards products that become platforms -- infrastructure that compounds in value as ecosystems grow around them.</p>
+      <div class="thesis-pillars"><span class="thesis-pill">Infra</span><span class="thesis-pill">Developer</span><span class="thesis-pill">Marketplace</span></div>
+    </div>
+  </div>
 </div>
+
+<!-- Team Section -->
+<div id="team" class="team-section">
+  <div class="fade-in">
+    <div class="section-label">Our Team</div>
+    <h2 style="font-size:36px;font-weight:800;letter-spacing:-0.03em;margin-bottom:4px">The people behind <em>Atlas</em></h2>
+    <div class="section-desc">Operators turned investors. We have built, scaled, and sometimes failed -- and that experience shapes how we support founders.</div>
+  </div>
+  <div class="team-grid">
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#0a0f1e">JM</div>
+      <div class="t-name">James Mercer</div>
+      <div class="t-role">General Partner</div>
+      <div class="t-bio">Former CTO at Scale Systems. 15 years in enterprise SaaS.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#3b82f6">SC</div>
+      <div class="t-name">Sarah Chen</div>
+      <div class="t-role">General Partner</div>
+      <div class="t-bio">Led product at Stripe. Focus on fintech and developer tools.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#8b5cf6">RA</div>
+      <div class="t-name">Rohan Agarwal</div>
+      <div class="t-role">Partner</div>
+      <div class="t-bio">Deep tech researcher turned VC. PhD in computational biology.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#22c55e">LK</div>
+      <div class="t-name">Lena Kovac</div>
+      <div class="t-role">Principal</div>
+      <div class="t-bio">Ex-founder (YC W19). Covers climate, health, and marketplace.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#f97316">DT</div>
+      <div class="t-name">David Torres</div>
+      <div class="t-role">Operating Partner</div>
+      <div class="t-bio">Scaled three companies to IPO. Advises on GTM and hiring.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#ec4899">AW</div>
+      <div class="t-name">Amara Williams</div>
+      <div class="t-role">VP of Platform</div>
+      <div class="t-bio">Runs the Atlas platform -- talent, community, and founder support.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#6366f1">MK</div>
+      <div class="t-name">Michael Kim</div>
+      <div class="t-role">Associate</div>
+      <div class="t-bio">Former ML engineer at DeepMind. Sourcing AI-native companies.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+    <div class="t-member fade-in">
+      <div class="t-avatar" style="background:#d97706">EP</div>
+      <div class="t-name">Elena Petrov</div>
+      <div class="t-role">Analyst</div>
+      <div class="t-bio">Stanford MBA. Covers enterprise software and vertical SaaS.</div>
+      <div class="t-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- News/Insights -->
+<div id="news" class="news-section">
+  <div class="fade-in">
+    <div class="section-label">News &amp; Insights</div>
+    <h2 style="font-size:36px;font-weight:800;letter-spacing:-0.03em;margin-bottom:4px">From the <em>desk</em></h2>
+    <div class="section-desc">Perspectives on markets, technology, and what it takes to build enduring companies.</div>
+  </div>
+  <div class="news-grid">
+    <div class="news-card fade-in">
+      <div class="news-img" style="background:#f0f5ff">&#9672;</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:#3b82f6">Fund News</div>
+        <h3>Atlas Ventures Closes Fund III at $180M</h3>
+        <p>Our third fund will continue our focus on early-stage companies building at the intersection of AI and vertical SaaS.</p>
+        <div class="news-date">March 2026</div>
+      </div>
+    </div>
+    <div class="news-card fade-in">
+      <div class="news-img" style="background:#f5f0ff">&#9734;</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:#8b5cf6">Essay</div>
+        <h3>Why We Still Believe in Seed-Stage Deep Tech</h3>
+        <p>The conventional wisdom says deep tech is too slow, too capital-intensive, too risky. We disagree, and the data supports us.</p>
+        <div class="news-date">February 2026</div>
+      </div>
+    </div>
+    <div class="news-card fade-in">
+      <div class="news-img" style="background:#f0fff5">&#9673;</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:#22c55e">Portfolio</div>
+        <h3>Orbit Platform Raises $45M Series B</h3>
+        <p>Atlas portfolio company Orbit closes a major round led by Sequoia to expand its AI developer platform globally.</p>
+        <div class="news-date">January 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact / Apply -->
+<div id="contact" class="contact-section">
+  <div class="contact-left fade-in">
+    <div class="section-label">Get in Touch</div>
+    <h2>Let's build<br/>something <em>great</em></h2>
+    <p>Whether you are raising your first round or looking for a strategic partner at Series A, we would love to hear from you. No warm intro required.</p>
+    <div class="contact-info">
+      <div class="contact-row"><div class="contact-row-icon">&#9993;</div>founders@atlasventures.com</div>
+      <div class="contact-row"><div class="contact-row-icon">&#9900;</div>San Francisco, CA &middot; New York, NY &middot; London</div>
+      <div class="contact-row"><div class="contact-row-icon">&#9202;</div>We respond within 5 business days</div>
+    </div>
+  </div>
+  <div class="contact-right fade-in">
+    <form class="contact-form" onsubmit="event.preventDefault();this.querySelector('.submit-btn').textContent='Sent! We\'ll be in touch.';this.querySelector('.submit-btn').style.background='#22c55e';">
+      <div class="form-row">
+        <input type="text" placeholder="Your name" required/>
+        <input type="email" placeholder="Email address" required/>
+      </div>
+      <input type="text" placeholder="Company name"/>
+      <input type="text" placeholder="What are you building? (one line)"/>
+      <textarea placeholder="Tell us more about your company, stage, and what you are looking for in an investor..." rows="4"></textarea>
+      <input type="url" placeholder="Deck link (Google Drive, Docsend, etc.)"/>
+      <button type="submit" class="submit-btn">Submit Application &rarr;</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-mark"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V10L7 13L1 10V4L7 1Z" stroke="white" stroke-width="1.5"/></svg></div>Atlas Ventures</div>
+      <p>Backing extraordinary founders from seed to scale. Based in San Francisco with investments across North America and Europe.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Firm</h4>
+      <a href="#thesis">Investment Thesis</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#team">Team</a>
+      <a href="#news">News</a>
+    </div>
+    <div class="footer-col">
+      <h4>Founders</h4>
+      <a href="#contact">Apply for Funding</a>
+      <a href="#">Resources</a>
+      <a href="#">Founder Summit</a>
+      <a href="#">Atlas Platform</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">Twitter / X</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Medium</a>
+      <a href="#">Newsletter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Atlas Ventures. All rights reserved.</span>
+    <div style="display:flex;gap:24px"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+  </div>
+</footer>
+
+<script>
+// IntersectionObserver for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+// Mobile menu
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
+
+mobileMenuBtn.addEventListener('click', () => mobileNav.classList.add('active'));
+mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('active'));
+
+function closeMobileNav() {
+  mobileNav.classList.remove('active');
+}
+</script>
 </body></html>

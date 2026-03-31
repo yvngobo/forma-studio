@@ -1,21 +1,40 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bloom Health - Your health, finally understood.</title>
+<style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#f0faf4;color:#0a2018;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;height:900px;overflow:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 52px;background:#fff;border-bottom:1px solid #e0f0e8}
-.logo{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#0a2018}
+html{scroll-behavior:smooth}
+body{background:#f0faf4;color:#0a2018;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+
+/* ---- NAV ---- */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 52px;background:#fff;border-bottom:1px solid #e0f0e8;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(255,255,255,0.92)}
+.logo{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#0a2018;cursor:pointer}
 .logo-mark{width:28px;height:28px;background:linear-gradient(135deg,#22c55e,#16a34a);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .links{display:flex;gap:28px;font-size:12px;color:#64a87a}
-.cta-nav{background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:10px 22px;border-radius:20px}
-.hero{display:grid;grid-template-columns:1fr 1fr;padding:60px 52px;gap:60px;align-items:center;background:#fff;border-bottom:1px solid #e0f0e8}
+.links a{color:#64a87a;text-decoration:none;cursor:pointer;transition:color 0.2s}
+.links a:hover{color:#16a34a}
+.cta-nav{background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:10px 22px;border-radius:20px;cursor:pointer;transition:background 0.2s,transform 0.15s;text-decoration:none;display:inline-block}
+.cta-nav:hover{background:#16a34a;transform:translateY(-1px)}
+.mobile-menu-btn{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:#0a2018}
+
+/* ---- HERO ---- */
+.hero{display:grid;grid-template-columns:1fr 1fr;padding:80px 52px;gap:60px;align-items:center;background:#fff;border-bottom:1px solid #e0f0e8}
 .badge{display:inline-flex;align-items:center;gap:8px;background:#f0faf4;color:#16a34a;font-size:11px;font-weight:600;padding:6px 14px;border-radius:20px;border:1px solid #bbf7d0;margin-bottom:22px}
 h1{font-size:50px;font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0a2018;margin-bottom:18px}
 h1 span{color:#22c55e}
 .sub{font-size:14px;line-height:1.75;color:#4a7a5a;max-width:420px;margin-bottom:32px}
 .actions{display:flex;gap:10px;margin-bottom:32px}
-.b1{background:#22c55e;color:#fff;padding:14px 26px;border-radius:24px;font-size:13px;font-weight:600}
-.b2{background:transparent;color:#0a2018;padding:14px 26px;border-radius:24px;font-size:13px;border:1.5px solid #bbf7d0}
+.b1{background:#22c55e;color:#fff;padding:14px 26px;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;border:none;text-decoration:none;display:inline-block}
+.b1:hover{background:#16a34a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.35)}
+.b2{background:transparent;color:#0a2018;padding:14px 26px;border-radius:24px;font-size:13px;border:1.5px solid #bbf7d0;cursor:pointer;transition:background 0.2s,transform 0.15s,border-color 0.2s;text-decoration:none;display:inline-block}
+.b2:hover{background:#f0faf4;border-color:#22c55e;transform:translateY(-2px)}
 .ratings{display:flex;align-items:center;gap:12px;font-size:12px;color:#64a87a}
 .stars{color:#22c55e;font-size:14px}
+
+/* ---- PHONE MOCKUP ---- */
 .phone{width:240px;margin:0 auto;background:#0a2018;border-radius:36px;padding:10px;box-shadow:0 40px 80px rgba(10,32,24,0.25)}
 .p-inner{background:#f0faf4;border-radius:28px;overflow:hidden;height:420px}
 .p-top{background:linear-gradient(160deg,#16a34a,#22c55e);padding:20px 16px 28px;color:#fff}
@@ -35,42 +54,459 @@ h1 span{color:#22c55e}
 .p-chart{margin:0 12px;background:#fff;border-radius:16px;padding:12px}
 .pc-title{font-size:11px;font-weight:600;color:#0a2018;margin-bottom:8px}
 .pc-bars{display:flex;align-items:flex-end;gap:4px;height:50px}
-.pc-bar{flex:1;border-radius:4px 4px 0 0;background:#bbf7d0}
+.pc-bar{flex:1;border-radius:4px 4px 0 0;background:#bbf7d0;transition:background 0.2s}
 .pc-bar.active{background:#22c55e}
+
+/* ---- FEATURES ---- */
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 52px;background:#f0faf4;border-top:1px solid #d0e8d8}
-.feat{background:#fff;border-radius:16px;padding:22px;border:1px solid #e0f0e8}
+.feat{background:#fff;border-radius:16px;padding:22px;border:1px solid #e0f0e8;transition:transform 0.25s,box-shadow 0.25s;cursor:default}
+.feat:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,32,24,0.08)}
 .feat-icon{width:36px;height:36px;background:#f0faf4;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
 .feat-name{font-size:13px;font-weight:600;color:#0a2018;margin-bottom:4px}
 .feat-desc{font-size:11px;color:#64a87a;line-height:1.5}
-</style></head><body>
-<nav><div class="logo"><div class="logo-mark">🌱</div>Bloom Health</div><div class="links"><span>Features</span><span>Pricing</span><span>Community</span><span>Blog</span></div><div class="cta-nav">Try Free</div></nav>
-<div class="hero">
-  <div>
-    <div class="badge">🏆 #1 Health App of 2025</div>
-    <h1>Your health,<br/>finally <span>understood.</span></h1>
-    <p class="sub">Bloom tracks your sleep, movement, stress, and nutrition — then tells you exactly what to do about it. No guesswork, just clarity.</p>
-    <div class="actions"><div class="b1">Download Free</div><div class="b2">See How It Works</div></div>
-    <div class="ratings"><span class="stars">★★★★★</span><strong style="color:#0a2018">4.9/5</strong>from 28,000+ reviews on the App Store</div>
+
+/* ---- SECTION TITLES ---- */
+.section-title{text-align:center;padding:80px 24px 16px}
+.section-title h2{font-size:36px;font-weight:800;letter-spacing:-0.02em;color:#0a2018;margin-bottom:12px}
+.section-title h2 span{color:#22c55e}
+.section-title p{font-size:14px;color:#4a7a5a;max-width:520px;margin:0 auto;line-height:1.7}
+
+/* ---- TRACKING SECTION ---- */
+#tracking{background:#fff;padding-bottom:60px;border-bottom:1px solid #e0f0e8}
+.tracking-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px 52px 0;max-width:1100px;margin:0 auto}
+.track-card{background:#f0faf4;border-radius:20px;padding:28px 24px;border:1px solid #e0f0e8;text-align:center;transition:transform 0.25s,box-shadow 0.25s}
+.track-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(10,32,24,0.08)}
+.track-icon{font-size:36px;margin-bottom:14px}
+.track-name{font-size:15px;font-weight:700;color:#0a2018;margin-bottom:6px}
+.track-detail{font-size:12px;color:#64a87a;line-height:1.6}
+.track-stat{font-size:28px;font-weight:800;color:#22c55e;margin:12px 0 4px}
+.track-stat-label{font-size:10px;color:#64a87a;text-transform:uppercase;letter-spacing:0.1em}
+
+/* ---- HOW IT WORKS ---- */
+#how-it-works{background:#f0faf4;padding-bottom:80px;border-bottom:1px solid #d0e8d8}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:40px 52px 0;max-width:1000px;margin:0 auto}
+.step{text-align:center;position:relative}
+.step-num{width:48px;height:48px;background:linear-gradient(135deg,#22c55e,#16a34a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;margin:0 auto 18px}
+.step-title{font-size:16px;font-weight:700;color:#0a2018;margin-bottom:8px}
+.step-desc{font-size:13px;color:#4a7a5a;line-height:1.65;max-width:260px;margin:0 auto}
+.step-connector{display:none}
+
+/* ---- WELLNESS PROGRAMS ---- */
+#programs{background:#fff;padding-bottom:80px;border-bottom:1px solid #e0f0e8}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:40px 52px 0;max-width:1100px;margin:0 auto}
+.program-card{background:#f0faf4;border-radius:20px;overflow:hidden;border:1px solid #e0f0e8;transition:transform 0.25s,box-shadow 0.25s;cursor:pointer}
+.program-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(10,32,24,0.08)}
+.program-banner{height:120px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.program-banner.sleep{background:linear-gradient(135deg,#1e3a5f,#2d5a87)}
+.program-banner.nutrition{background:linear-gradient(135deg,#2d5a2d,#3a7a3a)}
+.program-banner.mindfulness{background:linear-gradient(135deg,#5a2d5a,#7a3a7a)}
+.program-body{padding:24px}
+.program-tag{display:inline-block;background:#bbf7d0;color:#16a34a;font-size:10px;font-weight:600;padding:4px 10px;border-radius:12px;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em}
+.program-name{font-size:17px;font-weight:700;color:#0a2018;margin-bottom:6px}
+.program-desc{font-size:12px;color:#4a7a5a;line-height:1.6;margin-bottom:14px}
+.program-meta{display:flex;gap:16px;font-size:11px;color:#64a87a}
+
+/* ---- TESTIMONIALS ---- */
+#testimonials{background:#f0faf4;padding-bottom:80px;border-bottom:1px solid #d0e8d8}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:40px 52px 0;max-width:1100px;margin:0 auto}
+.testimonial{background:#fff;border-radius:20px;padding:28px;border:1px solid #e0f0e8;transition:transform 0.25s,box-shadow 0.25s}
+.testimonial:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,32,24,0.08)}
+.testimonial-stars{color:#22c55e;font-size:14px;margin-bottom:14px}
+.testimonial-text{font-size:13px;color:#0a2018;line-height:1.7;margin-bottom:18px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff}
+.testimonial-avatar.a1{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.testimonial-avatar.a2{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.testimonial-avatar.a3{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.testimonial-name{font-size:13px;font-weight:600;color:#0a2018}
+.testimonial-role{font-size:11px;color:#64a87a}
+
+/* ---- STATS BAR ---- */
+.stats-bar{background:linear-gradient(135deg,#16a34a,#22c55e);padding:48px 52px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-item .stat-num{font-size:36px;font-weight:800;color:#fff}
+.stat-item .stat-label{font-size:12px;color:rgba(255,255,255,0.75);margin-top:4px}
+
+/* ---- DOWNLOAD CTA ---- */
+#download{background:#fff;padding:100px 52px;text-align:center;border-bottom:1px solid #e0f0e8}
+.download-inner{max-width:600px;margin:0 auto}
+.download-inner h2{font-size:40px;font-weight:800;color:#0a2018;letter-spacing:-0.02em;margin-bottom:14px}
+.download-inner h2 span{color:#22c55e}
+.download-inner p{font-size:14px;color:#4a7a5a;line-height:1.7;margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto}
+.download-buttons{display:flex;gap:14px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:#0a2018;color:#fff;padding:14px 28px;border-radius:14px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none}
+.dl-btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(10,32,24,0.2)}
+.dl-btn-icon{font-size:24px}
+.dl-btn-text{text-align:left}
+.dl-btn-text small{font-size:10px;opacity:0.6;display:block}
+.dl-btn-text strong{font-size:14px}
+.download-note{font-size:12px;color:#64a87a}
+
+/* ---- FOOTER ---- */
+footer{background:#0a2018;color:#fff;padding:60px 52px 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .logo{color:#fff;margin-bottom:14px}
+.footer-brand p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:280px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:10px;cursor:pointer;transition:color 0.2s}
+.footer-col a:hover{color:#22c55e}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.35)}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;color:rgba(255,255,255,0.5);transition:background 0.2s,color 0.2s;cursor:pointer}
+.footer-socials a:hover{background:#22c55e;color:#fff}
+
+/* ---- ANIMATIONS ---- */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up-d1{transition-delay:0.1s}
+.fade-up-d2{transition-delay:0.2s}
+.fade-up-d3{transition-delay:0.3s}
+.fade-up-d4{transition-delay:0.35s}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#fff;padding:20px 24px;border-bottom:1px solid #e0f0e8;gap:16px;z-index:99}
+  .mobile-menu-btn{display:block}
+  .hero{grid-template-columns:1fr;padding:48px 24px;text-align:center}
+  .hero .sub{margin-left:auto;margin-right:auto}
+  .hero .actions{justify-content:center}
+  .hero .ratings{justify-content:center}
+  h1{font-size:34px}
+  .features{grid-template-columns:1fr;padding:20px 24px}
+  .tracking-grid{grid-template-columns:repeat(2,1fr);padding:32px 24px}
+  .steps{grid-template-columns:1fr;gap:40px;padding:32px 24px}
+  .programs-grid{grid-template-columns:1fr;padding:32px 24px}
+  .testimonials-grid{grid-template-columns:1fr;padding:32px 24px}
+  .stats-bar{grid-template-columns:repeat(2,1fr);padding:32px 24px}
+  #download{padding:60px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:40px 24px 24px}
+  .download-inner h2{font-size:28px}
+  .section-title h2{font-size:28px}
+}
+@media(max-width:500px){
+  .tracking-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .download-buttons{flex-direction:column;align-items:center}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><div class="logo-mark">&#127793;</div>Bloom Health</a>
+  <div class="links" id="navLinks">
+    <a href="#features">Features</a>
+    <a href="#tracking">Tracking</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#programs">Programs</a>
+    <a href="#testimonials">Community</a>
   </div>
-  <div class="phone">
-    <div class="p-inner">
-      <div class="p-top">
-        <div class="p-greeting">Good morning,</div>
-        <div class="p-name">Sarah 👋</div>
-        <div class="p-ring">
-          <div class="ring-bg"></div>
-          <div class="ring-fill"></div>
-          <div class="ring-inner">82</div>
+  <a href="#download" class="cta-nav">Try Free</a>
+  <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <div class="badge fade-up">&#127942; #1 Health App of 2025</div>
+    <h1 class="fade-up fade-up-d1">Your health,<br/>finally <span>understood.</span></h1>
+    <p class="sub fade-up fade-up-d2">Bloom tracks your sleep, movement, stress, and nutrition &mdash; then tells you exactly what to do about it. No guesswork, just clarity.</p>
+    <div class="actions fade-up fade-up-d2">
+      <a href="#download" class="b1">Download Free</a>
+      <a href="#how-it-works" class="b2">See How It Works</a>
+    </div>
+    <div class="ratings fade-up fade-up-d3"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><strong style="color:#0a2018">4.9/5</strong>from 28,000+ reviews on the App Store</div>
+  </div>
+  <div class="fade-up fade-up-d2">
+    <div class="phone">
+      <div class="p-inner">
+        <div class="p-top">
+          <div class="p-greeting">Good morning,</div>
+          <div class="p-name">Sarah &#128075;</div>
+          <div class="p-ring">
+            <div class="ring-bg"></div>
+            <div class="ring-fill"></div>
+            <div class="ring-inner">82</div>
+          </div>
+          <div class="p-score-label">Wellness Score</div>
+          <div class="p-score">Great day ahead!</div>
         </div>
-        <div class="p-score-label">Wellness Score</div>
-        <div class="p-score">Great day ahead!</div>
+        <div class="p-metrics">
+          <div class="pm"><div class="pm-icon">&#128564;</div><div class="pm-val">7h 42m</div><div class="pm-label">Sleep</div></div>
+          <div class="pm"><div class="pm-icon">&#128694;</div><div class="pm-val">8,240</div><div class="pm-label">Steps</div></div>
+          <div class="pm"><div class="pm-icon">&#10084;&#65039;</div><div class="pm-val">62 bpm</div><div class="pm-label">Resting HR</div></div>
+        </div>
+        <div class="p-chart">
+          <div class="pc-title">Energy This Week</div>
+          <div class="pc-bars">
+            <div class="pc-bar" style="height:40%"></div>
+            <div class="pc-bar" style="height:60%"></div>
+            <div class="pc-bar" style="height:50%"></div>
+            <div class="pc-bar" style="height:75%"></div>
+            <div class="pc-bar" style="height:65%"></div>
+            <div class="pc-bar active" style="height:88%"></div>
+            <div class="pc-bar" style="height:70%"></div>
+          </div>
+        </div>
       </div>
-      <div class="p-metrics">
-        <div class="pm"><div class="pm-icon">😴</div><div class="pm-val">7h 42m</div><div class="pm-label">Sleep</div></div>
-        <div class="pm"><div class="pm-icon">🚶</div><div class="pm-val">8,240</div><div class="pm-label">Steps</div></div>
-        <div class="pm"><div class="pm-icon">❤️</div><div class="pm-val">62 bpm</div><div class="pm-label">Resting HR</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features">
+    <div class="feat fade-up">
+      <div class="feat-icon">&#128200;</div>
+      <div class="feat-name">Smart Health Score</div>
+      <div class="feat-desc">A single number that captures your overall wellness across sleep, activity, nutrition, and stress.</div>
+    </div>
+    <div class="feat fade-up fade-up-d1">
+      <div class="feat-icon">&#127793;</div>
+      <div class="feat-name">Daily Insights</div>
+      <div class="feat-desc">Personalized recommendations based on your unique patterns and health goals every morning.</div>
+    </div>
+    <div class="feat fade-up fade-up-d2">
+      <div class="feat-icon">&#128276;</div>
+      <div class="feat-name">Gentle Reminders</div>
+      <div class="feat-desc">Mindful nudges to move, hydrate, breathe, and rest &mdash; never intrusive, always helpful.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING -->
+<section id="tracking">
+  <div class="section-title fade-up">
+    <h2>Track what <span>matters</span></h2>
+    <p>Bloom monitors the four pillars of holistic health, giving you a complete picture of your wellbeing in real time.</p>
+  </div>
+  <div class="tracking-grid">
+    <div class="track-card fade-up">
+      <div class="track-icon">&#128564;</div>
+      <div class="track-name">Sleep</div>
+      <div class="track-stat">7.8h</div>
+      <div class="track-stat-label">Avg. per night</div>
+      <div class="track-detail">Deep sleep tracking, sleep stages, and smart alarm to wake you during light sleep.</div>
+    </div>
+    <div class="track-card fade-up fade-up-d1">
+      <div class="track-icon">&#127939;</div>
+      <div class="track-name">Activity</div>
+      <div class="track-stat">9.2k</div>
+      <div class="track-stat-label">Avg. daily steps</div>
+      <div class="track-detail">Steps, workouts, active minutes, and calorie tracking with 30+ exercise types.</div>
+    </div>
+    <div class="track-card fade-up fade-up-d2">
+      <div class="track-icon">&#129505;</div>
+      <div class="track-name">Nutrition</div>
+      <div class="track-stat">92%</div>
+      <div class="track-stat-label">Goal adherence</div>
+      <div class="track-detail">Photo-based meal logging with AI-powered macro and micronutrient analysis.</div>
+    </div>
+    <div class="track-card fade-up fade-up-d3">
+      <div class="track-icon">&#129720;</div>
+      <div class="track-name">Mindfulness</div>
+      <div class="track-stat">14m</div>
+      <div class="track-stat-label">Avg. daily calm</div>
+      <div class="track-detail">Guided meditation, breathing exercises, and stress-level monitoring throughout the day.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-title fade-up">
+    <h2>How <span>Bloom</span> works</h2>
+    <p>Getting started takes less than two minutes. Bloom learns your patterns and starts delivering value from day one.</p>
+  </div>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <div class="step-title">Download &amp; Set Up</div>
+      <div class="step-desc">Create your profile, set your health goals, and connect your wearable devices. Bloom integrates with Apple Watch, Fitbit, Garmin, and more.</div>
+    </div>
+    <div class="step fade-up fade-up-d1">
+      <div class="step-num">2</div>
+      <div class="step-title">Live Your Life</div>
+      <div class="step-desc">Bloom passively tracks your sleep, movement, heart rate, and nutrition throughout the day. No manual logging needed.</div>
+    </div>
+    <div class="step fade-up fade-up-d2">
+      <div class="step-num">3</div>
+      <div class="step-title">Get Smarter Every Day</div>
+      <div class="step-desc">Receive personalized insights, weekly wellness reports, and actionable suggestions that adapt as your habits evolve.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item fade-up"><div class="stat-num">2M+</div><div class="stat-label">Active users</div></div>
+  <div class="stat-item fade-up fade-up-d1"><div class="stat-num">4.9</div><div class="stat-label">App Store rating</div></div>
+  <div class="stat-item fade-up fade-up-d2"><div class="stat-num">87%</div><div class="stat-label">Feel healthier in 30 days</div></div>
+  <div class="stat-item fade-up fade-up-d3"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
+</div>
+
+<!-- WELLNESS PROGRAMS -->
+<section id="programs">
+  <div class="section-title fade-up">
+    <h2>Curated <span>programs</span></h2>
+    <p>Expert-designed wellness programs that guide you step by step toward better sleep, nutrition, and mental clarity.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card fade-up">
+      <div class="program-banner sleep">&#127769;</div>
+      <div class="program-body">
+        <div class="program-tag">Sleep</div>
+        <div class="program-name">Deep Rest Reset</div>
+        <div class="program-desc">A 21-day program to rebuild your sleep hygiene, regulate your circadian rhythm, and wake up energized.</div>
+        <div class="program-meta"><span>21 days</span><span>&#183; 15 min/day</span><span>&#183; Beginner</span></div>
       </div>
-      <div class="p-chart">
-        <div class="pc-title">Energy This Week</div>
-        <div class="pc-bars">
-          ${[40,60,50,75,65,88,70].map((h,i)=>
+    </div>
+    <div class="program-card fade-up fade-up-d1">
+      <div class="program-banner nutrition">&#129388;</div>
+      <div class="program-body">
+        <div class="program-tag">Nutrition</div>
+        <div class="program-name">Clean Fuel Challenge</div>
+        <div class="program-desc">Optimize your diet with whole foods, balanced macros, and meal planning tools for sustained energy all day.</div>
+        <div class="program-meta"><span>28 days</span><span>&#183; Meal plans</span><span>&#183; Intermediate</span></div>
+      </div>
+    </div>
+    <div class="program-card fade-up fade-up-d2">
+      <div class="program-banner mindfulness">&#128992;</div>
+      <div class="program-body">
+        <div class="program-tag">Mindfulness</div>
+        <div class="program-name">Calm Mind Journey</div>
+        <div class="program-desc">Reduce anxiety and build resilience with daily guided meditations, breathing exercises, and journaling prompts.</div>
+        <div class="program-meta"><span>30 days</span><span>&#183; 10 min/day</span><span>&#183; All levels</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-title fade-up">
+    <h2>Loved by <span>thousands</span></h2>
+    <p>Real stories from real people who transformed their health with Bloom.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial fade-up">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"Bloom completely changed how I understand my body. The sleep insights alone helped me go from 5 hours to 7.5 hours consistently. I wake up feeling like a different person."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar a1">S</div>
+        <div><div class="testimonial-name">Sarah M.</div><div class="testimonial-role">Marketing Director</div></div>
+      </div>
+    </div>
+    <div class="testimonial fade-up fade-up-d1">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"As a developer, I sit all day. Bloom's gentle movement reminders and stress tracking have genuinely improved my focus and reduced my back pain. Highly recommend."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar a2">J</div>
+        <div><div class="testimonial-name">James K.</div><div class="testimonial-role">Software Engineer</div></div>
+      </div>
+    </div>
+    <div class="testimonial fade-up fade-up-d2">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">"I've tried every health app out there. Bloom is the first one that actually feels holistic. The nutrition tracking with photo logging is a game changer &mdash; so easy to use."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar a3">R</div>
+        <div><div class="testimonial-name">Rachel T.</div><div class="testimonial-role">Yoga Instructor</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<section id="download">
+  <div class="download-inner fade-up">
+    <h2>Start your <span>wellness journey</span> today</h2>
+    <p>Join over 2 million people who use Bloom to sleep better, move more, eat smarter, and feel calmer. Free to download, no credit card required.</p>
+    <div class="download-buttons">
+      <a href="#" class="dl-btn">
+        <div class="dl-btn-icon">&#63743;</div>
+        <div class="dl-btn-text"><small>Download on the</small><strong>App Store</strong></div>
+      </a>
+      <a href="#" class="dl-btn">
+        <div class="dl-btn-icon">&#9654;</div>
+        <div class="dl-btn-text"><small>Get it on</small><strong>Google Play</strong></div>
+      </a>
+    </div>
+    <div class="download-note">Free 14-day premium trial included. Cancel anytime.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-mark">&#127793;</div>Bloom Health</div>
+      <p>Holistic health tracking that helps you understand your body and build lasting wellness habits. Made with care in San Francisco.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#features">Features</a>
+      <a href="#tracking">Tracking</a>
+      <a href="#programs">Programs</a>
+      <a href="#">Pricing</a>
+      <a href="#">Integrations</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Blog</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Security</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Bloom Health. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="#" aria-label="Twitter">&#120143;</a>
+      <a href="#" aria-label="Instagram">&#9673;</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="YouTube">&#9654;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Mobile menu toggle
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

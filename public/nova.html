@@ -1,45 +1,537 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Nova Creative — Award-Winning Creative Studio</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;height:900px;overflow:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:22px 52px;border-bottom:1px solid #eee}
-.logo{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+html{scroll-behavior:smooth}
+body{background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;overflow-x:hidden}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transition:opacity 1s ease}
+.fade-in.visible{opacity:1}
+.slide-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.slide-left.visible{opacity:1;transform:translateX(0)}
+.slide-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.slide-right.visible{opacity:1;transform:translateX(0)}
+
+/* Navigation */
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 52px;border-bottom:1px solid #eee;position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:1000;transition:box-shadow 0.3s ease}
+nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,0.06)}
+.logo{font-size:17px;font-weight:800;letter-spacing:-0.03em;cursor:pointer}
 .links{display:flex;gap:32px;font-size:12px;color:#888}
-.cta-nav{font-size:12px;font-weight:600;background:#000;color:#fff;padding:10px 22px;border-radius:4px}
-.hero-bar{background:#000;color:#fff;padding:60px 52px;display:flex;justify-content:space-between;align-items:flex-end}
+.links a{color:#888;text-decoration:none;transition:color 0.3s ease;cursor:pointer;position:relative}
+.links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#000;transition:width 0.3s ease}
+.links a:hover{color:#000}
+.links a:hover::after{width:100%}
+.cta-nav{font-size:12px;font-weight:600;background:#000;color:#fff;padding:10px 22px;border-radius:4px;cursor:pointer;transition:background 0.3s ease,transform 0.2s ease;text-decoration:none;display:inline-block}
+.cta-nav:hover{background:#333;transform:translateY(-1px)}
+
+/* Hero */
+.hero-bar{background:#000;color:#fff;padding:80px 52px;display:flex;justify-content:space-between;align-items:flex-end;min-height:520px}
 h1{font-size:80px;font-weight:900;line-height:.9;letter-spacing:-0.04em;max-width:700px}
 h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,0.35)}
 .hero-right{text-align:right;flex-shrink:0}
 .h-sub{font-size:13px;color:rgba(255,255,255,0.45);max-width:240px;line-height:1.7;margin-bottom:24px;text-align:right}
-.h-cta{display:inline-block;background:#fff;color:#000;padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.h-cta{display:inline-block;background:#fff;color:#000;padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;transition:background 0.3s ease,color 0.3s ease,transform 0.2s ease;text-decoration:none}
+.h-cta:hover{background:#f0f0f0;transform:translateY(-2px)}
+
+/* Works / Portfolio */
+.section-header{padding:60px 52px 40px;display:flex;justify-content:space-between;align-items:flex-end;border-top:2px solid #000}
+.section-header h2{font-size:48px;font-weight:900;letter-spacing:-0.04em;line-height:1}
+.section-header .section-desc{font-size:13px;color:#888;max-width:300px;line-height:1.7;text-align:right}
+.section-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#aaa;margin-bottom:12px}
+
 .works{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #000}
-.work-item{position:relative;overflow:hidden;cursor:default}
-.wi-img{height:240px;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:900;letter-spacing:-0.05em;border-bottom:2px solid #000;border-right:2px solid #000}
-.wi-meta{padding:18px 24px;border-right:2px solid #000;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #000}
+.work-item{position:relative;overflow:hidden;cursor:pointer;transition:background 0.4s ease}
+.work-item:hover .wi-img{transform:scale(1.02)}
+.work-item:hover .wi-overlay{opacity:1}
+.wi-img{height:280px;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:900;letter-spacing:-0.05em;border-bottom:2px solid #000;border-right:2px solid #000;transition:transform 0.6s ease;position:relative}
+.wi-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease}
+.wi-overlay span{color:#fff;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.4);padding:12px 24px;transition:border-color 0.3s ease}
+.work-item:hover .wi-overlay span{border-color:#fff}
+.wi-meta{padding:18px 24px;border-right:2px solid #000;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #000;transition:background 0.3s ease}
+.work-item:hover .wi-meta{background:#fafafa}
 .wi-name{font-size:14px;font-weight:700;letter-spacing:-0.01em}
 .wi-cat{font-size:11px;color:#888;letter-spacing:0.05em;text-transform:uppercase}
 .wi-yr{font-size:11px;color:#aaa}
+
+/* No right border on right column items */
+.work-item:nth-child(2n) .wi-img,
+.work-item:nth-child(2n) .wi-meta{border-right:0}
+
+/* Marquee */
 .marquee-bar{background:#000;padding:14px 0;overflow:hidden;white-space:nowrap;border-top:2px solid #000}
 .m-inner{display:inline-block;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);animation:m 30s linear infinite}
 @keyframes m{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Clients */
 .clients{padding:28px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee}
 .cl-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#ccc}
 .cl-names{display:flex;gap:36px;font-size:12px;font-weight:600;color:#ccc;letter-spacing:-0.01em}
+
+/* Services Section */
+.services{padding:100px 52px;background:#fafafa;border-top:1px solid #eee}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px}
+.service-card{padding:48px 36px;border:1px solid #eee;background:#fff;transition:all 0.4s ease;cursor:default;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:#000;transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{background:#fff;box-shadow:0 10px 40px rgba(0,0,0,0.06);transform:translateY(-4px)}
+.service-num{font-size:11px;color:#ccc;letter-spacing:0.1em;margin-bottom:28px;font-weight:600}
+.service-title{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:16px}
+.service-desc{font-size:13px;color:#888;line-height:1.8}
+
+/* About / Team Section */
+.about{padding:100px 52px;border-top:1px solid #eee}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start}
+.about-text h3{font-size:36px;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:28px}
+.about-text p{font-size:14px;color:#666;line-height:1.9;margin-bottom:20px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.stat{padding:28px 0;border-top:2px solid #000}
+.stat-num{font-size:42px;font-weight:900;letter-spacing:-0.04em}
+.stat-label{font-size:11px;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.team-member{position:relative;overflow:hidden;cursor:default}
+.team-avatar{width:100%;aspect-ratio:1;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#ddd;letter-spacing:-0.03em;transition:background 0.4s ease}
+.team-member:hover .team-avatar{background:#e8e8e8}
+.team-name{font-size:14px;font-weight:700;margin-top:14px;letter-spacing:-0.01em}
+.team-role{font-size:11px;color:#888;letter-spacing:0.05em;text-transform:uppercase;margin-top:4px}
+
+/* Process Section */
+.process{padding:100px 52px;background:#000;color:#fff;border-top:2px solid #000}
+.process .section-label{color:#555}
+.process h2{color:#fff}
+.process .section-desc{color:rgba(255,255,255,0.4)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px}
+.process-step{padding:40px 32px;border:1px solid rgba(255,255,255,0.1);transition:all 0.4s ease;cursor:default}
+.process-step:hover{background:rgba(255,255,255,0.04)}
+.step-num{font-size:48px;font-weight:900;color:rgba(255,255,255,0.08);letter-spacing:-0.04em;margin-bottom:24px}
+.step-title{font-size:18px;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.8}
+
+/* Awards Section */
+.awards{padding:100px 52px;border-top:1px solid #eee}
+.awards-list{margin-top:60px}
+.award-row{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #eee;transition:all 0.3s ease;cursor:default}
+.award-row:first-child{border-top:1px solid #eee}
+.award-row:hover{padding-left:12px;background:#fafafa}
+.award-name{font-size:18px;font-weight:700;letter-spacing:-0.02em}
+.award-project{font-size:13px;color:#888}
+.award-year{font-size:13px;color:#aaa;font-weight:600}
+.award-badge{width:8px;height:8px;border-radius:50%;background:#000}
+
+/* Testimonial */
+.testimonial{padding:100px 52px;background:#f8f7f5;border-top:1px solid #eee;text-align:center}
+.testimonial blockquote{font-size:32px;font-weight:300;letter-spacing:-0.02em;line-height:1.5;max-width:800px;margin:0 auto;font-style:italic;color:#333}
+.testimonial cite{display:block;margin-top:32px;font-size:13px;font-weight:600;font-style:normal;letter-spacing:0.05em;text-transform:uppercase;color:#aaa}
+
+/* Contact / CTA Section */
+.contact{padding:120px 52px;background:#000;color:#fff;text-align:center;border-top:2px solid #000}
+.contact h2{font-size:64px;font-weight:900;letter-spacing:-0.04em;line-height:1;margin-bottom:20px}
+.contact h2 em{font-style:italic;font-weight:300;color:rgba(255,255,255,0.35)}
+.contact p{font-size:14px;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto 48px;line-height:1.8}
+.contact-cta{display:inline-block;background:#fff;color:#000;padding:18px 48px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;text-decoration:none}
+.contact-cta:hover{background:#f0f0f0;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.1)}
+.contact-links{margin-top:48px;display:flex;justify-content:center;gap:40px}
+.contact-links a{color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.3s ease;cursor:pointer}
+.contact-links a:hover{color:#fff}
+
+/* Footer */
+footer{padding:40px 52px;background:#000;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,0.25);font-size:11px;letter-spacing:0.05em}
+footer a{color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.3s ease;cursor:pointer}
+footer a:hover{color:rgba(255,255,255,0.6)}
+.footer-links{display:flex;gap:28px}
+
+/* Scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:#000;z-index:1001;transition:width 0.05s linear}
+
+/* Back to top */
+.back-top{position:fixed;bottom:32px;right:32px;width:44px;height:44px;background:#000;color:#fff;border:none;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:all 0.3s ease;z-index:999}
+.back-top.show{opacity:1;transform:translateY(0)}
+.back-top:hover{background:#333;transform:translateY(-2px)}
+
+/* Mobile hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:22px;height:1.5px;background:#000;transition:all 0.3s ease}
+
+/* Mobile menu overlay */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(20px)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:28px;font-weight:700;color:#000;text-decoration:none;letter-spacing:-0.02em;transition:color 0.3s ease}
+.mobile-menu a:hover{color:#888}
+.mobile-close{position:absolute;top:22px;right:52px;font-size:28px;cursor:pointer;color:#000;background:none;border:none;font-weight:300}
+
+/* Responsive */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:56px}
+  .contact h2{font-size:48px}
+}
+@media(max-width:768px){
+  nav{padding:18px 24px}
+  .links{display:none}
+  .hamburger{display:flex}
+  .hero-bar{flex-direction:column;align-items:flex-start;padding:48px 24px;gap:36px;min-height:auto}
+  h1{font-size:42px}
+  .hero-right{text-align:left}
+  .h-sub{text-align:left}
+  .section-header{padding:48px 24px 32px;flex-direction:column;align-items:flex-start;gap:16px}
+  .section-header h2{font-size:36px}
+  .section-header .section-desc{text-align:left}
+  .works{grid-template-columns:1fr}
+  .work-item .wi-img{border-right:0 !important}
+  .work-item .wi-meta{border-right:0 !important}
+  .services{padding:64px 24px}
+  .services-grid{grid-template-columns:1fr}
+  .about{padding:64px 24px}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .process{padding:64px 24px}
+  .process-steps{grid-template-columns:1fr}
+  .awards{padding:64px 24px}
+  .testimonial{padding:64px 24px}
+  .testimonial blockquote{font-size:22px}
+  .contact{padding:80px 24px}
+  .contact h2{font-size:36px}
+  .clients{padding:24px;flex-direction:column;gap:16px}
+  .cl-names{flex-wrap:wrap;justify-content:center;gap:20px}
+  footer{flex-direction:column;gap:16px;padding:32px 24px;text-align:center}
+  .mobile-close{right:24px}
+}
+@media(max-width:480px){
+  h1{font-size:32px}
+  .stat-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .contact-links{flex-direction:column;gap:16px}
+}
 </style></head><body>
-<nav><div class="logo">Nova Creative</div><div class="links"><span>Work</span><span>Studio</span><span>Services</span><span>Journal</span></div><div class="cta-nav">Start a Project</div></nav>
-<div class="hero-bar">
-  <h1>We make<br/><em>the internet</em><br/>look good.</h1>
-  <div class="hero-right">
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Nova Creative</div>
+  <div class="links">
+    <a href="#work">Work</a>
+    <a href="#about">Studio</a>
+    <a href="#services">Services</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <a href="#contact" class="cta-nav">Start a Project</a>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+  <a href="#work" onclick="this.parentElement.classList.remove('open')">Work</a>
+  <a href="#about" onclick="this.parentElement.classList.remove('open')">Studio</a>
+  <a href="#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+  <a href="#awards" onclick="this.parentElement.classList.remove('open')">Awards</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a>
+</div>
+
+<!-- Hero -->
+<div class="hero-bar" id="hero">
+  <h1 class="fade-up">We make<br/><em>the internet</em><br/>look good.</h1>
+  <div class="hero-right fade-up" style="transition-delay:0.2s">
     <p class="h-sub">Award-winning creative studio specialising in brand, web, and digital experience.</p>
-    <div class="h-cta">View Our Work</div>
-    <div style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.05em">Est. 2018 &nbsp;·&nbsp; London &amp; Remote</div>
+    <a href="#work" class="h-cta">View Our Work</a>
+    <div style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.05em">Est. 2018 &nbsp;&middot;&nbsp; London &amp; Remote</div>
   </div>
 </div>
-<div class="works">
-  <div class="work-item"><div class="wi-img" style="background:#f5f0e8;color:rgba(0,0,0,0.08)">FOLIO</div><div class="wi-meta"><div><div class="wi-name">Aspect Studio</div><div class="wi-cat">Brand + Web</div></div><div class="wi-yr">2025</div></div></div>
-  <div class="work-item"><div class="wi-img" style="background:#1a1a1a;color:rgba(255,255,255,0.05);border-right:0">ARCH</div><div class="wi-meta" style="border-right:0"><div><div class="wi-name">The Arch Group</div><div class="wi-cat">Digital + Motion</div></div><div class="wi-yr">2025</div></div></div>
-  <div class="work-item" style="border-bottom:0"><div class="wi-img" style="background:#eef5ee;color:rgba(0,0,0,0.06);border-bottom:0">MRKT</div><div class="wi-meta" style="border-bottom:0"><div><div class="wi-name">Market Lane</div><div class="wi-cat">E-commerce</div></div><div class="wi-yr">2024</div></div></div>
-  <div class="work-item" style="border-bottom:0"><div class="wi-img" style="background:#f0eef5;color:rgba(0,0,0,0.06);border-right:0;border-bottom:0">VLNT</div><div class="wi-meta" style="border-right:0;border-bottom:0"><div><div class="wi-name">Valiant Capital</div><div class="wi-cat">Web + Brand</div></div><div class="wi-yr">2024</div></div></div>
+
+<!-- Selected Work -->
+<div id="work">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2>Selected Work</h2>
+    </div>
+    <div class="section-desc">A curated collection of projects spanning brand identity, digital products, and immersive experiences.</div>
+  </div>
+  <div class="works">
+    <div class="work-item fade-up">
+      <div class="wi-img" style="background:#f5f0e8;color:rgba(0,0,0,0.08)">FOLIO<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">Aspect Studio</div><div class="wi-cat">Brand + Web</div></div><div class="wi-yr">2025</div></div>
+    </div>
+    <div class="work-item fade-up" style="transition-delay:0.1s">
+      <div class="wi-img" style="background:#1a1a1a;color:rgba(255,255,255,0.05)">ARCH<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">The Arch Group</div><div class="wi-cat">Digital + Motion</div></div><div class="wi-yr">2025</div></div>
+    </div>
+    <div class="work-item fade-up">
+      <div class="wi-img" style="background:#eef5ee;color:rgba(0,0,0,0.06)">MRKT<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">Market Lane</div><div class="wi-cat">E-commerce</div></div><div class="wi-yr">2024</div></div>
+    </div>
+    <div class="work-item fade-up" style="transition-delay:0.1s">
+      <div class="wi-img" style="background:#f0eef5;color:rgba(0,0,0,0.06)">VLNT<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">Valiant Capital</div><div class="wi-cat">Web + Brand</div></div><div class="wi-yr">2024</div></div>
+    </div>
+    <div class="work-item fade-up">
+      <div class="wi-img" style="background:#1c1c1e;color:rgba(255,255,255,0.04)">PRXM<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">Proxima Health</div><div class="wi-cat">Product Design</div></div><div class="wi-yr">2024</div></div>
+    </div>
+    <div class="work-item fade-up" style="transition-delay:0.1s">
+      <div class="wi-img" style="background:#f5ede4;color:rgba(0,0,0,0.06)">SNDS<div class="wi-overlay"><span>View Project</span></div></div>
+      <div class="wi-meta"><div><div class="wi-name">Sands Collective</div><div class="wi-cat">Brand Identity</div></div><div class="wi-yr">2023</div></div>
+    </div>
+  </div>
 </div>
-<div class="marquee-bar"><span class="m-inner">CREATIVE DIRECTION &nbsp;·&nbsp; WEB DESIGN &nbsp;·&nbsp; BRAND IDENTITY &nbsp;·&nbsp; MOTION &nbsp;·&nbsp; DIGITAL STRATEGY &nbsp;·&nbsp; CREATIVE DIRECTION &nbsp;·&nbsp; WEB DESIGN &nbsp;·&nbsp; BRAND IDENTITY &nbsp;·&nbsp; MOTION &nbsp;·&nbsp; DIGITAL STRATEGY &nbsp;·&nbsp; </span></div>
-<div class="clients"><div class="cl-label">Trusted by</div><div class="cl-names"><span>Stripe</span><span>Notion</span><span>Linear</span><span>Arc</span><span>Vercel</span><span>Loom</span></div></div>
+
+<!-- Marquee -->
+<div class="marquee-bar"><span class="m-inner">CREATIVE DIRECTION &nbsp;&middot;&nbsp; WEB DESIGN &nbsp;&middot;&nbsp; BRAND IDENTITY &nbsp;&middot;&nbsp; MOTION &nbsp;&middot;&nbsp; DIGITAL STRATEGY &nbsp;&middot;&nbsp; CREATIVE DIRECTION &nbsp;&middot;&nbsp; WEB DESIGN &nbsp;&middot;&nbsp; BRAND IDENTITY &nbsp;&middot;&nbsp; MOTION &nbsp;&middot;&nbsp; DIGITAL STRATEGY &nbsp;&middot;&nbsp; CREATIVE DIRECTION &nbsp;&middot;&nbsp; WEB DESIGN &nbsp;&middot;&nbsp; BRAND IDENTITY &nbsp;&middot;&nbsp; MOTION &nbsp;&middot;&nbsp; DIGITAL STRATEGY &nbsp;&middot;&nbsp; </span></div>
+
+<!-- Clients -->
+<div class="clients fade-in">
+  <div class="cl-label">Trusted by</div>
+  <div class="cl-names"><span>Stripe</span><span>Notion</span><span>Linear</span><span>Arc</span><span>Vercel</span><span>Loom</span></div>
+</div>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="fade-up">
+    <div class="section-label">What We Do</div>
+    <h2 style="font-size:48px;font-weight:900;letter-spacing:-0.04em">Services</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-title">Brand Identity</div>
+      <div class="service-desc">Strategic brand positioning, visual identity systems, guidelines, and everything needed to build a brand that resonates.</div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.1s">
+      <div class="service-num">02</div>
+      <div class="service-title">Web Design</div>
+      <div class="service-desc">Bespoke websites that push creative boundaries while delivering seamless user experiences and measurable results.</div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.2s">
+      <div class="service-num">03</div>
+      <div class="service-title">Digital Product</div>
+      <div class="service-desc">End-to-end product design from research and strategy through to high-fidelity UI, prototyping, and design systems.</div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.05s">
+      <div class="service-num">04</div>
+      <div class="service-title">Motion Design</div>
+      <div class="service-desc">Kinetic typography, UI animations, brand films, and micro-interactions that add depth and delight to every touchpoint.</div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.15s">
+      <div class="service-num">05</div>
+      <div class="service-title">Creative Strategy</div>
+      <div class="service-desc">Market research, competitive analysis, and creative direction that aligns design decisions with business objectives.</div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.25s">
+      <div class="service-num">06</div>
+      <div class="service-title">Development</div>
+      <div class="service-desc">Pixel-perfect front-end development, CMS integration, performance optimisation, and ongoing technical support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Team -->
+<section class="about" id="about">
+  <div class="fade-up">
+    <div class="section-label">The Studio</div>
+    <h2 style="font-size:48px;font-weight:900;letter-spacing:-0.04em">About Nova</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text slide-left">
+      <h3>A small studio with<br/>an outsized ambition.</h3>
+      <p>We are a collective of designers, developers, and strategists who believe great work happens at the intersection of craft and curiosity. Founded in London in 2018, Nova has grown into a trusted partner for startups, scale-ups, and established brands alike.</p>
+      <p>Our approach is deliberately lean. Every project is led by a senior partner, ensuring the strategic thinking and creative vision you expect from a world-class studio without the layers of bureaucracy.</p>
+      <div class="stat-grid">
+        <div class="stat fade-up">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat fade-up" style="transition-delay:0.1s">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+        <div class="stat fade-up" style="transition-delay:0.15s">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Years Running</div>
+        </div>
+        <div class="stat fade-up" style="transition-delay:0.2s">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-right">
+      <div class="team-grid">
+        <div class="team-member fade-up">
+          <div class="team-avatar">JH</div>
+          <div class="team-name">James Hartley</div>
+          <div class="team-role">Founder &amp; Creative Director</div>
+        </div>
+        <div class="team-member fade-up" style="transition-delay:0.1s">
+          <div class="team-avatar">SP</div>
+          <div class="team-name">Sofia Park</div>
+          <div class="team-role">Design Lead</div>
+        </div>
+        <div class="team-member fade-up" style="transition-delay:0.15s">
+          <div class="team-avatar">MR</div>
+          <div class="team-name">Marcus Reid</div>
+          <div class="team-role">Head of Development</div>
+        </div>
+        <div class="team-member fade-up" style="transition-delay:0.2s">
+          <div class="team-avatar">EK</div>
+          <div class="team-name">Elena Kim</div>
+          <div class="team-role">Strategy Director</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process">
+  <div class="fade-up">
+    <div class="section-label">How We Work</div>
+    <h2 style="font-size:48px;font-weight:900;letter-spacing:-0.04em">Our Process</h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <div class="step-title">Discover</div>
+      <div class="step-desc">Deep research into your brand, market, audience, and goals. We ask the hard questions before sketching a single pixel.</div>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.1s">
+      <div class="step-num">02</div>
+      <div class="step-title">Define</div>
+      <div class="step-desc">Strategic framework and creative brief that aligns your vision with user needs and business objectives.</div>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.2s">
+      <div class="step-num">03</div>
+      <div class="step-title">Design</div>
+      <div class="step-desc">Iterative design sprints exploring bold concepts, refined through feedback until every detail sings.</div>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.3s">
+      <div class="step-num">04</div>
+      <div class="step-title">Deliver</div>
+      <div class="step-desc">Pixel-perfect build, rigorous QA, and a smooth launch. Then we measure, learn, and optimise together.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section class="awards" id="awards">
+  <div class="fade-up">
+    <div class="section-label">Recognition</div>
+    <h2 style="font-size:48px;font-weight:900;letter-spacing:-0.04em">Awards</h2>
+  </div>
+  <div class="awards-list">
+    <div class="award-row fade-up">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">Site of the Year</div></div>
+      <div class="award-project">Aspect Studio</div>
+      <div class="award-year">Awwwards 2025</div>
+    </div>
+    <div class="award-row fade-up" style="transition-delay:0.05s">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">Best E-Commerce Experience</div></div>
+      <div class="award-project">Market Lane</div>
+      <div class="award-year">CSS Design Awards 2024</div>
+    </div>
+    <div class="award-row fade-up" style="transition-delay:0.1s">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">Brand Identity of the Year</div></div>
+      <div class="award-project">Sands Collective</div>
+      <div class="award-year">D&amp;AD 2024</div>
+    </div>
+    <div class="award-row fade-up" style="transition-delay:0.15s">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">Developer Award</div></div>
+      <div class="award-project">The Arch Group</div>
+      <div class="award-year">Awwwards 2025</div>
+    </div>
+    <div class="award-row fade-up" style="transition-delay:0.2s">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">FWA of the Month</div></div>
+      <div class="award-project">Valiant Capital</div>
+      <div class="award-year">FWA 2024</div>
+    </div>
+    <div class="award-row fade-up" style="transition-delay:0.25s">
+      <div style="display:flex;align-items:center;gap:20px"><div class="award-badge"></div><div class="award-name">Best Health &amp; Wellness Design</div></div>
+      <div class="award-project">Proxima Health</div>
+      <div class="award-year">Webby Awards 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="testimonial">
+  <div class="fade-up">
+    <blockquote>&ldquo;Nova didn&rsquo;t just redesign our brand &mdash; they redefined how people experience it. The attention to craft is unmatched.&rdquo;</blockquote>
+    <cite>Sarah Chen, CEO &mdash; Aspect Studio</cite>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="fade-up">
+    <div class="section-label" style="color:#555">Get in Touch</div>
+    <h2>Let&rsquo;s build<br/><em>something great.</em></h2>
+    <p>Have a project in mind? We&rsquo;d love to hear about it. Drop us a line and we&rsquo;ll get back to you within 24 hours.</p>
+    <a href="mailto:hello@novacreative.studio" class="contact-cta">Start a Conversation</a>
+    <div class="contact-links">
+      <a href="#">Twitter / X</a>
+      <a href="#">Instagram</a>
+      <a href="#">Dribbble</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee 2 -->
+<div class="marquee-bar"><span class="m-inner">LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; LET&rsquo;S WORK TOGETHER &nbsp;&middot;&nbsp; </span></div>
+
+<!-- Footer -->
+<footer>
+  <div>&copy; 2025 Nova Creative. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Cookies</a>
+  </div>
+  <div>London &amp; Remote</div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&uarr;</button>
+
+<script>
+// IntersectionObserver for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right').forEach(el => {
+  observer.observe(el);
+});
+
+// Navbar scroll shadow
+const navbar = document.getElementById('navbar');
+const backTop = document.getElementById('backTop');
+const scrollProgress = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+
+  // Nav shadow
+  navbar.classList.toggle('scrolled', scrollY > 10);
+
+  // Back to top button
+  backTop.classList.toggle('show', scrollY > 600);
+
+  // Scroll progress bar
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollY / docHeight) * 100;
+  scrollProgress.style.width = scrollPercent + '%';
+}, { passive: true });
+
+// Trigger initial visible elements
+window.dispatchEvent(new Event('scroll'));
+</script>
 </body></html>
