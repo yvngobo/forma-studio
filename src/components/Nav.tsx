@@ -121,27 +121,34 @@ export default function Nav() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35, ease: [0.16,1,0.3,1] }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             style={{
               position: 'fixed', inset: 0, zIndex: 900,
-              background: 'var(--c-bg)',
+              background: isDark ? 'rgba(12,10,7,0.45)' : 'rgba(252,250,247,0.45)',
+              backdropFilter: 'blur(12px) saturate(150%)',
+              WebkitBackdropFilter: 'blur(12px) saturate(150%)',
               display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center', gap: '2.5rem',
+              alignItems: 'flex-end', justifyContent: 'flex-start',
+              padding: '88px 2rem 0',
+              gap: '1.5rem',
             }}>
             {links.map((l, i) => (
               <motion.div key={l.href}
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i*0.08+0.1, duration: 0.5, ease: [0.16,1,0.3,1] }}>
+                initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i*0.05+0.05, duration: 0.3, ease: [0.16,1,0.3,1] }}>
                 <Link to={l.href} style={{
-                  fontFamily: "'Playfair Display', serif", fontSize: '3rem',
-                  fontWeight: 700, color: 'var(--c-ink)', textDecoration: 'none', letterSpacing: '-0.02em',
+                  fontFamily: "-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif",
+                  fontSize: '0.75rem', fontWeight: 500,
+                  color: 'var(--c-ink)', textDecoration: 'none',
+                  letterSpacing: '0.22em', textTransform: 'uppercase',
+                  opacity: 0.5,
                 }}>{l.label}</Link>
               </motion.div>
             ))}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-              <Link to="/contact" className="btn btn-primary" style={{ marginTop: '1rem' }}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }}>
+              <Link to="/contact" className="btn btn-primary" style={{ fontSize: '0.75rem', marginTop: '0.25rem' }}>
                 Let's Talk
               </Link>
             </motion.div>
