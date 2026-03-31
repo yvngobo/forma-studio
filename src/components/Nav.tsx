@@ -49,7 +49,7 @@ export default function Nav() {
           </Link>
 
           {/* Desktop */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}
+          <div style={{ alignItems: 'center', gap: '2rem' }}
                className="hidden md:flex">
             {links.map(l => (
               <Link key={l.href} to={l.href} className="link-draw" style={{
@@ -84,7 +84,7 @@ export default function Nav() {
           </div>
 
           {/* Mobile: toggle + hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+          <div style={{ alignItems: 'center', gap: '1rem' }}
                className="flex md:hidden">
             <button className="theme-toggle" onClick={toggle} aria-label="Toggle theme"
               style={{ width: '34px', height: '34px' }}>
