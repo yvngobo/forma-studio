@@ -88,7 +88,7 @@ export default function Home() {
             Premium web design for ambitious brands.<br/>Clean. Fast. Conversion-focused.
           </p>
           <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
-            <Link to="/work"    className="btn btn-primary">See Our Work</Link>
+            <Link to="/work"    className="btn btn-primary">Our Work</Link>
             <Link to="/contact" className="btn btn-ghost">Start a Project</Link>
           </div>
         </motion.div>
