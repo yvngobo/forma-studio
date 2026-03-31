@@ -46,10 +46,8 @@ h1 em{font-style:italic;color:#c9a97a}
 .b1:hover{background:transparent;color:#c9a97a}
 .b2{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.25);padding-bottom:1px;cursor:pointer;transition:all 0.3s;text-decoration:none}
 .b2:hover{color:#c9a97a;border-bottom-color:#c9a97a}
-.hr{background:#171310;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hr::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:55%;height:75%;border:1px solid rgba(201,169,122,0.12)}
-.hr::after{content:'2026';position:absolute;bottom:36px;right:48px;font-size:10px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);font-family:-apple-system,sans-serif}
-.watermark{font-size:140px;font-weight:900;color:rgba(201,169,122,0.04);letter-spacing:0.05em;white-space:nowrap;font-style:italic}
+.hr{background:#171310;position:relative;overflow:hidden}
+.hr::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:55%;height:75%;border:1px solid rgba(201,169,122,0.12);z-index:1;pointer-events:none}
 .stats{display:flex;gap:40px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px}
 .stat-label{font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);font-family:-apple-system,sans-serif;text-transform:uppercase;margin-bottom:6px}
 .stat-val{font-size:28px;color:#ede8e0}
@@ -244,7 +242,98 @@ footer{border-top:1px solid rgba(255,255,255,0.06);padding:60px 52px 40px}
       <div><div class="stat-label">Since</div><div class="stat-val">2018</div></div>
     </div>
   </div>
-  <div class="hr"><div class="watermark">AURA</div></div>
+  <div class="hr">
+    <svg viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="figGrad" x1="0" y1="0" x2="0.2" y2="1">
+          <stop offset="0%" stop-color="#2a2520"/>
+          <stop offset="100%" stop-color="#1a1714"/>
+        </linearGradient>
+        <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1c1916"/>
+          <stop offset="100%" stop-color="#171310"/>
+        </linearGradient>
+      </defs>
+      <!-- Background -->
+      <rect width="560" height="800" fill="url(#bgGrad)"/>
+      <!-- Outer frame -->
+      <rect x="28" y="28" width="504" height="744" fill="none" stroke="#c9a97a" stroke-width="0.8" opacity="0.18"/>
+      <rect x="44" y="44" width="472" height="712" fill="none" stroke="#c9a97a" stroke-width="0.5" opacity="0.07"/>
+      <!-- Corner cross marks -->
+      <g stroke="#c9a97a" stroke-width="0.8" opacity="0.38">
+        <line x1="48" y1="62" x2="60" y2="62"/><line x1="54" y1="56" x2="54" y2="68"/>
+        <line x1="500" y1="62" x2="512" y2="62"/><line x1="506" y1="56" x2="506" y2="68"/>
+        <line x1="48" y1="732" x2="60" y2="732"/><line x1="54" y1="726" x2="54" y2="738"/>
+        <line x1="500" y1="732" x2="512" y2="732"/><line x1="506" y1="726" x2="506" y2="738"/>
+      </g>
+      <!-- Top editorial label -->
+      <text x="280" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="9" letter-spacing="6" fill="#c9a97a" opacity="0.55">SS 2026</text>
+      <line x1="230" y1="94" x2="330" y2="94" stroke="#c9a97a" stroke-width="0.5" opacity="0.2"/>
+      <!-- Ground shadow -->
+      <ellipse cx="280" cy="778" rx="95" ry="10" fill="rgba(0,0,0,0.35)"/>
+      <!-- Wide-leg trousers -->
+      <path d="M248 618 L232 776 L252 776 L268 648 L280 646 L292 648 L308 776 L328 776 L312 618 Z" fill="#1e1b17"/>
+      <line x1="250" y1="648" x2="239" y2="776" stroke="rgba(201,169,122,0.08)" stroke-width="0.5"/>
+      <line x1="310" y1="648" x2="321" y2="776" stroke="rgba(201,169,122,0.08)" stroke-width="0.5"/>
+      <!-- Shoes -->
+      <rect x="230" y="766" width="30" height="14" rx="5" fill="#1c1915"/>
+      <rect x="300" y="766" width="30" height="14" rx="5" fill="#1c1915"/>
+      <ellipse cx="245" cy="780" rx="19" ry="5" fill="#161412"/>
+      <ellipse cx="315" cy="780" rx="19" ry="5" fill="#161412"/>
+      <!-- Long coat body -->
+      <path d="M230 288 C208 303,186 323,176 358 L163 478 L158 558 L166 598 L178 623 L208 633 L238 636 L236 668 L248 618 L312 618 L324 668 L322 636 L352 633 L382 623 L394 598 L402 558 L397 478 L384 358 C374 323,352 303,330 288 Z" fill="url(#figGrad)"/>
+      <!-- Coat lapels -->
+      <path d="M230 288 L198 310 L213 356 L246 333 L280 326 L314 333 L347 356 L362 310 L330 288 L317 308 L304 300 L280 306 L256 300 L243 308 Z" fill="#2e2923"/>
+      <!-- Center coat line -->
+      <path d="M280 306 L276 478 L280 488 L284 478 L280 306" stroke="rgba(201,169,122,0.1)" stroke-width="0.7" fill="none"/>
+      <!-- Belt -->
+      <rect x="216" y="428" width="128" height="9" rx="3" fill="#252019"/>
+      <rect x="274" y="424" width="12" height="17" rx="2" fill="#2e2822"/>
+      <rect x="276" y="427" width="8" height="11" fill="none" stroke="#c9a97a" stroke-width="0.8" opacity="0.3" rx="1"/>
+      <!-- Left arm -->
+      <path d="M198 310 L166 418 L158 498 L174 502 L193 428 L228 340 Z" fill="#221f1b"/>
+      <!-- Clutch bag -->
+      <ellipse cx="161" cy="511" rx="13" ry="19" fill="#1c1915"/>
+      <rect x="140" y="502" width="44" height="24" rx="4" fill="#252018" stroke="#c9a97a" stroke-width="0.5" stroke-opacity="0.22"/>
+      <line x1="140" y1="514" x2="184" y2="514" stroke="#c9a97a" stroke-width="0.4" opacity="0.12"/>
+      <!-- Right arm -->
+      <path d="M362 310 L390 398 L402 488 L422 482 L410 398 L394 388 L376 368 L352 340 Z" fill="#221f1b"/>
+      <ellipse cx="424" cy="490" rx="13" ry="17" fill="#1c1915"/>
+      <!-- Head -->
+      <ellipse cx="280" cy="194" rx="36" ry="42" fill="#27231d"/>
+      <!-- Hair updo -->
+      <path d="M244 182 Q250 148 280 146 Q310 148 316 182 L316 170 Q306 138 280 136 Q254 138 244 170 Z" fill="#1f1c17"/>
+      <ellipse cx="280" cy="146" rx="24" ry="14" fill="#1f1c17"/>
+      <!-- Neck -->
+      <rect x="269" y="232" width="22" height="38" fill="#272219"/>
+      <!-- Necklace -->
+      <path d="M265 253 Q280 263 295 253" stroke="#c9a97a" stroke-width="0.8" fill="none" opacity="0.3"/>
+      <circle cx="280" cy="263" r="2.5" fill="#c9a97a" opacity="0.25"/>
+      <!-- Coat pocket flaps -->
+      <rect x="196" y="488" width="50" height="28" rx="2" fill="none" stroke="rgba(201,169,122,0.1)" stroke-width="0.8"/>
+      <rect x="314" y="488" width="50" height="28" rx="2" fill="none" stroke="rgba(201,169,122,0.1)" stroke-width="0.8"/>
+      <!-- Seam lines -->
+      <path d="M213 356 L198 538 L188 608" stroke="rgba(201,169,122,0.08)" stroke-width="0.6" fill="none"/>
+      <path d="M347 356 L362 538 L372 608" stroke="rgba(201,169,122,0.08)" stroke-width="0.6" fill="none"/>
+      <!-- Hem line -->
+      <path d="M158 598 Q166 623 208 633 L238 636 L248 618 L312 618 L322 636 L352 633 Q394 623 402 598" stroke="rgba(201,169,122,0.12)" stroke-width="0.5" fill="none"/>
+      <!-- Left editorial rule -->
+      <line x1="104" y1="148" x2="104" y2="648" stroke="rgba(201,169,122,0.1)" stroke-width="0.5"/>
+      <line x1="98" y1="148" x2="110" y2="148" stroke="rgba(201,169,122,0.16)" stroke-width="0.5"/>
+      <line x1="98" y1="648" x2="110" y2="648" stroke="rgba(201,169,122,0.16)" stroke-width="0.5"/>
+      <text x="72" y="400" font-family="-apple-system,sans-serif" font-size="7.5" fill="rgba(201,169,122,0.3)" letter-spacing="0.5" transform="rotate(-90,72,400)" text-anchor="middle">CASHMERE BLEND</text>
+      <!-- Right annotation line -->
+      <line x1="454" y1="288" x2="454" y2="458" stroke="rgba(201,169,122,0.09)" stroke-width="0.5"/>
+      <line x1="454" y1="288" x2="408" y2="288" stroke="rgba(201,169,122,0.07)" stroke-width="0.5"/>
+      <text x="470" y="376" font-family="-apple-system,sans-serif" font-size="7" fill="rgba(201,169,122,0.28)" letter-spacing="0.5" transform="rotate(90,470,376)" text-anchor="middle">OVERCOAT No.4</text>
+      <!-- Bottom editorial label -->
+      <line x1="188" y1="750" x2="372" y2="750" stroke="rgba(201,169,122,0.14)" stroke-width="0.5"/>
+      <text x="280" y="764" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="8.5" letter-spacing="5" fill="#c9a97a" opacity="0.48">AURA COLLECTIVE</text>
+      <line x1="188" y1="776" x2="372" y2="776" stroke="rgba(201,169,122,0.08)" stroke-width="0.5"/>
+      <!-- Large italic number - editorial accent -->
+      <text x="458" y="762" font-family="Georgia,serif" font-size="34" fill="rgba(201,169,122,0.05)" font-weight="700" font-style="italic">01</text>
+    </svg>
+  </div>
 </section>
 
 <!-- MARQUEE -->
