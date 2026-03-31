@@ -41,9 +41,9 @@ export default function Nav() {
           {/* Logo */}
           <Link to="/" style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
-            fontSize: '1.375rem', color: 'var(--c-ink)',
+            fontSize: 'clamp(1.5rem, 4vw, 1.375rem)', color: 'var(--c-ink)',
             textDecoration: 'none', letterSpacing: '-0.02em',
-            transition: 'color 0.4s',
+            transition: 'color 0.4s', flexShrink: 0,
           }}>
             FORMA
           </Link>
